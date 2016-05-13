@@ -1,0 +1,87 @@
+﻿@using Microsoft.AspNet.Identity
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="~/Content/lightbox.css" rel="stylesheet" />
+    <script src="~/Scripts/modernizr.custom.js"></script>
+    <title>@ViewBag.Title - Applicazione ASP.NET</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body>
+    <header>
+        <div class="navbar navbar-inverse navbar-fixed-top">
+            <a href='@Url.Action("Index", "Home")'><img src="~/Content/Immagini/ScrittaTrasparenteG.png" /><span class="scrittaLogo">Shotokenshukai Caravaggio</span></a>
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                </div>
+                <div class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav navi">
+                        <li><div><a href="@Url.Action("Appuntamenti", "Home")" class="glyphicon glyphicon-calendar"><span>Calendario</span></a></div></li>
+                        <li><div><a href="@Url.Action("Corsi", "Home")" class="glyphicon glyphicon-education"><span>I nostri corsi</span></a></div></li>
+                        <li><div><a href="@Url.Action("Palestra", "Home")" class="glyphicon glyphicon-tower"><span>La palestra</span></a></div></li>
+                        <li><div><a href="@Url.Action("Eventi", "Home")" class="glyphicon glyphicon-film"><span>Attività multimedia</span></a></div></li>
+                        @if (Request.IsAuthenticated)
+                        {
+                            <li><div><a href="@Url.Action("Download", "Home")" class="glyphicon glyphicon-download-alt"><span>Download</span></a></div></li>
+                        }
+                        @if (Request.IsAuthenticated && User.IsInRole("Agonista"))
+                        {
+                            <li><div><a href="@Url.Action("Agonisti", "Home")" class="glyphicon glyphicon-text-color"><span>Area agonisti</span></a></div></li>
+                        }
+                        @if (Request.IsAuthenticated && User.IsInRole("Admin"))
+                        {
+                            <li><div><a href="@Url.Action("Index", "RolesAdmin")" class="glyphicon glyphicon-tag"><span>Gestione ruoli</span></a></div></li>
+                            <li><div><a href="@Url.Action("Index", "UsersAdmin")" class="glyphicon glyphicon-user"><span>Gestione utenti</span></a></div></li>
+                            <li><div><a href="@Url.Action("Index", "Eventis")" class="glyphicon glyphicon-list-alt"><span>Gestione eventii</span></a></div></li>
+                        }
+                    </ul>
+                    @Html.Partial("_LoginPartial")
+                </div>
+            </div>
+        </div>
+    </header>
+    <div class="container body-content">
+        @RenderBody()
+        <footer><hr class="hrv" />
+        <div class="row">
+            <div class="col col-md-4">
+                <h5>
+                    <strong>®2016 Shotokenshukai Caravaggio</strong>
+                </h5>
+                <p>
+                    <span class="glyphicon glyphicon-earphone verde"></span>  036353187 
+                </p>
+                <p>
+                    <span class="glyphicon glyphicon-phone verde"></span>  3356255658
+</p>
+                <p>
+                    <span class="glyphicon glyphicon-envelope verde"></span>  cesare@cr-consult.eu
+                </p>
+
+            </div>
+            <div class="col col-md-4">
+
+            </div>
+            <div class="col col-md-4 text-right">
+                <a href="http://www.cr-consult.eu"> <span>Almish<span style="color:#FF0000" lang="it">&amp;</span>Cesàre<span style="color:#FF0000">W</span>eb</span></a>
+
+            </div>
+        </div>
+        </footer>
+    </div>
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+        @Scripts.Render("~/Scripts/lightbox-plus-jquery.min.js")
+</body>
+</html>

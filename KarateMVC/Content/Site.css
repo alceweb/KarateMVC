@@ -1,0 +1,285 @@
+﻿body {
+    padding-top: 90px;
+    padding-bottom: 20px;
+    background-color:#ebebeb;
+    font-family: "Segoe UI" , Verdana, Helvetica, Sans-Serif;
+}
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+*/
+.dl-horizontal dt {
+    white-space: normal;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    max-width: 280px;
+}
+.scrittaLogo{
+    color:white;
+    font-size: 2.5em;
+}
+.navbar-header{
+    background-color:none;
+}
+.navbar {
+    background-image: url('Immagini/Striscia.jpg');
+    background-repeat: repeat-x;
+    background-position: 50% top;
+}
+.navbar img {
+    max-width:200px;
+    margin-top:0px;
+}
+@media (max-width: 768px) {
+    .navbar {
+        background-image: none;
+        background-color: #22486F;
+    }
+        .navbar img {
+        width:90%;
+    }
+}
+@media (max-width: 400px) {
+    .navbar-header {
+        background-color: #22486F;
+    }
+
+    .navbar img {
+        width: 0px;
+    }
+}
+
+/*personalizzazione*/
+.body-content{
+    margin-top:25px;
+}
+
+h1 {
+    text-shadow: 0px 0px 5px #000;
+    text-align: center;
+    color: #e4e7e9;
+    line-height: 1em;
+}
+h2 {
+    text-align: left;
+    color: #628A81;
+}
+.hr1 {
+    border:inset 1px;
+    color:#fff;
+    }
+.hrv{
+    border:inset 1px;
+    color:#106d40;
+
+}
+.verde{
+    color:#106d40;
+}
+.navi {
+    margin:0;
+    padding:0;
+}
+    .navi a {
+    text-decoration: none;
+    text-shadow: 0px 0px 2px #000;
+    color: #fff !important;
+    font-weight: bold;
+    transition: all 0.8s ease;
+    font-size: 1.2em;
+}
+    .navi li {
+     color:#fff !important;
+   }
+    .navi li div{
+     font-size:1.7em;
+     padding: 12px 13px 0px 13px;
+     z-index:10;
+     position:relative;
+    }
+    .navi a:hover {
+    transition: all 0.8s ease;
+    text-shadow: 0px 0px 40px #4f4f4f;
+    color: #22486F;
+    -ms-transform: scale(1.5,1.5); /* IE 9 */
+    -webkit-transform: scale(1.5,1.5); /* Chrome, Safari, Opera */
+    transform: scale(1.5,1.5);
+    }
+    .navi li a span{
+    transition: all 0.8s ease;
+    color:#000;
+    font-size:0.1em;
+    overflow:no-content;
+    z-index:20;
+    -ms-transform: scale(0,0); /* IE 9 */
+    -webkit-transform: scale(0,0); /* Chrome, Safari, Opera */
+    transform: scale(0,0);
+    display:none;
+    }
+    .navi a:hover span {
+    position:absolute;
+    display:flex;
+    transition: all 0.8s ease;
+    text-shadow: 0px 0px 10px #fff;
+    color: #22486F;
+    -ms-transform: scale(5,5); /* IE 9 */
+    -webkit-transform: scale(5,5); /* Chrome, Safari, Opera */
+    transform: scale(5,5);
+    }
+.navbar-inverse{
+    background-color:#106d40;
+    border:none;
+}
+.content{
+    font-size:0.9em;
+}
+
+.div1 {
+    display:table;
+    margin: auto;
+    text-align:center;
+    padding-left:120px;
+}
+    .div1 h4 {
+        color:#628A81;
+        margin-top:0px;
+        margin-bottom:0px;
+        font-weight:bold;
+        font-style:italic;
+    }
+    .div1 div {
+    float: left;
+    border-radius: 10px;
+    border: thin solid #E5E5E5;
+    margin: 15px;
+    padding: 5px;
+    background-color: #F9FBFA;
+}
+    .div1 img {
+    height:200px;
+    -webkit-transition: all 1s ease;
+    -moz-transition: all 1s ease;
+    -o-transition: all 1s ease;
+    transition: all 1s ease;
+    transition: all 1s ease;
+    -webkit-box-shadow: 0px 0px 25px #000;
+    -moz-box-shadow: 0px 0px 25px #000;
+    box-shadow: 0px 0px 8px #000;
+    border-radius: 0.4em;
+    z-index:1;
+    }
+    .div1 img:hover {
+        border-radius:0.8em;
+    -webkit-transition: all 1s ease;
+    -moz-transition: all 1s ease;
+    -o-transition: all 1s ease;
+    transition: all 1s ease;
+    transition: all 1s ease;
+    z-index: 999;
+    box-shadow: 0px 0px 200px #fff;
+}
+
+.div4 {
+}
+    .div4 div {
+    height:100px;
+    }
+    .div4 img {
+        float:left;
+    -webkit-box-shadow: 4px 4px 5px rgba(50, 50, 50, 0.75);
+    -moz-box-shadow: 4px 4px 5px rgba(50, 50, 50, 0.75);
+    box-shadow: 4px 4px 5px rgba(50, 50, 50, 0.75);
+        margin: 0px 20px 0px 15px;
+        padding:0;
+        height:90px;
+    }
+        .div4 img:hover {
+        border-radius:0.8em;
+    -webkit-transition: all 1s ease;
+    -moz-transition: all 1s ease;
+    -o-transition: all 1s ease;
+    transition: all 1s ease;
+    transition: all 1s ease;
+    z-index: 999;
+    -webkit-box-shadow: 0px 0px 200px #fff;
+    -moz-box-shadow: 0px 0px 200px #fff;
+        }
+.galla {
+    color:yellow;
+    overflow:hidden;
+}
+.galla span:hover img{
+-webkit-transform:scale(1.1); /*Webkit: Scale up image to 1.2x original size*/
+-moz-transform:scale(1.1); /*Mozilla scale version*/
+-o-transform:scale(1.1); /*Opera scale version*/
+z-index:0;
+ -ms-transform: scale(1.1); /* IE 9 */
+ transition:all 1s ease;
+}
+.galla img {
+    height:120px;
+    margin:5px;
+    text-align: center;
+    vertical-align: bottom;
+    border-radius:4px;
+    -webkit-box-shadow: 4px 4px 5px rgba(50, 50, 50, 0.75);
+    -moz-box-shadow:    4px 4px 5px rgba(50, 50, 50, 0.75);
+    box-shadow:         4px 4px 5px rgba(50, 50, 50, 0.75);
+    float:left;
+ transition:all 1s ease;
+}
+
+footer{
+    padding:15px;
+}
+        /********************
+*   Mobile Styles   *
+********************/
+@media only screen and (max-width: 850px) {
+    h2 {
+        font-size:1em;
+    }
+    header {
+        background-image: none;
+        background-color: #22486F;
+    }
+        header img {
+        width:90%;
+    }
+    nav {
+        display:inline-block;
+    }
+    .div1 {
+        padding-left:0px;
+    }
+    .div2 {
+        padding-left: 0px;
+    }
+    .div4 {
+        padding-left: 0px;
+    }
+    .navbar-inverse{
+        background-color:#22486F;
+    }
+
+    .navi a:hover {
+    transition: none;
+    -ms-transform: none; /* IE 9 */
+    -webkit-transform: none; /* Chrome, Safari, Opera */
+    transform: none;
+    }
+    .scrittaLogo{
+        font-size:1em;
+    }
+
+}

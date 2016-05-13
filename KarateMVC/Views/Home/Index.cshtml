@@ -1,0 +1,19 @@
+﻿@model IEnumerable<KarateMVC.Models.Eventi>
+
+@{
+    ViewBag.Title = "Home Page";
+}
+
+<div class="div1 content" >
+@foreach (var item in Model)
+{
+    <div>
+
+        <h4>@Html.DisplayFor(modelItem => item.Titolo)</h4>
+        <h5>@item.Data.ToString("dd MMM yyyy")</h5>
+        <span>
+            <a href="@Url.Action("Evento", "Home", new { id = item.Id })"><img src="@Url.Content("~/Content/Immagini/Eventi/" + @Html.DisplayFor(modelItem => item.Id) + "/" + @Html.DisplayFor(modelItem => item.Id) + ".jpg")" alt="" /></a>
+        </span>
+    </div>
+}
+</div>

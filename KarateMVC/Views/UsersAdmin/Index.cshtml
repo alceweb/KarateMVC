@@ -1,0 +1,53 @@
+﻿@model IEnumerable<KarateMVC.Models.ApplicationUser>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    <a href="~/UsersAdmin/Create" class="btn btn-primary"><span class="badge">@ViewBag.UtentiCount</span> Nuovo</a>
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.UserName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Nome)
+
+
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Cognome)
+
+
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.UserName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nome)
+
+
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Cognome)
+
+
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+            </td>
+        </tr>
+    }
+
+</table>

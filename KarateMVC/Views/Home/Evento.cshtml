@@ -1,0 +1,19 @@
+﻿@model KarateMVC.Models.Eventi
+
+<div class="div1" >
+
+    <h1>@Html.DisplayFor(model => model.Titolo)</h1>
+    <h5>@Html.DisplayFor(model => model.Data)</h5>
+    <p>
+        @Html.DisplayFor(model => model.Descrizione)<br />
+        @Html.DisplayFor(model => model.Approfondimento)
+    </p>
+</div>
+<div class="galla">
+    @foreach (var item in ViewBag.Immagini)
+    {
+        var filename = Path.GetFileName(item);
+        <span><a href="@Url.Content("~/Content/Immagini/Eventi/" + Html.DisplayFor(model => model.Id) +"/" + @filename)" data-lightbox="example-set"><img class="example-image" src="@Url.Content("~/Content/Immagini/Eventi/" + Html.DisplayFor(model => model.Id) +"/" + @filename)" alt="" /></a></span>
+    }
+
+</div>
