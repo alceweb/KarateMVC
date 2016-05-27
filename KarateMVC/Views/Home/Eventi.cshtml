@@ -11,10 +11,19 @@
     @foreach (var item in Model)
     {
         <hr class="hr1" />
-        <div>
-            <a href="@Url.Action("Evento", "Home", new { id = item.Id })"><img src="@Url.Content("~/Content/Immagini/Eventi/" + @Html.DisplayFor(modelItem => item.Id) + "/" + @Html.DisplayFor(modelItem => item.Id) + ".jpg")" alt="" /></a>
-            <span>@Html.DisplayFor(modelItem => item.Data)</span><br/>
-            <h2>@Html.DisplayFor(modelItem => item.Titolo)</h2>
+        <div class="row">
+            <div class="col ">
+                <a href="@Url.Action("Evento", "Home", new { id = item.Evento_Id })"><img src="@Url.Content("~/Content/Immagini/Eventi/" + item.Evento_Id + "/" + item.Evento_Id + ".jpg")" class="img-circle" alt="" /></a>
+
+            </div>
+            <div class="col ">
+                <h4 >@Html.ValueFor(modelItem => item.Data, "{0:dddd dd MMM yyyy}")</h4>
+                <a href="@Url.Action("Evento", "Home", new { id = item.Evento_Id })">
+                    <h2>@Html.DisplayFor(modelItem => item.Titolo)</h2>
+
+                </a>
+
+</div>
         </div>
     }
 </div>

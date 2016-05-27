@@ -1,0 +1,40 @@
+﻿@model KarateMVC.Models.Documenti
+
+@{
+    ViewBag.Title = "Gestione documenti";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<div>
+    <h4>Dettagli</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Titolo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Titolo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.descrizione)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.descrizione)
+        </dd>
+        <dt>
+
+        </dt>
+        <dd>
+            <div class="embed-responsive embed-responsive-16by9">
+                <iframe class="embed-responsive-item" src="@Url.Content("~/Content/Download/" + Model.Id + ".pdf")"></iframe>
+            </div>        </dd>
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

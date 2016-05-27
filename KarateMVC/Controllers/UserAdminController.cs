@@ -3,6 +3,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.AspNet.Identity.EntityFramework;
 using System;
+using System.IO;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
@@ -10,11 +11,13 @@ using System.Net;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using System.Drawing;
 
 namespace KarateMVC.Controllers
 {
     public class UsersAdminController : Controller
     {
+
         public UsersAdminController()
         {
         }
@@ -60,6 +63,14 @@ namespace KarateMVC.Controllers
             return View(await UserManager.Users.ToListAsync());
         }
 
+        [Authorize]
+        public ActionResult IndexUs()
+        {
+            var uid = User.Identity.GetUserId();
+            ViewBag.Uid = uid;
+            return View();
+        }
+
         //
         // GET: /Users/Details/5
         [Authorize(Roles = "Admin")]
@@ -75,7 +86,6 @@ namespace KarateMVC.Controllers
 
             return View(user);
         }
-
 
         //
         // GET: /Users/Create
@@ -162,7 +172,7 @@ namespace KarateMVC.Controllers
         [Authorize(Roles = "Admin")]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "Email,Id,Nome,Cognome")] EditUserViewModel editUser, params string[] selectedRole)
+        public async Task<ActionResult> Edit([Bind(Include = "Id,Email,Nome,Cognome")] EditUserViewModel editUser, params string[] selectedRole)
         {
             if (ModelState.IsValid)
             {
@@ -201,6 +211,78 @@ namespace KarateMVC.Controllers
             ModelState.AddModelError("", "Something failed.");
             return View();
         }
+
+        public async Task<ActionResult> EditUs(String id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            var user = await UserManager.FindByIdAsync(id);
+            if (user == null)
+            {
+                return HttpNotFound();
+            }
+            var userRoles = await UserManager.GetRolesAsync(user.Id);
+
+            return View(new EditUsViewModel()
+            {
+                Id = user.Id,
+                Email = user.Email,
+                Nome = user.Nome,
+                Cognome = user.Cognome,
+                RolesList = RoleManager.Roles.ToList().Select(x => new SelectListItem()
+                {
+                    Selected = userRoles.Contains(x.Name),
+                    Text = x.Name,
+                    Value = x.Name
+                })
+            });
+        }
+
+        [Authorize]
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> EditUs(HttpPostedFileBase file, [Bind(Include = "Id,Email,Nome,Cognome")] EditUsViewModel editUs, params string[] selectedRole)
+        {
+            if (ModelState.IsValid)
+            {
+                var user = await UserManager.FindByIdAsync(editUs.Id);
+                if (user == null)
+                {
+                    return HttpNotFound();
+                }
+
+                user.UserName = editUs.Email;
+                user.Email = editUs.Email;
+                user.Nome = editUs.Nome;
+                user.Cognome = editUs.Cognome;
+                user.Cognome = editUs.Cognome;
+
+                var userRoles = await UserManager.GetRolesAsync(user.Id);
+
+                selectedRole = selectedRole ?? new string[] { };
+
+                var result = await UserManager.AddToRolesAsync(user.Id, selectedRole.Except(userRoles).ToArray<string>());
+
+                if (!result.Succeeded)
+                {
+                    ModelState.AddModelError("", result.Errors.First());
+                    return View();
+                }
+                result = await UserManager.RemoveFromRolesAsync(user.Id, userRoles.Except(selectedRole).ToArray<string>());
+
+                if (!result.Succeeded)
+                {
+                    ModelState.AddModelError("", result.Errors.First());
+                    return View();
+                }
+                return RedirectToAction("IndexUs");
+            }
+            ModelState.AddModelError("", "Something failed.");
+            return View();
+        }
+
 
         //
         // GET: /Users/Delete/5
@@ -246,6 +328,41 @@ namespace KarateMVC.Controllers
                 }
                 return RedirectToAction("Index");
             }
+            return View();
+        }
+
+        public ActionResult FotoProfilo()
+        {
+            var utente = User.Identity.GetUserId();
+            ViewBag.uid = utente;
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult FotoProfilo(HttpPostedFileBase file)
+        {
+            if (ModelState.IsValid)
+            {
+                var utente = User.Identity.GetUserId();
+                if (file != null && file.ContentLength > 0)
+                    try
+                    {
+                        string estensione = Path.GetExtension(file.FileName).ToLower();
+                        file.SaveAs(Server.MapPath("/Content/Immagini/FotoIscritti/" + utente + estensione));
+                        ViewBag.uid = utente;
+                        ViewBag.Message = "Foto caricata correttamente";
+                        return View();
+                    }
+                    catch (Exception ex)
+                    {
+                        ViewBag.Message = "ERROR:" + ex.Message.ToString();
+                    }
+                else
+                {
+                    ViewBag.Message = "Non hai selezionato nessun file. Puoi usare solo file JPG";
+                }
+            }
+
             return View();
         }
     }

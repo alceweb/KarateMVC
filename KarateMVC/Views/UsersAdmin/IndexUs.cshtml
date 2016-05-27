@@ -1,0 +1,22 @@
+﻿
+@{
+    ViewBag.Title = "Gestione profilo";
+}
+
+<h2>@ViewBag.Title</h2>
+<h4>Modifica i dati del profilo</h4>
+<ul>
+    <li>
+        <h3><span class="glyphicon glyphicon-floppy-saved"> @Html.ActionLink("Cambia password", "ChangePassword", "Manage")</span></h3>
+    </li>
+    <li>
+        <h3><span class="glyphicon glyphicon-duplicate"> @Html.ActionLink("Dati anagrafici", "EditUs", new { id = @ViewBag.Uid })</span></h3>
+    </li>
+    <li>
+        <h3><span class="glyphicon glyphicon-camera"> @Html.ActionLink("Foto profilo", "FotoProfilo", new { id = @ViewBag.Uid })</span></h3>
+    </li>
+    <li>
+        <h3><span class="glyphicon glyphicon-cd"> @Html.ActionLink("Medagliere", "Index", "Risultatis", null, new { id = @ViewBag.Uid })</span></h3>
+    </li>
+</ul>
+

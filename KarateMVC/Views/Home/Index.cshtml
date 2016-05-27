@@ -7,12 +7,20 @@
 <div class="div1 content" >
 @foreach (var item in Model)
 {
-    <div>
+    <div class="text-center">
 
-        <h4>@Html.DisplayFor(modelItem => item.Titolo)</h4>
-        <h5>@item.Data.ToString("dd MMM yyyy")</h5>
+        <h4 class="text-center">@Html.DisplayFor(modelItem => item.Titolo)</h4>
+        @if (item.Gara_Id != 19)
+        {
+            <h5 class="text-center">@item.Data.ToString("dddd dd MMM yyyy")</h5>
+
+        }
+        else
+        {
+            <h5> </h5>
+        }
         <span>
-            <a href="@Url.Action("Evento", "Home", new { id = item.Id })"><img src="@Url.Content("~/Content/Immagini/Eventi/" + @Html.DisplayFor(modelItem => item.Id) + "/" + @Html.DisplayFor(modelItem => item.Id) + ".jpg")" alt="" /></a>
+            <a href="@Url.Action("Evento", "Home", new { id = item.Evento_Id })"><img src="@Url.Content("~/Content/Immagini/Eventi/" + item.Evento_Id + "/" + item.Evento_Id + ".jpg")" alt="" /></a>
         </span>
     </div>
 }

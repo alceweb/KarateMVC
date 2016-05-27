@@ -1,16 +1,16 @@
 ﻿@model KarateMVC.Models.RegisterViewModel
 
 @{
-    ViewBag.Title = "Create";
+    ViewBag.Title = "Gestione utenti";
 }
 
-<h2>@ViewBag.Title.</h2>
+<h2>@ViewBag.Title</h2>
 
 @using (Html.BeginForm("Create", "UsersAdmin", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
 {
     @Html.AntiForgeryToken()
-    <h4>Create a new account.</h4>
-    <hr />
+    <h4>Nuovo</h4>
+    <hr class="hr1" />
     @Html.ValidationSummary("", new { @class = "text-error" })
     <div class="form-group">
         @Html.LabelFor(m => m.Email, new { @class = "col-md-2 control-label" })

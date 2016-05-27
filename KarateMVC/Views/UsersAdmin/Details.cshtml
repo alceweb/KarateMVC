@@ -1,15 +1,14 @@
 ﻿@model KarateMVC.Models.ApplicationUser
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "Gestione utenti";
 }
 
-
-<h2>Details.</h2>
+<h2>@ViewBag.Title</h2>
 
 <div>
-    <h4>User</h4>
-    <hr />
+    <h4>Dettagli</h4>
+    <hr class="hr1" />
     <dl class="dl-horizontal">
         <dt>
             @Html.DisplayNameFor(model => model.UserName)

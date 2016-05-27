@@ -1,7 +1,34 @@
-﻿
+﻿@model IEnumerable<KarateMVC.Models.Documenti>
+
 @{
     ViewBag.Title = "Download";
 }
 
-<h2>Download</h2>
+<h2>@ViewBag.Title</h2>
+<table class="table table-hover">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Titolo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.descrizione)
+        </th>
+        <th></th>
+    </tr>
 
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Titolo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.descrizione)
+            </td>
+            <td>
+                <a href="@Url.Content("~/Content/Download/" + item.Id + ".pdf")" target="_blank"  class="btn btn-danger glyphicon glyphicon-save-file"></a>
+            </td>
+        </tr>
+    }
+
+</table>

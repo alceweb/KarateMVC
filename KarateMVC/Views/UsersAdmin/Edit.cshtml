@@ -1,16 +1,16 @@
 ﻿@model KarateMVC.Models.EditUserViewModel
 @{
-    ViewBag.Title = "Edit";
+    ViewBag.Title = "Gestione utenti";
 }
 
-<h2>Edit.</h2>
+<h2>@ViewBag.Title</h2>
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
 
     <div class="form-horizontal">
-        <h4>Edit User Form.</h4>
-        <hr />
+        <h4>Modifica</h4>
+        <hr class="hr1" />
         @Html.ValidationSummary(true)
         @Html.HiddenFor(model => model.Id)
 

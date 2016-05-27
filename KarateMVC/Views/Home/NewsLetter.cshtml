@@ -1,0 +1,48 @@
+﻿@model KarateMVC.Models.NewsLetterFormModel
+@{
+    ViewBag.Title = "News letter";
+}
+
+<h2>@ViewBag.Title</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <h4>Invio newsletter</h4>
+    <hr />
+    <fom class="form-horizontal">
+        <div class="form-group">
+            @Html.LabelFor(m => m.Destinatario, new { @class = "col-md-2 control-label" })
+            <div class="col-md-10">
+                <select class="form-control" id="Select1" name="Destinatario">
+                    <option value="g34.list3.c61439.u1pk@2many.it">Agonisti</option>
+                    <option value="g36.list3.c61439.u1pk@2many.it">Allievi</option>
+                    <option value="test.list3.c61439.u1pk@2many.it">Prova</option>
+                </select>
+                @Html.ValidationMessageFor(m => m.Destinatario)
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(m => m.Message, new { @class = "col-md-2 control-label" })
+            <div class="col-md-10">
+                @Html.TextAreaFor(m => m.Message, new { @class = "form-control ckeditor"})
+                @Html.ValidationMessageFor(m => m.Message)
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-2">
+
+            </div>
+            <div class="col-md-10">
+                <input type="submit" class="btn btn-default" value="Send" /><span class="alert-success">@ViewBag.Message</span>
+            </div>
+        </div>
+
+    </fom>
+}
+
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

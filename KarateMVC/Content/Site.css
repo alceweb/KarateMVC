@@ -5,17 +5,19 @@
     font-family: "Segoe UI" , Verdana, Helvetica, Sans-Serif;
 }
 
+    
 /* Set padding to keep content from hitting the edges */
 .body-content {
     padding-left: 15px;
     padding-right: 15px;
+    background-color:rgba(235, 235, 235, 0.90)
 }
 
 /* Override the default bootstrap behavior where horizontal description lists 
    will truncate terms that are too long to fit in the left column 
 */
 .dl-horizontal dt {
-    white-space: normal;
+    white-space: normal;20/10/2007
 }
 
 /* Set width on the form input elements since they're 100% wide by default */
@@ -24,9 +26,23 @@ select,
 textarea {
     max-width: 280px;
 }
+
+hr {
+    border: inset 0.1em;
+    color:#ebebeb;
+    }
+
 .scrittaLogo{
     color:white;
     font-size: 2.5em;
+    font-weight:600;
+    text-shadow:0px 0px 6px #000;
+}
+.scittaLogoVerticale{
+    position:fixed;
+    top:125px;
+    left:0px;
+    z-index:-9000;
 }
 .navbar-header{
     background-color:none;
@@ -39,24 +55,6 @@ textarea {
 .navbar img {
     max-width:200px;
     margin-top:0px;
-}
-@media (max-width: 768px) {
-    .navbar {
-        background-image: none;
-        background-color: #22486F;
-    }
-        .navbar img {
-        width:90%;
-    }
-}
-@media (max-width: 400px) {
-    .navbar-header {
-        background-color: #22486F;
-    }
-
-    .navbar img {
-        width: 0px;
-    }
 }
 
 /*personalizzazione*/
@@ -81,7 +79,6 @@ h2 {
 .hrv{
     border:inset 1px;
     color:#106d40;
-
 }
 .verde{
     color:#106d40;
@@ -125,6 +122,11 @@ h2 {
     -webkit-transform: scale(0,0); /* Chrome, Safari, Opera */
     transform: scale(0,0);
     display:none;
+    background-color:rgba(235, 235, 235, 0.00)
+    }
+    .navi li a img{
+            transition: all 0.8s ease;
+
     }
     .navi a:hover span {
     position:absolute;
@@ -135,20 +137,27 @@ h2 {
     -ms-transform: scale(5,5); /* IE 9 */
     -webkit-transform: scale(5,5); /* Chrome, Safari, Opera */
     transform: scale(5,5);
+    margin-top:12px;
+    background-color:rgba(235, 235, 235, 0.80);
+    padding: 0px 1px 1px 1px;
+    border-radius:1px;
     }
 .navbar-inverse{
     background-color:#106d40;
     border:none;
 }
+.link-home{
+
+}
 .content{
     font-size:0.9em;
+    display:table;
 }
 
 .div1 {
-    display:table;
     margin: auto;
     text-align:center;
-    padding-left:120px;
+    text-align:justify;
 }
     .div1 h4 {
         color:#628A81;
@@ -192,7 +201,6 @@ h2 {
 .div4 {
 }
     .div4 div {
-    height:100px;
     }
     .div4 img {
         float:left;
@@ -204,7 +212,6 @@ h2 {
         height:90px;
     }
         .div4 img:hover {
-        border-radius:0.8em;
     -webkit-transition: all 1s ease;
     -moz-transition: all 1s ease;
     -o-transition: all 1s ease;
@@ -238,23 +245,88 @@ z-index:0;
     float:left;
  transition:all 1s ease;
 }
+.galla1 {
+ }
+.galla1:hover img{
+-webkit-transform:scale(0.8); /*Webkit: Scale up image to 1.2x original size*/
+-moz-transform:scale(0.8); /*Mozilla scale version*/
+-o-transform:scale(0.8); /*Opera scale version*/
+ -ms-transform: scale(0.8); /* IE 9 */
+-moz-box-shadow:1px 1px 30px gray; /*Mozilla shadow version*/
+z-index:0;
+            opacity: 0.2; 
+            box-shadow: 0px 0px 10px 5px #716556;
+            -webkit-box-shadow: 0px 0px 10px 5px #716556;
+            -moz-box-shadow: 0px 0px 10px 5px #716556;
+ transition:all 1s ease;
+}
+.galla1 img {
+    height:120px;
+    margin:5px;
+    text-align: center;
+    vertical-align: bottom;
+    border-radius:4px;
+    -webkit-box-shadow: 4px 4px 5px rgba(50, 50, 50, 0.75);
+    -moz-box-shadow:    4px 4px 5px rgba(50, 50, 50, 0.75);
+    box-shadow:         4px 4px 5px rgba(50, 50, 50, 0.75);
+ transition:all 1s ease;
+}
+
+.img-login{
+    height:50px;
+    border:solid 2px #fff;
+    border-radius:50%;
+    top:-30px;
+    margin-top:-25px !important;
+}
+.img-usr{
+    height:50px;
+    border:solid 2px #fff;
+    border-radius:50%;
+}
 
 footer{
-    padding:15px;
+    padding:0px;
 }
+
+
+
         /********************
 *   Mobile Styles   *
 ********************/
-@media only screen and (max-width: 850px) {
-    h2 {
+@media (max-width: 400px) {
+    .navbar img {
+        width: 0px;
+    }
+}
+@media (max-width: 768px) {
+    .navbar {
+        background-image: none;
+    }
+        .link-home{
+            position:fixed;
+        }
+.img-login{
+    height:40px;
+    border:solid 2px #fff;
+    border-radius:50%;
+    top:100px;
+    margin-top:-25px !important;
+}
+
+    .scrittaLogo{
+        visibility:collapse;
         font-size:1em;
+    }
+    .scittaLogoVerticale {
+        width:80px;
+    }
+    h2 {
+        font-size:1.7em;
     }
     header {
         background-image: none;
         background-color: #22486F;
-    }
-        header img {
-        width:90%;
     }
     nav {
         display:inline-block;
@@ -268,9 +340,6 @@ footer{
     .div4 {
         padding-left: 0px;
     }
-    .navbar-inverse{
-        background-color:#22486F;
-    }
 
     .navi a:hover {
     transition: none;
@@ -278,8 +347,24 @@ footer{
     -webkit-transform: none; /* Chrome, Safari, Opera */
     transform: none;
     }
-    .scrittaLogo{
-        font-size:1em;
+    .navi li a span {
+        padding-left:20px;
+        position:relative;
+        display:inline-block;
+        color:#fff;
+        font-size:0.7em;
+        transform:scale(1,1);
+    }
+    .navi a:hover span {
+    position:relative;
+    display:inline-block;
+    transition: none;
+    text-shadow: none;
+    color: #106d40;
+    -ms-transform: scale(1,1); /* IE 9 */
+    -webkit-transform: scale(1,1); /* Chrome, Safari, Opera */
+    transform: scale(1,1);
+     font-size:0.7em;
     }
 
 }

@@ -65,6 +65,7 @@ namespace KarateMVC.Controllers
             var utente = User.Identity.GetUserName();
             ViewBag.Utente = utente;
             var userId = User.Identity.GetUserId();
+            ViewBag.Uid = userId;
             var model = new IndexViewModel
             {
                 HasPassword = HasPassword(),

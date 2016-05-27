@@ -33,7 +33,7 @@ namespace KarateMVC.Controllers
 
         public ActionResult Index()
         {
-            var eventi = db.Eventis.Where(p => p.Pubblica == true);
+            var eventi = db.Eventis.Where(p => p.Pubblica == true).OrderByDescending(d=>d.Data);
             return View(eventi.ToList());
         }
 
@@ -60,42 +60,101 @@ namespace KarateMVC.Controllers
             return View();
         }
 
-            public ActionResult Palestra()
+            public async Task<ActionResult> Palestra()
         {
             ViewBag.Message = "Palestra";
             var immagini = Directory.GetFiles(Server.MapPath("/Content/Immagini/Palestra/"));
             ViewBag.Immagini = immagini.ToList();
-            return View();
+            // Get the list of Users in this Role
+            var agonisti = new List<ApplicationUser>();
+            foreach (var user in UserManager.Users.ToList())
+            {
+                if (await UserManager.IsInRoleAsync(user.Id, "Agonista"))
+                {
+                    agonisti.Add(user);
+                }
+            }
+            ViewBag.Agonisti = agonisti;
+
+            return View(await UserManager.Users.ToListAsync());
         }
 
         public ActionResult Eventi()
         {
+            ViewBag.CountEventi = db.Eventis.Count();
             ViewBag.Message = "Vita della palestra";
-            var eventi = db.Eventis.Where(g => g.Galleria == true);
+            var eventi = db.Eventis.Where(g => g.Galleria == true).OrderByDescending(d=>d.Data);
             return View(eventi);
         }
 
         public ActionResult Appuntamenti()
         {
             ViewBag.Message = "Appuntamenti";
-            var eventi = db.Eventis.Where(d=>d.Data > DateTime.Now);
+            var eventi = db.Eventis.Where(d=>d.Data > DateTime.Now && d.Gara_Id != 19).OrderBy(d=>d.Data);
             if (eventi == null)
             {
                 return HttpNotFound();
             }
             return View(eventi);
         }
-
         public ActionResult Download()
         {
             ViewBag.Message = "Download";
-            return View();
+            var documenti = db.Documentis.OrderByDescending(i => i.Id);
+            return View(documenti);
         }
 
         public ActionResult Agonisti()
         {
             ViewBag.Message = "Area agonisti";
             return View();
+        }
+
+        public ActionResult Credits()
+        {
+            return View();
+        }
+
+        public ActionResult test()
+        {
+            return View();
+        }
+
+        [HttpPost]
+
+        public ActionResult test(int? id)
+        {
+            System.IO.Directory.CreateDirectory(Server.MapPath("~/Content/ciao"));
+            return View();
+        }
+
+        [Authorize(Roles = "Admin")]
+        public ActionResult NewsLetter()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> NewsLetter(NewsLetterFormModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                var message = new MailMessage();
+                message.From = new MailAddress("webservice@shotokenshukai.eu");
+                message.To.Add(new MailAddress(model.Destinatario));  
+                message.Subject = "News letter Shotokenshukai";
+                message.Body = string.Format(model.Message);
+                message.IsBodyHtml = true;
+
+                using (var smtp = new SmtpClient())
+                {
+                    await smtp.SendMailAsync(message);
+                    ViewBag.Message = "Newsletter inviata correttamente";
+                    return View(model);
+                }
+            }
+            return View(model);
         }
     }
 }

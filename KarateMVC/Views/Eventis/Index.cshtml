@@ -1,30 +1,31 @@
 ﻿@model IEnumerable<KarateMVC.Models.Eventi>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Gestione eventi";
 }
 
-<h2>Index</h2>
+<h2>@ViewBag.Title</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
+<div class="row">
+    <div class="col col-md-8">
+        <a href="@Url.Action("Create", "Eventis")" class="btn btn-primary"><span class="badge">@ViewBag.EventiCount</span> Nuovo</a>
+    </div>
+    <div class="col col-md-4 text-right">
+        @Html.ActionLink(" ", "NewsLetter", "Home", null, new { @class = "glyphicon glyphicon-send", title = "Invia newsletter" })
+
+
+    </div>
+</div>
+<table class="table table-hover">
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.Titolo)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Descrizione)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Data)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Pubblica)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Approfondimento)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Galleria)
@@ -38,24 +39,19 @@
             @Html.DisplayFor(modelItem => item.Titolo)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Descrizione)
-        </td>
-        <td>
             @Html.DisplayFor(modelItem => item.Data)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Pubblica)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Approfondimento)
-        </td>
-        <td>
             @Html.DisplayFor(modelItem => item.Galleria)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+            @Html.ActionLink("Edit", "Edit", new { id=item.Evento_Id }, new { @class = "text-success" }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.Evento_Id }, new { @class = "text-danger" }) |
+            @Html.ActionLink(" ", "EditImg", new { id = item.Evento_Id }, new { @class = "glyphicon glyphicon-camera", title="Galleria" }) |
+            @Html.ActionLink(" ", "EditImgP", new { id = item.Evento_Id }, new { @class = "glyphicon glyphicon-picture", title = "Foto bacheca" })
         </td>
     </tr>
 }

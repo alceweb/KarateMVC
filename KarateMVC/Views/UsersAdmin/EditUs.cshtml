@@ -1,0 +1,76 @@
+﻿@model KarateMVC.Models.EditUsViewModel
+
+@{
+    ViewBag.Title = "Gestione profilo";
+}
+
+<h2>@ViewBag.Title</h2>
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>Modifica</h4>
+        <hr class="hr1" />
+        @Html.ValidationSummary(true)
+        @Html.HiddenFor(model => model.Id)
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Email, new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.Email)
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Nome, new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.TextBoxFor(m => m.Nome, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.Nome)
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Cognome, new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.TextBoxFor(m => m.Cognome, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.Cognome)
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.Label("Ruolo assegnato", new { @class = "control-label col-md-2" })
+                    <span class="col-md-10">
+                        @foreach (var item in Model.RolesList)
+                {
+                            <input type="checkbox" name="SelectedRole" disabled="disabled" value="@item.Value" checked="@item.Selected" class="checkbox-inline" />
+                            @Html.Label(item.Value, new { @class = "control-label" })
+                        }
+                    </span>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-2">
+                    </div>
+                    <div class="col-md-10">
+                        Per modificare il ruolo devi rivolgerti all'aministratore.
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="Salva" class="btn btn-default" />
+                    </div>
+                </div>
+
+            </div>
+            <div class="col-md-6">
+                <input id="File" type="file" /><br/>
+                @ViewBag.Message<br/>
+                <img class="img-thumbnail" src="" alt="" />
+            </div>
+
+        </div>
+    </div>
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

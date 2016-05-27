@@ -1,0 +1,40 @@
+﻿@model IEnumerable<KarateMVC.Models.Documenti>
+
+@{
+    ViewBag.Title = "Gestione documenti";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<p>
+    <a href="@Url.Action("Create", "Documentis")" class="btn btn-primary">
+        <span class="badge">@ViewBag.PDFCount</span> Nuovo</a>
+</p>
+<table class="table table-hover">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Titolo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.descrizione)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Titolo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.descrizione)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+        </td>
+    </tr>
+}
+
+</table>
