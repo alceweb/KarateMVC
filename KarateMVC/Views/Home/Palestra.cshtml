@@ -54,13 +54,13 @@
             <h3>
                 @if (System.IO.File.Exists(Server.MapPath("~/Content/Immagini/FotoIscritti/" + @item.Id + ".jpg")))
                 {
-                    <img src="@Url.Content("~/Content/Immagini/FotoIscritti/" + @item.Id + ".jpg")" />
+                    <a href="@Url.Action("Palmares", "Medaglieres", new {id = @item.Id })"><img src="@Url.Content("~/Content/Immagini/FotoIscritti/" + @item.Id + ".jpg")" /></a>
                 }
                 else
-                { 
-                <img src="~/Content/Immagini/FotoIscritti/Anonimous.jpg" />
+                {
+                    <a href="@Url.Action("Palmares", "Medaglieres", new {id = @item.Id })"><img src="@Url.Content("~/Content/Immagini/FotoIscritti/Anonimous.jpg")" /></a>
                 }
-            </h3>
+</h3>
         </div>
     }
 </div>

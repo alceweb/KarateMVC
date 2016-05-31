@@ -1,0 +1,51 @@
+﻿@model IEnumerable<KarateMVC.Models.Medagliere>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<div class="row">
+    <div class="col col-md-3">
+        <a href="@Url.Action("Create", "Medaglieres")" class="btn btn-primary"><span class="badge">@ViewBag.MedCount</span> Nuovo</a>
+    </div>
+    <div class="colcol-md-3">
+        <span class="label label-success">@ViewBag.Oro Oro</span>
+        <span class="label label-success">@ViewBag.Argento Argento</span>
+        <span class="label label-success">@ViewBag.Bronzo Bronzo</span>
+    </div>
+</div>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Titolo.Titolo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Spec)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.classifica)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Titolo.Titolo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Spec)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.classifica)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id = item.Medagliere_Id }, new { @class = "text-success"}) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Medagliere_Id }, new { @class = "text-danger" })
+        </td>
+    </tr>
+}
+
+</table>

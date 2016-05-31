@@ -172,12 +172,26 @@
     <Compile Include="Controllers\EventisController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\MedaglieresController.cs" />
     <Compile Include="Controllers\RolesAdminController.cs" />
     <Compile Include="Controllers\SpecsController.cs" />
     <Compile Include="Controllers\UserAdminController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201605271443507_inizio.cs" />
+    <Compile Include="Migrations\201605271443507_inizio.Designer.cs">
+      <DependentUpon>201605271443507_inizio.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201605271450177_Medagliere.cs" />
+    <Compile Include="Migrations\201605271450177_Medagliere.Designer.cs">
+      <DependentUpon>201605271450177_Medagliere.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201605271513313_medagliereuid.cs" />
+    <Compile Include="Migrations\201605271513313_medagliereuid.Designer.cs">
+      <DependentUpon>201605271513313_medagliereuid.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\AdminViewModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -191,9 +205,12 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\Immagini\Argento.png" />
+    <Content Include="Content\Immagini\bronzo.png" />
     <Content Include="Content\Immagini\close.png" />
     <Content Include="Content\Immagini\Corsi.jpg" />
     <Content Include="Content\Immagini\LogoVerticale.png" />
+    <Content Include="Content\Immagini\Oro.png" />
     <Content Include="Content\Immagini\Palestra\img_0001.jpg" />
     <Content Include="Content\Immagini\Palestra\IMG_0004.jpg" />
     <Content Include="Content\Immagini\Palestra\IMG_0158.jpg" />
@@ -204,6 +221,7 @@
     <Content Include="Content\Immagini\prev.png" />
     <Content Include="Content\Immagini\ScrittaTrasparenteG.png" />
     <Content Include="Content\Immagini\Striscia.jpg" />
+    <Content Include="Content\Immagini\Taiei3.jpg" />
     <Content Include="Content\Immagini\Yammer.png" />
     <Content Include="Content\lightbox.css" />
     <Content Include="favicon.ico" />
@@ -662,6 +680,13 @@
     <Content Include="Views\Risultatis\Details.cshtml" />
     <Content Include="Views\Risultatis\Edit.cshtml" />
     <Content Include="Views\Risultatis\Index.cshtml" />
+    <Content Include="Views\Medaglieres\Create.cshtml" />
+    <Content Include="Views\Medaglieres\Delete.cshtml" />
+    <Content Include="Views\Medaglieres\Details.cshtml" />
+    <Content Include="Views\Medaglieres\Edit.cshtml" />
+    <Content Include="Views\Medaglieres\Index.cshtml" />
+    <Content Include="Views\Medaglieres\Palmares.cshtml" />
+    <Content Include="Views\Home\Special.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -673,6 +698,17 @@
     <Content Include="packages.config" />
     <None Include="Project_Readme.html" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201605271443507_inizio.resx">
+      <DependentUpon>201605271443507_inizio.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201605271450177_Medagliere.resx">
+      <DependentUpon>201605271450177_Medagliere.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201605271513313_medagliereuid.resx">
+      <DependentUpon>201605271513313_medagliereuid.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

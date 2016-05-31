@@ -72,6 +72,16 @@ namespace KarateMVC.Models
         public string Specialità { get; set; }
     }
 
+    public class Medagliere
+    {
+        [Key]
+        public int Medagliere_Id { get; set; }
+        public int Evento_Id { get; set; }
+        public virtual Eventi Titolo { get; set; }
+        public string Spec { get; set; }
+        public string classifica { get; set; }
+        public string Uid { get; set; }
+    }
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         public ApplicationDbContext()
@@ -88,5 +98,6 @@ namespace KarateMVC.Models
         public DbSet<KarateMVC.Models.Documenti> Documentis { get; set; }
         public DbSet<KarateMVC.Models.Spec> Speci { get; set; }
         public DbSet<KarateMVC.Models.Gare> Gares { get; set; }
+        public DbSet<KarateMVC.Models.Medagliere> Medaglieres { get; set; }
     }
 }

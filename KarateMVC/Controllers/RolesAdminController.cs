@@ -62,7 +62,7 @@ namespace KarateMVC.Controllers
 
         //
         // GET: /Roles/Details/5
-        public async Task<ActionResult> Details(string id)
+        public async Task<ActionResult> Details(string id, string usr)
         {
             if (id == null)
             {
@@ -80,7 +80,8 @@ namespace KarateMVC.Controllers
                     users.Add(user);
                 }
             }
-
+            ViewBag.Id = id;
+            ViewBag.Usr = usr;
             ViewBag.Users = users;
             ViewBag.UserCount = users.Count();
             return View(role);

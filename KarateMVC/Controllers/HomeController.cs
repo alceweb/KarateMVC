@@ -156,5 +156,17 @@ namespace KarateMVC.Controllers
             }
             return View(model);
         }
+
+        public ActionResult Palmares(string id)
+        {
+            var utente = id.ToString();
+            ViewBag.Utente = id;
+            return View();
+        }
+        [Authorize(Roles ="Special")]
+        public ActionResult Special()
+        {
+            return View();
+        }
     }
 }

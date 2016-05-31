@@ -43,7 +43,7 @@ namespace KarateMVC.Controllers
         // GET: Eventis/Create
         public ActionResult Create()
         {
-            ViewBag.Gara_Id = new SelectList(db.Gares, "Gara_Id", "NomeGara");
+            ViewBag.Gara_Id = new SelectList(db.Gares.OrderBy(t => t.NomeGara), "Gara_Id", "NomeGara");
             return View();
         }
         
@@ -52,7 +52,7 @@ namespace KarateMVC.Controllers
         // Per ulteriori dettagli, vedere http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Gara_Id,Titolo,Data,Pubblica,Approfondimento,Galleria", Exclude ="Descrizione")] Eventi eventi)
+        public ActionResult Create([Bind(Include = "Evento_Id,Gara_Id,Titolo,Data,Pubblica,Approfondimento,Galleria", Exclude ="Descrizione")] Eventi eventi)
         {
             FormCollection collection = new FormCollection(Request.Unvalidated().Form);
             eventi.Descrizione = collection["Descrizione"];
@@ -79,7 +79,7 @@ namespace KarateMVC.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.Gara_Id = new SelectList(db.Gares, "Gara_Id", "NomeGara", eventi.Gara_Id);
+            ViewBag.Gara_Id = new SelectList(db.Gares.OrderBy(t=>t.NomeGara), "Gara_Id", "NomeGara", eventi.Gara_Id);
             return View(eventi);
         }
 
