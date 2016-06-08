@@ -46,8 +46,7 @@
 
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Titolo.Data)
-
+                @item.Titolo.Data.ToString("dddd dd MMM yyyy")
             </td>
         </tr>
     }

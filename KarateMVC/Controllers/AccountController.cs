@@ -9,6 +9,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using KarateMVC.Models;
+using System.Net.Mail;
 
 namespace KarateMVC.Controllers
 {
@@ -156,7 +157,18 @@ namespace KarateMVC.Controllers
                 if (result.Succeeded)
                 {
                     await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
-                    
+                    // Invio la mail per avvisdarmi che si è iscritto un nuovo utente
+                    var message = new MailMessage();
+                    message.From = new MailAddress("webservice@shotokenshukai.eu");
+                    message.To.Add(new MailAddress("cesare@cr-consult.eu"));
+                    message.Subject = "NUova iscrizione al sito del karate";
+                    message.Body = "Il giorno <strong>" + DateTime.Now + "</strong><br/><strong>" + model.Email + "</strong><br/>si è iscritto al sito del karate.";
+                    message.IsBodyHtml = true;
+                    using (var smtp = new SmtpClient())
+                    {
+                        await smtp.SendMailAsync(message);
+                    }
+
                     // Per ulteriori informazioni su come abilitare la conferma dell'account e la reimpostazione della password, visitare http://go.microsoft.com/fwlink/?LinkID=320771
                     // Inviare un messaggio di posta elettronica con questo collegamento
                     // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);

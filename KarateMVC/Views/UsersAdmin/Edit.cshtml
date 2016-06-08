@@ -36,6 +36,34 @@
             </div>
         </div>
         <div class="form-group">
+            @Html.LabelFor(model => model.DataNascita, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(m => m.DataNascita, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.DataNascita)
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.DataInizio, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(m => m.DataInizio, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.DataInizio)
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Grado, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(m => m.Grado, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Grado)
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Frase, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(m => m.Frase, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Frase)
+            </div>
+        </div>
+        <div class="form-group">
             @Html.Label("Roles", new { @class = "control-label col-md-2" })
             <span class=" col-md-10">
                 @foreach (var item in Model.RolesList)

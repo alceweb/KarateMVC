@@ -15,6 +15,10 @@ namespace KarateMVC.Models
     {
         public string Nome { get; set; }
         public string Cognome { get; set; }
+        public DateTime DataNascita { get; set; }
+        public DateTime DataInizio { get; set; }
+        public string Grado { get; set; }
+        public string Frase { get; set; }
 
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
         {

@@ -1,5 +1,4 @@
-﻿@model KarateMVC.Models.EditUsViewModel
-
+﻿@model KarateMVC.Models.EditUserViewModel
 @{
     ViewBag.Title = "Gestione profilo";
 }
@@ -10,67 +9,89 @@
     @Html.AntiForgeryToken()
 
     <div class="form-horizontal">
-        <h4>Modifica</h4>
+        <h4>Modifica dati anagrafici</h4>
         <hr class="hr1" />
+        <h3>
+            @Html.ActionLink(" ", "IndexUs", "UsersAdmin", null, new { @class = "glyphicon glyphicon-arrow-left" })
+        </h3>
+
         @Html.ValidationSummary(true)
         @Html.HiddenFor(model => model.Id)
-        <div class="row">
-            <div class="col-md-6">
-                <div class="form-group">
-                    @Html.LabelFor(model => model.Email, new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
-                        @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
-                        @Html.ValidationMessageFor(model => model.Email)
-                    </div>
-                </div>
-                <div class="form-group">
-                    @Html.LabelFor(model => model.Nome, new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
-                        @Html.TextBoxFor(m => m.Nome, new { @class = "form-control" })
-                        @Html.ValidationMessageFor(model => model.Nome)
-                    </div>
-                </div>
-                <div class="form-group">
-                    @Html.LabelFor(model => model.Cognome, new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
-                        @Html.TextBoxFor(m => m.Cognome, new { @class = "form-control" })
-                        @Html.ValidationMessageFor(model => model.Cognome)
-                    </div>
-                </div>
-                <div class="form-group">
-                    @Html.Label("Ruolo assegnato", new { @class = "control-label col-md-2" })
-                    <span class="col-md-10">
-                        @foreach (var item in Model.RolesList)
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Email, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Email)
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Nome, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(m => m.Nome, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Nome)
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Cognome, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(m => m.Cognome, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Cognome)
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.DataNascita, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(m => m.DataNascita, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.DataNascita)
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.DataInizio, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(m => m.DataInizio, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.DataInizio)
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Grado, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(m => m.Grado, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Grado)
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Frase, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(m => m.Frase, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Frase)
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.Label("Roles", new { @class = "control-label col-md-2" })
+            <span class=" col-md-10">
+                @foreach (var item in Model.RolesList)
                 {
-                            <input type="checkbox" name="SelectedRole" disabled="disabled" value="@item.Value" checked="@item.Selected" class="checkbox-inline" />
-                            @Html.Label(item.Value, new { @class = "control-label" })
-                        }
-                    </span>
-                </div>
-                <div class="form-group">
-                    <div class="col-md-2">
-                    </div>
-                    <div class="col-md-10">
-                        Per modificare il ruolo devi rivolgerti all'aministratore.
-                    </div>
-                </div>
-                <div class="form-group">
-                    <div class="col-md-offset-2 col-md-10">
-                        <input type="submit" value="Salva" class="btn btn-default" />
-                    </div>
-                </div>
+                    <input type="checkbox" name="SelectedRole" value="@item.Value" checked="@item.Selected" class="checkbox-inline" />
+                    @Html.Label(item.Value, new { @class = "control-label" })
+                }
+            </span>
+        </div>
 
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Save" class="btn btn-default" />
             </div>
-            <div class="col-md-6">
-                <input id="File" type="file" /><br/>
-                @ViewBag.Message<br/>
-                <img class="img-thumbnail" src="" alt="" />
-            </div>
-
         </div>
     </div>
 }
 
+<h3>
+    @Html.ActionLink(" ", "IndexUs", "UsersAdmin", null, new { @class = "glyphicon glyphicon-arrow-left" })
+</h3>
+
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 }
+
+

@@ -25,6 +25,14 @@ namespace KarateMVC.Models
         public string Nome { get; set; }
         [Display(Name = "Cognome")]
         public string Cognome { get; set; }
+        [Display(Name = "Data di nascita")]
+        public DateTime DataNascita { get; set; }
+        [Display(Name = "Data inizio attività")]
+        public DateTime DataInizio { get; set; }
+        [Display(Name = "Grado")]
+        public string Grado { get; set; }
+        [Display(Name = "La tua frase")]
+        public string Frase { get; set; }
 
         public IEnumerable<SelectListItem> RolesList { get; set; }
     }
@@ -39,6 +47,15 @@ namespace KarateMVC.Models
         public string Nome { get; set; }
         [Display(Name = "Cognome")]
         public string Cognome { get; set; }
+        [Display(Name ="Data di nascita")]
+        public DateTime DataNascita { get; set; }
+        [Display(Name ="Data inizio attività")]
+        public DateTime DataInizio { get; set; }
+        [Display(Name ="Grade")]
+        public string Grado { get; set; }
+        [Display(Name ="La tua frase")]
+        public string Frase { get; set; }
+
 
         public IEnumerable<SelectListItem> RolesList { get; set; }
     }

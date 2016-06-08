@@ -20,7 +20,7 @@ namespace KarateMVC.Controllers
         public ActionResult Index()
         {
             var utente = User.Identity.GetUserId();
-            var medaglieres = db.Medaglieres.Include(m => m.Titolo).Where(m=>m.Uid == utente);
+            var medaglieres = db.Medaglieres.Include(m => m.Titolo).Where(m=>m.Uid == utente).OrderByDescending(m => m.Titolo.Data);
             ViewBag.MedCount = medaglieres.Count();
             ViewBag.Oro = medaglieres.Where(c => c.classifica == "1").Count();
             ViewBag.Argento = medaglieres.Where(c => c.classifica == "2").Count();
@@ -70,6 +70,32 @@ namespace KarateMVC.Controllers
             return View(medagliere);
         }
 
+        [Authorize]
+        public ActionResult CreateUt(string id)
+        {
+
+            ViewBag.Bbb = "uuu!";
+            ViewBag.Evento_Id = new SelectList(db.Eventis.Where(g => g.NomeGara.Gara_Id != 19 && g.NomeGara.Gara_Id > 2).OrderByDescending(d => d.Data), "Evento_Id", "Titolo");
+            var utente = User.Identity.GetUserId();
+            ViewBag.Utente = id;
+            var medaglieres = db.Medaglieres.Include(m => m.Titolo).Where(m => m.Uid == id).OrderByDescending(d => d.Titolo.Data);
+            return View();
+        }
+
+        [Authorize]
+        [HttpPost]
+        public ActionResult CreateUt(string id, [Bind(Include ="Medagliere_Id,Evento_Id,Spec,Classifica,Uid")] Medagliere medagliere)
+        {
+            if (ModelState.IsValid)
+            {
+                medagliere.Uid = id;
+                db.Medaglieres.Add(medagliere);
+                db.SaveChanges();
+                return RedirectToAction("Index", "UsersAdmin");
+            }
+            ViewBag.Evento_Id = new SelectList(db.Eventis.Where(g => g.NomeGara.Gara_Id != 19 && g.NomeGara.Gara_Id > 2).OrderByDescending(d => d.Data), "Evento_Id", "Titolo");
+            return View(medagliere);
+        }
         // GET: Medaglieres/Edit/5
         [Authorize]
         public ActionResult Edit(int? id)

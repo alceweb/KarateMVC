@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.ComponentModel.DataAnnotations;
+using System.Web.Mvc;
 
 namespace KarateMVC.Models
 {
@@ -11,6 +12,7 @@ namespace KarateMVC.Models
         [Required, Display(Name = "Destinazione")]
         public string Destinatario { get; set; }
         [Required, Display(Name ="Testo newsletter")]
+        [AllowHtml]
         public string Message { get; set; }
     }
 }

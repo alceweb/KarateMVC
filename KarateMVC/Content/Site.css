@@ -296,7 +296,7 @@ footer{
 ********************/
 @media (max-width: 400px) {
     .navbar img {
-        width: 0px;
+        
     }
 }
 @media (max-width: 768px) {
