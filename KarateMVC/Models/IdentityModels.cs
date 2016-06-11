@@ -15,10 +15,12 @@ namespace KarateMVC.Models
     {
         public string Nome { get; set; }
         public string Cognome { get; set; }
+        [DataType(DataType.Date)]
         public DateTime DataNascita { get; set; }
-        public DateTime DataInizio { get; set; }
+        public string AnnoInizio { get; set; }
         public string Grado { get; set; }
         public string Frase { get; set; }
+        public string Kata { get; set; }
 
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
         {

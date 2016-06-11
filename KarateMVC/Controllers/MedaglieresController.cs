@@ -158,8 +158,10 @@ namespace KarateMVC.Controllers
 
         public ActionResult Palmares(string id)
         {
-            var utente = User.Identity.GetUserId();
-            ViewBag.Utente = id;
+            var uid = id;
+            ViewBag.Uid = uid;
+            var utente = db.Users.Where(u=>u.Id == id );
+            ViewBag.Utente = utente;
             var medaglieres = db.Medaglieres.Include(m => m.Titolo).Where(m => m.Uid == id).OrderByDescending(d=>d.Titolo.Data);
             ViewBag.MedCount = medaglieres.Count();
             ViewBag.Oro = medaglieres.Where(c => c.classifica == "1").Count();

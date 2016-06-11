@@ -3,8 +3,10 @@
 @{
     ViewBag.Title = "Palestra";
 }
+        <h2>@ViewBag.Message</h2>
 
-<h2>@ViewBag.Message</h2>
+<div><a href="@Url.Content("~/Home/Palmares/")"><img class="" height="60" src="~/Content/Immagini/Oro.png" /> Medagliere</a></div>
+
 <div class="div2">
     La società nasce nel 1976 come Club Karate Caravaggio iniziando di
     fatto a Caravaggio l&#39;attività relativa al karate tradizionale
@@ -45,7 +47,7 @@
 
     </div>
 <hr class="hr1" />
-<h1>I nostri agonisti</h1>
+<h1>Agonisti</h1>
 <div class="div1 content">
     @foreach (var item in ViewBag.Agonisti)
     {
@@ -61,6 +63,26 @@
                     <a href="@Url.Action("Palmares", "Medaglieres", new {id = @item.Id })"><img src="@Url.Content("~/Content/Immagini/FotoIscritti/Anonimous.jpg")" /></a>
                 }
 </h3>
+        </div>
+    }
+</div>
+<hr class="hr1" />
+<h1>Ex agonisti</h1>
+<div class="div1 content">
+    @foreach (var item in ViewBag.Ex)
+    {
+        <div>
+            <h4 class="text-center"> @item.Nome</h4>
+            <h3>
+                @if (System.IO.File.Exists(Server.MapPath("~/Content/Immagini/FotoIscritti/" + @item.Id + ".jpg")))
+                {
+                    <a href="@Url.Action("Palmares", "Medaglieres", new {id = @item.Id })"><img src="@Url.Content("~/Content/Immagini/FotoIscritti/" + @item.Id + ".jpg")" /></a>
+                }
+                else
+                {
+                    <a href="@Url.Action("Palmares", "Medaglieres", new {id = @item.Id })"><img src="@Url.Content("~/Content/Immagini/FotoIscritti/Anonimous.jpg")" /></a>
+                }
+            </h3>
         </div>
     }
 </div>

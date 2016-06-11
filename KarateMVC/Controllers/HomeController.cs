@@ -75,7 +75,15 @@ namespace KarateMVC.Controllers
                 }
             }
             ViewBag.Agonisti = agonisti;
-
+            var ex = new List<ApplicationUser>();
+            foreach (var user in UserManager.Users.ToList())
+            {
+                if (await UserManager.IsInRoleAsync(user.Id, "Ex agonista"))
+                {
+                    ex.Add(user);
+                }
+            }
+            ViewBag.Ex = ex;
             return View(await UserManager.Users.ToListAsync());
         }
 
@@ -157,11 +165,13 @@ namespace KarateMVC.Controllers
             return View(model);
         }
 
-        public ActionResult Palmares(string id)
+        public ActionResult Palmares()
         {
-            var utente = id.ToString();
-            ViewBag.Utente = id;
-            return View();
+            var medaglieres = db.Medaglieres.Include(m => m.Titolo).OrderByDescending(d => d.Titolo.Data).Where(g => g.Titolo.Gara_Id > 3 && g.Titolo.Gara_Id != 6 & g.Titolo.Gara_Id != 16 && g.Titolo.Gara_Id != 19);
+            ViewBag.Oro = medaglieres.Where(c => c.classifica == "1").Count();
+            ViewBag.Argento = medaglieres.Where(c => c.classifica == "2").Count();
+            ViewBag.Bronzo = medaglieres.Where(c => c.classifica == "3").Count();
+            return View(medaglieres.ToList());
         }
         [Authorize(Roles ="Special")]
         public ActionResult Special()

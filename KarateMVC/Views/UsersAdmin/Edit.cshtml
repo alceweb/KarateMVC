@@ -38,15 +38,15 @@
         <div class="form-group">
             @Html.LabelFor(model => model.DataNascita, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.TextBoxFor(m => m.DataNascita, new { @class = "form-control" })
+                @Html.TextBoxFor(m => m.DataNascita, "{0:dd/MM/yyyy}", new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.DataNascita)
             </div>
         </div>
         <div class="form-group">
-            @Html.LabelFor(model => model.DataInizio, new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.AnnoInizio, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.TextBoxFor(m => m.DataInizio, new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.DataInizio)
+                @Html.TextBoxFor(m => m.AnnoInizio, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.AnnoInizio)
             </div>
         </div>
         <div class="form-group">
@@ -57,9 +57,16 @@
             </div>
         </div>
         <div class="form-group">
+            @Html.LabelFor(model => model.Kata, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(m => m.Kata, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Kata)
+            </div>
+        </div>
+        <div class="form-group">
             @Html.LabelFor(model => model.Frase, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.TextBoxFor(m => m.Frase, new { @class = "form-control" })
+                @Html.TextAreaFor(m => m.Frase, new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.Frase)
             </div>
         </div>

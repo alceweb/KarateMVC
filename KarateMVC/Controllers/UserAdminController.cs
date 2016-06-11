@@ -159,9 +159,10 @@ namespace KarateMVC.Controllers
                 Nome = user.Nome,
                 Cognome = user.Cognome,
                 DataNascita = user.DataNascita,
-                DataInizio = user.DataInizio,
+                AnnoInizio = user.AnnoInizio,
                 Grado = user.Grado,
                 Frase = user.Frase,
+                Kata = user.Kata,
                 RolesList = RoleManager.Roles.ToList().Select(x => new SelectListItem()
                 {
                     Selected = userRoles.Contains(x.Name),
@@ -176,7 +177,7 @@ namespace KarateMVC.Controllers
         [Authorize(Roles = "Admin")]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "Id,Email,Nome,Cognome,DataNascita,DataInizio,Grado,Frase")] EditUserViewModel editUser, params string[] selectedRole)
+        public async Task<ActionResult> Edit([Bind(Include = "Id,Email,Nome,Cognome,DataNascita,AnnoInizio,Grado,Frase,Kata")] EditUserViewModel editUser, params string[] selectedRole)
         {
             if (ModelState.IsValid)
             {
@@ -191,9 +192,10 @@ namespace KarateMVC.Controllers
                 user.Nome = editUser.Nome;
                 user.Cognome = editUser.Cognome;
                 user.DataNascita = editUser.DataNascita;
-                user.DataInizio = editUser.DataInizio;
+                user.AnnoInizio = editUser.AnnoInizio;
                 user.Grado = editUser.Grado;
                 user.Frase = editUser.Frase;
+                user.Kata = editUser.Kata;
 
                 var userRoles = await UserManager.GetRolesAsync(user.Id);
 
@@ -240,9 +242,10 @@ namespace KarateMVC.Controllers
                 Nome = user.Nome,
                 Cognome = user.Cognome,
                 DataNascita = user.DataNascita,
-                DataInizio=user.DataInizio,
+                AnnoInizio=user.AnnoInizio,
                 Grado=user.Grado,
                 Frase=user.Frase,
+                Kata = user.Kata,
                 RolesList = RoleManager.Roles.ToList().Select(x => new SelectListItem()
                 {
                     Selected = userRoles.Contains(x.Name),
@@ -255,7 +258,7 @@ namespace KarateMVC.Controllers
         [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> EditUs([Bind(Include = "Id,Email,Nome,Cognome,DataNascita,DataInizio,Grado,Frase")] EditUserViewModel editUser, params string[] selectedRole)
+        public async Task<ActionResult> EditUs([Bind(Include = "Id,Email,Nome,Cognome,DataNascita,AnnoInizio,Grado,Frase,Kata")] EditUserViewModel editUser, params string[] selectedRole)
         {
             if (ModelState.IsValid)
             {
@@ -270,9 +273,10 @@ namespace KarateMVC.Controllers
                 user.Nome = editUser.Nome;
                 user.Cognome = editUser.Cognome;
                 user.DataNascita = editUser.DataNascita;
-                user.DataInizio = editUser.DataInizio;
+                user.AnnoInizio = editUser.AnnoInizio;
                 user.Grado = editUser.Grado;
                 user.Frase = editUser.Frase;
+                user.Kata = editUser.Kata;
 
                 var userRoles = await UserManager.GetRolesAsync(user.Id);
 
@@ -292,7 +296,7 @@ namespace KarateMVC.Controllers
                     ModelState.AddModelError("", result.Errors.First());
                     return View();
                 }
-                return RedirectToAction("Index");
+                return RedirectToAction("IndexUs");
             }
             ModelState.AddModelError("", "Something failed.");
             return View();

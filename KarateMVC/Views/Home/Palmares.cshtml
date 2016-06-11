@@ -1,0 +1,58 @@
+﻿@model IEnumerable<KarateMVC.Models.Medagliere>
+
+@{
+    ViewBag.Title = "Palmares";
+}
+<div class="row">
+    <div class="col col-md-6">
+        <h2>Palmares</h2>
+        <h3>Tutte le medaglie delle competizioni FIKTA e ISI</h3>
+        <h4> Mondiali, Europei, Italiani, Regionali, Coppa Shotokan, Trofeo Masina, Meeting Europeo Giochi Primavera, Nazionali AICS </h4>
+
+    </div>
+    <div class="col col-md-6 text-right">
+        <div class="row">
+            <div class="col col-md-4 text-center">
+                <h3><span class="label label-success">@ViewBag.Oro oro</span></h3>
+                <img src="~/Content/Immagini/Oro.png" />
+
+            </div>
+            <div class="col col-md-4 text-center">
+                <h3><span class="label label-success">@ViewBag.Argento argento</span></h3>
+                <img src="~/Content/Immagini/Argento.png" />
+
+            </div>
+            <div class="col col-md-4 text-center">
+                <h3><span class="label label-success">@ViewBag.Bronzo bronzo</span></h3>
+                <img src="~/Content/Immagini/bronzo.png" />
+
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<table class="table table-hover">
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                <a href="@Url.Content("~/Medaglieres/Palmares/" + item.Uid)"><img class="img-usr" src="@Url.Content("~/Content/Immagini/FotoIscritti/" + item.Uid + ".jpg")" /></a>
+                @Html.DisplayFor(modelItem => item.classifica)° @Html.DisplayFor(modelItem => item.Spec)
+
+
+            </td>
+
+            <td>
+
+            </td>
+            <td>
+                <a href="@Url.Action("Evento", "Home", new { id = item.Evento_Id })"> @Html.DisplayFor(modelItem => item.Titolo.Titolo)</a><br />
+            </td>
+            <td>
+                @item.Titolo.Data.ToString("dddd dd MMM yyyy")
+            </td>
+        </tr>
+    }
+</table>
