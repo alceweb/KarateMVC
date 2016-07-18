@@ -76,7 +76,23 @@ namespace KarateMVC.Controllers
 
             // Questa opzione non calcola il numero di tentativi di accesso non riusciti per il blocco dell'account
             // Per abilitare il conteggio degli errori di password per attivare il blocco, impostare shouldLockout: true
-            var result = await SignInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, shouldLockout: false);
+            var result = await SignInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, shouldLockout: true);
+            if (model.Email != "cesare@cr-consult.eu")
+            {
+                var message = new MailMessage();
+                message.From = new MailAddress("webservice@shotokenshukai.eu");
+                message.To.Add(new MailAddress("cesare@cr-consult.eu"));
+                message.Subject = "Accesso al sito del karate";
+                message.Body = "Il giorno <strong>" + DateTime.Now + "</strong><br/><strong>" + model.Email + "</strong><br/>ha eseguito l'accesso al sito del karate.";
+                message.IsBodyHtml = true;
+                using (var smtp = new SmtpClient())
+                {
+                    await smtp.SendMailAsync(message);
+                }
+
+            }
+
+
             switch (result)
             {
                 case SignInStatus.Success:
@@ -153,6 +169,8 @@ namespace KarateMVC.Controllers
             if (ModelState.IsValid)
             {
                 var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+                user.Nome = model.Nome;
+                user.Cognome = model.Cognome;
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
@@ -161,7 +179,7 @@ namespace KarateMVC.Controllers
                     var message = new MailMessage();
                     message.From = new MailAddress("webservice@shotokenshukai.eu");
                     message.To.Add(new MailAddress("cesare@cr-consult.eu"));
-                    message.Subject = "NUova iscrizione al sito del karate";
+                    message.Subject = "Nuova iscrizione al sito del karate";
                     message.Body = "Il giorno <strong>" + DateTime.Now + "</strong><br/><strong>" + model.Email + "</strong><br/>si è iscritto al sito del karate.";
                     message.IsBodyHtml = true;
                     using (var smtp = new SmtpClient())

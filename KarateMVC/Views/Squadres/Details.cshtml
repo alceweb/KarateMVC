@@ -1,0 +1,22 @@
+﻿@model KarateMVC.Models.Squadre
+
+@{
+    ViewBag.Title = "Squadre";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<div>
+    <hr />
+    <h3>@Html.DisplayFor(model => model.Anno) - @Html.DisplayFor(model => model.NomeSquadra)
+    @foreach (var item in ViewBag.Allievi)
+    {
+        <img class="img-usr" src = "@Url.Content("~/Content/Immagini/FotoIscritti/" + @item.Id + ".jpg")"/>
+    @Html.ActionLink("Elimina", "Delete", "SquadraDetts", new { id = @item.Id }, null)
+    }</h3>
+</div>
+<p>
+    @Html.ActionLink("Aggiungi", "Create", "SquadraDetts")  |
+      |
+    @Html.ActionLink("Back to List", "Index")
+</p>

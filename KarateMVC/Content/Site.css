@@ -44,6 +44,7 @@ hr {
     left:0px;
     z-index:-9000;
 }
+
 .navbar-header{
     background-color:none;
 }
@@ -271,7 +272,19 @@ z-index:0;
     box-shadow:         4px 4px 5px rgba(50, 50, 50, 0.75);
  transition:all 1s ease;
 }
+.galla2{
 
+}
+.galla2 img{
+    width:50%;
+    margin:5px;
+    text-align: center;
+    vertical-align: bottom;
+    border-radius:5px;
+    -webkit-box-shadow: 4px 4px 5px rgba(50, 50, 50, 0.75);
+    -moz-box-shadow:    4px 4px 5px rgba(50, 50, 50, 0.75);
+    box-shadow:         4px 4px 5px rgba(50, 50, 50, 0.75);
+}
 .img-login{
     height:50px;
     border:solid 2px #fff;
@@ -289,7 +302,11 @@ footer{
     padding:0px;
 }
 
-
+.jumbo{
+    background-color:#fff !important;
+    margin-top:-8px;
+    padding:10px;
+}
 
         /********************
 *   Mobile Styles   *
@@ -366,5 +383,8 @@ footer{
     transform: scale(1,1);
      font-size:0.7em;
     }
+    .scrittaLogoAvviso{
+    visibility:collapse;
+}
 
 }

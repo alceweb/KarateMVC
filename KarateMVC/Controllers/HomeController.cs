@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.Helpers;
 using System.Web.Mvc;
 using System.Net.Mail;
 using System.Threading.Tasks;
@@ -12,6 +13,7 @@ using System.Data;
 using System.Data.Entity;
 using System.Net;
 using System.IO;
+
 
 namespace KarateMVC.Controllers
 {
@@ -30,10 +32,25 @@ namespace KarateMVC.Controllers
                 _userManager = value;
             }
         }
+        private ApplicationRoleManager _roleManager;
+        public ApplicationRoleManager RoleManager
+        {
+            get
+            {
+                return _roleManager ?? HttpContext.GetOwinContext().Get<ApplicationRoleManager>();
+            }
+            private set
+            {
+                _roleManager = value;
+            }
+        }
 
         public ActionResult Index()
         {
+            var avviso = db.Eventis.Where(e => e.Gara_Id == 20 && e.DataP < DateTime.Now && e.DataF > DateTime.Now);
             var eventi = db.Eventis.Where(p => p.Pubblica == true).OrderByDescending(d=>d.Data);
+            ViewBag.AvvisoCount = avviso.Count();
+            ViewBag.Avviso = avviso;
             return View(eventi.ToList());
         }
 
@@ -66,6 +83,28 @@ namespace KarateMVC.Controllers
             var immagini = Directory.GetFiles(Server.MapPath("/Content/Immagini/Palestra/"));
             ViewBag.Immagini = immagini.ToList();
             // Get the list of Users in this Role
+            var squadre = RoleManager.Roles.Where(r=>r.Name.Contains("Squadra"));
+            var roles= new List<ApplicationUser>();
+            ViewBag.Roles = roles;
+            ViewBag.Squadre = squadre;
+            var maestro = new List<ApplicationUser>();
+            foreach (var user in UserManager.Users.ToList())
+            {
+                if (await UserManager.IsInRoleAsync(user.Id, "Maestro"))
+                {
+                    maestro.Add(user);
+                }
+            }
+            ViewBag.Maestro = maestro;
+            var istruttori = new List<ApplicationUser>();
+            foreach (var user in UserManager.Users.ToList())
+            {
+                if (await UserManager.IsInRoleAsync(user.Id, "Istruttore"))
+                {
+                    istruttori.Add(user);
+                }
+            }
+            ViewBag.Istruttori = istruttori;
             var agonisti = new List<ApplicationUser>();
             foreach (var user in UserManager.Users.ToList())
             {
@@ -87,6 +126,13 @@ namespace KarateMVC.Controllers
             return View(await UserManager.Users.ToListAsync());
         }
 
+        public async Task<ActionResult> Squadre()
+        {
+            ViewBag.Roles = RoleManager.Roles.ToList().Where(n=>n.Name.Contains("Squadra")).OrderByDescending(n=>n.Name);
+            ViewBag.RolesCount = RoleManager.Roles.Count();
+            return View();
+
+        }
         public ActionResult Eventi()
         {
             ViewBag.CountEventi = db.Eventis.Count();
@@ -178,5 +224,112 @@ namespace KarateMVC.Controllers
         {
             return View();
         }
+
+        public async Task<ActionResult> Scheda(string id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            if(Directory.Exists(Server.MapPath("~/Content/Immagini/FotoPersonali/" + id + "/"))){
+            var immagini = Directory.GetFiles(Server.MapPath("/Content/Immagini/FotoPersonali/" + id + "/"));
+            ViewBag.Immagini = immagini.ToList();
+
+            }
+            var user = await UserManager.FindByIdAsync(id);
+            ViewBag.RoleNames = await UserManager.GetRolesAsync(user.Id);
+
+            return View(user);
+        }
+
+        public async Task<ActionResult> Album(string id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            if (Directory.Exists(Server.MapPath("~/Content/Immagini/FotoPersonali/" + id + "/")))
+            {
+                var immagini = Directory.GetFiles(Server.MapPath("/Content/Immagini/FotoPersonali/" + id + "/"));
+                ViewBag.Immagini = immagini.ToList();
+            }
+            var user = await UserManager.FindByIdAsync(id);
+            ViewBag.RoleNames = await UserManager.GetRolesAsync(user.Id);
+
+            return View(user);
+        }
+
+        [HttpPost]
+        public ActionResult Album(IEnumerable<HttpPostedFile> files, string id)
+        {
+            if (!Directory.Exists(Server.MapPath("~/Content/Immagini/FotoPersonali/" + id + "/")))
+            {
+                Directory.CreateDirectory(Server.MapPath("~/Content/Immagini/FotoPersonali/" + id + "/"));
+            }
+            if (Request.Files.Count > 0)
+            {
+                var file = Request.Files[0];
+                if (file != null && file.ContentLength > 0)
+                {
+                    var fileName = Path.GetFileName(file.FileName);
+                    var path = Path.Combine(Server.MapPath("~/Content/Immagini/FotoPersonali/" + id + "/"), fileName);
+                    WebImage img = new WebImage(file.InputStream);
+                    var larghezza = img.Width;
+                    var altezza = img.Height;
+                    var rapportoO = larghezza/altezza;
+                    var rapportoV = altezza/larghezza;
+                    if (altezza > 1900 | larghezza > 1900)
+                    {
+                        if(rapportoO >= 1)
+                        {
+                            ViewBag.Message = "Attendi la fine del download...";
+                            img.Resize(1900, 1900/rapportoO);
+                            img.Save(path);
+                            ViewBag.Message = "Download immagine orizzontale avvenuto con successo. Dimensione immagine originale: larghezza " + larghezza + " Altezza " + altezza;
+                        }
+                        else
+                        {
+                            img.Resize(800/rapportoV, 800);
+                            img.Save(path);
+                            ViewBag.Message = "Download immagine verticale avvenuto con successo. Dimensione immagine: larghezza " + larghezza + "Altezza" + altezza;
+                        }
+                    }
+                    else
+                    {
+                        img.Save(path);
+                        ViewBag.Message = "Download immagine avvenuto con successo Dimensione immagine: larghezza " + larghezza + "Altezza" + altezza;
+                    }
+                    //var fileName = Path.GetFileName(file.FileName);
+                    //var path = Path.Combine(Server.MapPath("~/Content/Immagini/FotoPersonali/" + id + "/"), fileName);
+                    //file.SaveAs(path);
+                    //ViewBag.Message = "File scaricato con successo";
+                }
+                else
+                {
+                    ViewBag.Message = "Devi scegliere un file";
+                }
+            }
+            var immagini = Directory.GetFiles(Server.MapPath("/Content/Immagini/FotoPersonali/" + id + "/"));
+            ViewBag.Immagini = immagini.ToList();
+            var user = UserManager.FindById(id);
+            ViewBag.RoleNames = UserManager.GetRoles(user.Id);
+            return View(user);
+        }
+
+        public ActionResult DelImgAlbum(string id, string filename)
+        {
+            ViewBag.Uid = id;
+            ViewBag.Message = filename;
+            return View();
+        }
+
+        [HttpPost, ActionName("DelImgAlbum")]
+        public ActionResult DelImgAlbumConfirmed(string id, string filename)
+        {
+            var path = Server.MapPath("~/Content/Immagini/FotoPersonali/" + id +"/" + filename);
+            System.IO.File.Delete(path);
+            return RedirectToAction("Album", new {id = id });
+        }
+
     }
 }

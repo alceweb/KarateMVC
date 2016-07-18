@@ -1,0 +1,39 @@
+﻿@model KarateMVC.Models.SquadraDett
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Elimina componenti squadra</h2>
+
+<h3>Se sicuro di cancellare questo allievo dalla squadra?</h3>
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Nome.Nome)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Nome.Nome)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NomeSquadra.NomeSquadra)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NomeSquadra.NomeSquadra)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

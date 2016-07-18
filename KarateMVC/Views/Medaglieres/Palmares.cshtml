@@ -1,23 +1,21 @@
 ﻿@model IEnumerable<KarateMVC.Models.Medagliere>
 
 @{
-    ViewBag.Title = "Palmares";
+    ViewBag.Title = "Scheda personale";
 }
-<h2>Palmares</h2>
-
 <div class="row">
     <div class="col col-md-5">
         <div class="row">
-            <div class="col col-md-6">
+            <div class="col col-md-5">
                 <img class="img-thumbnail" src="@Url.Content("~/Content/Immagini/FotoIscritti/" + @ViewBag.uid + ".jpg")" />
-
             </div>
-            <div class="col col-md-6">
+            <div class="col col-md-7">
                 @foreach (var item in ViewBag.Utente)
                 {
+                    <h2>@item.Nome</h2>
                     if (item.DataNascita != null && item.DataNascita.ToString("dd/MM/yyyy") != "01/01/1900")
                     {
-                        <p>Data di nascita: <strong>@item.DataNascita.ToString("dd MMM yyyy")</strong></p>
+                        <p>Data di nascita: <strong>@item.DataNascita.ToString("dddd dd MMM yyyy")</strong></p>
 
                     }
                     if (@item.AnnoInizio != "" | @item.AnnoInizio == null)
@@ -38,38 +36,68 @@
                     if (@item.Frase != null)
                     {
                         <div class="img-thumbnail">
-                            <p class="text-center"><em>La sua frase...</em><br/>
+                            <p class="text-center"><span class="label label-warning">La sua frase...</span><br/>
                             <span class="text-justify text-success">...@item.Frase</span></p> 
                         </div>
 
                     }
                 }
-
             </div>
         </div>
     </div>
-    <div class="col col-md-7">
+    <div class="col col-md-3">
+
+    </div>
+    <div class="col col-md-3">
         <div class="row">
             <div class="col col-md-4 text-center">
-                <h3><span class="label label-success">@ViewBag.Oro oro</span></h3>
-                <img src="~/Content/Immagini/Oro.png" />
-
-            </div>
+                <div class="ing-responsive">
+                    <span class="label label-success">@ViewBag.Oro oro</span>
+                    <img class="img-responsive" src="~/Content/Immagini/Oro.png" />
+                    </div>
+                </div>
             <div class="col col-md-4 text-center">
-                <h3><span class="label label-success">@ViewBag.Argento argento</span></h3>
-                <img src="~/Content/Immagini/Argento.png" />
-
-            </div>
+                <div class="ing-responsive">
+                    <span class="label label-success">@ViewBag.Argento argento</span>
+                    <img class="img-responsive" src="~/Content/Immagini/Argento.png" />
+                    </div>
+                </div>
             <div class="col col-md-4 text-center">
-                <h3><span class="label label-success">@ViewBag.Bronzo bronzo</span></h3>
-                <img src="~/Content/Immagini/bronzo.png" />
-
+                <div class="ing-responsive">
+                    <span class="label label-success">@ViewBag.Bronzo bronzo</span>
+                    <img class="img-responsive" src="~/Content/Immagini/bronzo.png" />
+                </div>
             </div>
         </div>
         <h3>
         </h3>
     </div>
 </div>
+<hr class="hr1" />
+    @if (Directory.Exists(Server.MapPath("~/Content/Immagini/FotoPersonali/" + ViewBag.Uid + "/")))
+    {
+        <div>
+            <h2>Album fotografico</h2>
+            <div class="galla">
+                @foreach (var item in ViewBag.Immagini)
+                {
+                    var filename = Path.GetFileName(item);
+                    <span>
+                        <a href="@Url.Content("~/Content/Immagini/FotoPersonali/" + ViewBag.Uid +"/" + @filename)" data-lightbox="example-set">
+                            <img class="example-image" src="@Url.Content("~/Content/Immagini/FotoPersonali/" + ViewBag.Uid +"/" + @filename)" alt="" />
+                        </a>
+                    </span>
+                }
+
+            </div>
+        </div>
+
+    }
+<hr class="hr1" />
+<div>
+    <h2>Palmares</h2>
+</div>
+
 <table class="table table-hover">
 
     @foreach (var item in Model)

@@ -1,0 +1,41 @@
+﻿@model IEnumerable<KarateMVC.Models.Squadre>
+
+@{
+    ViewBag.Title = "Squadre";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<p>
+    <a href="@Url.Action("Create", "Squadres")" class="btn btn-primary"><span class="badge">@ViewBag.SquadreCount</span> Nuovo</a>
+</p>
+<table class="table table-hover">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.NomeSquadra)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.ActionLink(" ", "Edit", new { id = item.Squadra_id }, new { @class = "glyphicon glyphicon-pencil" })
+                @Html.DisplayFor(modelItem => item.Anno) -
+                @Html.DisplayFor(modelItem => item.NomeSquadra)
+            </td>
+            <td>
+                @Html.ActionLink("Details", "Details", new { id = item.Squadra_id }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.Squadra_id })
+            </td>
+        </tr>
+    }
+</table>
+
+@foreach (var item in ViewBag.SquadreDett)
+{
+    
+    <h2>@item.Nome.Email @item.Nome.Nome</h2>
+}
+

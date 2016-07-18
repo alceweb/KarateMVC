@@ -5,35 +5,22 @@
 }
 
 <h2>@ViewBag.Title</h2>
-
 <div>
-    <h4>Dettagli</h4>
     <hr class="hr1" />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.UserName)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.UserName)
-        </dd>
-    </dl>
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Nome)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Nome)
-        </dd>
-    </dl>
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Cognome)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Cognome)
-        </dd>
-    </dl>
+    <div class="row">
+        <div class="col col-md-2">
+            <img class="img-responsive" src="@Url.Content("~/Content/Immagini/FotoIscritti/" + @Html.DisplayFor(model => model.Id) + ".jpg")" />
+
+        </div>
+        <div class="col col-md-3">
+            <h3>@Html.DisplayFor(model => model.Nome) @Html.DisplayFor(model => model.Cognome)</h3>
+            @Html.DisplayFor(model => model.UserName)<br/>
+            @String.Format("{0:dddd dd-MM-yyyy}", Model.DataNascita)
+            @Html.DisplayFor(model => model.Frase)<br />
+        </div>
+    </div>
 </div>
+<hr class="hr1" />
 <h4>Ruoli di appartenenza</h4>
 @Html.Display(User.Identity.Name.ToString())
 @if (ViewBag.RoleNames.Count == 0)

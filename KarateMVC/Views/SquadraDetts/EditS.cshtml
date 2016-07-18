@@ -1,0 +1,13 @@
+﻿@model IEnumerable<KarateMVC.Models.SquadraDett>
+
+@{
+    ViewBag.Title = "EditS";
+}
+
+<h2>EditS</h2>
+
+@foreach (var item in ViewBag.Squadre)
+{
+<img class="img-usr" src = "@Url.Content("~/Content/Immagini/FotoIscritti/" + @item.Id + ".jpg")" />
+@Html.ActionLink("Cancella", "Delete", "SquadraDetts", new {id = item.SquadraDett_id })
+}

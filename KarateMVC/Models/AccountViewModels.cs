@@ -70,6 +70,14 @@ namespace KarateMVC.Models
         public string Email { get; set; }
 
         [Required]
+        [Display(Name = "Nome")]
+        public string Nome { get; set; }
+
+        [Required]
+        [Display(Name = "Cognome")]
+        public string Cognome { get; set; }
+
+        [Required]
         [StringLength(100, ErrorMessage = "La lunghezza di {0} deve essere di almeno {2} caratteri.", MinimumLength = 6)]
         [DataType(DataType.Password)]
         [Display(Name = "Password")]

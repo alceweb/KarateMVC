@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<KarateMVC.Models.Eventi>
 
 @{
-    ViewBag.Title = "Gestione eventi";
+    ViewBag.Title = "Gestione eventi e avvisi";
 }
 
 <h2>@ViewBag.Title</h2>
@@ -11,9 +11,11 @@
         <a href="@Url.Action("Create", "Eventis")" class="btn btn-primary"><span class="badge">@ViewBag.EventiCount</span> Nuovo</a>
     </div>
     <div class="col col-md-4 text-right">
+        <h4>
+            @Html.ActionLink(" ", "AvvisiObsoletii", "Eventis", null, new { @class = "glyphicon glyphicon-thumbs-down", title = "Avvisi obsoleti" }) |
+        @Html.ActionLink(" ", "AvvisiProgrammati", "Eventis", null, new { @class = "glyphicon glyphicon-thumbs-up", title = "Avvisi programmati" }) |
         @Html.ActionLink(" ", "NewsLetter", "Home", null, new { @class = "glyphicon glyphicon-send", title = "Invia newsletter" })
-
-
+    </h4>
     </div>
 </div>
 <table class="table table-hover">
@@ -23,6 +25,9 @@
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Data)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DataP)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Pubblica)
@@ -40,6 +45,9 @@
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Data)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DataP)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Pubblica)

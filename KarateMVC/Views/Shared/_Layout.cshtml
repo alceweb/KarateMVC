@@ -34,7 +34,7 @@
                         {
                             <li><div><a href="@Url.Action("Download", "Home")" class="glyphicon glyphicon-download-alt"><span>Download</span></a></div></li>
                         }
-                        @if (Request.IsAuthenticated && User.IsInRole("Agonista") | User.IsInRole("Ex agonista"))
+                        @if (Request.IsAuthenticated && User.IsInRole("Agonista") | User.IsInRole("Ex agonista") | User.IsInRole("Maestro"))
                         {
                             <li><div><a href="@Url.Action("Agonisti", "Home")" class="glyphicon glyphicon-text-color"><span>Area agonisti</span></a></div></li>
                         }

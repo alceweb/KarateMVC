@@ -170,11 +170,14 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\DocumentisController.cs" />
     <Compile Include="Controllers\EventisController.cs" />
+    <Compile Include="Controllers\GaresController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\MedaglieresController.cs" />
     <Compile Include="Controllers\RolesAdminController.cs" />
     <Compile Include="Controllers\SpecsController.cs" />
+    <Compile Include="Controllers\SquadraDettsController.cs" />
+    <Compile Include="Controllers\SquadresController.cs" />
     <Compile Include="Controllers\UserAdminController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -202,6 +205,22 @@
     <Compile Include="Migrations\201606091355110_kata.cs" />
     <Compile Include="Migrations\201606091355110_kata.Designer.cs">
       <DependentUpon>201606091355110_kata.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201606200826314_maestroistruttore.cs" />
+    <Compile Include="Migrations\201606200826314_maestroistruttore.Designer.cs">
+      <DependentUpon>201606200826314_maestroistruttore.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201606291321026_DataInizioPubblicazione.cs" />
+    <Compile Include="Migrations\201606291321026_DataInizioPubblicazione.Designer.cs">
+      <DependentUpon>201606291321026_DataInizioPubblicazione.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201607011339495_DataF.cs" />
+    <Compile Include="Migrations\201607011339495_DataF.Designer.cs">
+      <DependentUpon>201607011339495_DataF.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201607041228371_squadre.cs" />
+    <Compile Include="Migrations\201607041228371_squadre.Designer.cs">
+      <DependentUpon>201607041228371_squadre.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -233,7 +252,10 @@
     <Content Include="Content\Immagini\loading.gif" />
     <Content Include="Content\Immagini\next.png" />
     <Content Include="Content\Immagini\prev.png" />
+    <Content Include="Content\Immagini\ScrittaBiancaTrasparente.png" />
     <Content Include="Content\Immagini\ScrittaTrasparenteG.png" />
+    <Content Include="Content\Immagini\ScrittaTrasparenteP.png" />
+    <Content Include="Content\Immagini\Sf1.png" />
     <Content Include="Content\Immagini\Striscia.jpg" />
     <Content Include="Content\Immagini\Striscia2.jpg" />
     <Content Include="Content\Immagini\Taiei3.jpg" />
@@ -255,7 +277,6 @@
     <None Include="Properties\PublishProfiles\ArubaBusiness.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\bootstrap-datepicker.js" />
-    <Content Include="Scripts\bootstrap-datepicker.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
@@ -272,15 +293,7 @@
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="immagini.html" />
-    <Content Include="Web.config">
-      <SubType>Designer</SubType>
-    </Content>
-    <Content Include="Web.Debug.config">
-      <DependentUpon>Web.config</DependentUpon>
-    </Content>
-    <Content Include="Web.Release.config">
-      <DependentUpon>Web.config</DependentUpon>
-    </Content>
+    <Content Include="test.html" />
     <Content Include="Views\Web.config" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
@@ -360,12 +373,45 @@
     <Content Include="Views\Home\Special.cshtml" />
     <Content Include="Views\Medaglieres\CreateUt.cshtml" />
     <Content Include="Views\Home\Palmares.cshtml" />
+    <Content Include="Views\Gares\Create.cshtml" />
+    <Content Include="Views\Gares\Delete.cshtml" />
+    <Content Include="Views\Gares\Details.cshtml" />
+    <Content Include="Views\Gares\Edit.cshtml" />
+    <Content Include="Views\Gares\Index.cshtml" />
+    <Content Include="Views\Home\Scheda.cshtml" />
+    <Content Include="Views\Home\Album.cshtml" />
+    <Content Include="Views\Home\DelImgAlbum.cshtml" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Views\Eventis\AvvisiProgrammati.cshtml" />
+    <Content Include="Views\Eventis\AvvisiObsoletii.cshtml" />
+    <Content Include="Views\Home\Squadre.cshtml" />
+    <Content Include="Views\Squadres\Create.cshtml" />
+    <Content Include="Views\Squadres\Delete.cshtml" />
+    <Content Include="Views\Squadres\Details.cshtml" />
+    <Content Include="Views\Squadres\Edit.cshtml" />
+    <Content Include="Views\Squadres\Index.cshtml" />
+    <Content Include="Views\SquadraDetts\Create.cshtml" />
+    <Content Include="Views\SquadraDetts\Delete.cshtml" />
+    <Content Include="Views\SquadraDetts\Details.cshtml" />
+    <Content Include="Views\SquadraDetts\Edit.cshtml" />
+    <Content Include="Views\SquadraDetts\Index.cshtml" />
+    <Content Include="Views\SquadraDetts\EditS.cshtml" />
+    <Content Include="Views\SquadraDetts\Index1.cshtml" />
+    <None Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <None Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Content\Download\" />
     <Folder Include="Content\Immagini\Eventi\" />
     <Folder Include="Content\Immagini\FotoIscritti\" />
+    <Folder Include="Content\Immagini\FotoPersonali\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
@@ -390,6 +436,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201606091355110_kata.resx">
       <DependentUpon>201606091355110_kata.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201606200826314_maestroistruttore.resx">
+      <DependentUpon>201606200826314_maestroistruttore.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201606291321026_DataInizioPubblicazione.resx">
+      <DependentUpon>201606291321026_DataInizioPubblicazione.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201607011339495_DataF.resx">
+      <DependentUpon>201607011339495_DataF.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201607041228371_squadre.resx">
+      <DependentUpon>201607041228371_squadre.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

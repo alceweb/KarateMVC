@@ -1,4 +1,5 @@
 ﻿@model KarateMVC.Models.EditUserViewModel
+
 @{
     ViewBag.Title = "Gestione utenti";
 }
@@ -38,8 +39,16 @@
         <div class="form-group">
             @Html.LabelFor(model => model.DataNascita, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.TextBoxFor(m => m.DataNascita, "{0:dd/MM/yyyy}", new { @class = "form-control" })
+                @*Incompatibilità jquery validation date per Chrome e FireFox*@
+                @{ if(Request.Browser.Browser != "IE")
+                    {
+                        Html.EnableClientValidation(false);
+                    }
+
+                    }
+                @Html.TextBoxFor(model => model.DataNascita, "{0:dd/MM/yyyy}", new { @class = "form-control datepicker"})
                 @Html.ValidationMessageFor(model => model.DataNascita)
+                @{ Html.EnableClientValidation(true);}
             </div>
         </div>
         <div class="form-group">
@@ -71,16 +80,35 @@
             </div>
         </div>
         <div class="form-group">
-            @Html.Label("Roles", new { @class = "control-label col-md-2" })
-            <span class=" col-md-10">
-                @foreach (var item in Model.RolesList)
-                {
-                    <input type="checkbox" name="SelectedRole" value="@item.Value" checked="@item.Selected" class="checkbox-inline" />
-                    @Html.Label(item.Value, new { @class = "control-label" })
-                }
-            </span>
+                <label class="control-label col-md-2">Livello</label>
+            <div class="col-md-10">
+                @Html.LabelFor(model => model.Maestro, new { @class = "control-label" })
+                @Html.CheckBoxFor(m => m.Maestro, new { @class = "checkbox-inline" })
+                @Html.ValidationMessageFor(model => model.Maestro)  
+                @Html.LabelFor(model => model.Istruttore, new { @class = "control-label" })
+                @Html.CheckBoxFor(m => m.Istruttore, new { @class = "checkbox-inline" })
+                @Html.ValidationMessageFor(model => model.Istruttore)
+            </div>
         </div>
+        <div class="form-group">
+            <div class="col-md-10">
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="row">
+                    @Html.Label("Roles", new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @foreach (var item in Model.RolesList)
+                {
+                        <input type="checkbox" name="SelectedRole" value="@item.Value" checked="@item.Selected" class="checkbox-inline" />
+                        @Html.Label(item.Value, new { @class = "control-label" })<br />
 
+                    }
+                </div>
+
+
+            </div>
+        </div>
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
                 <input type="submit" value="Save" class="btn btn-default" />
@@ -95,6 +123,10 @@
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
+    <script type="text/javascript">
+        $('.datepicker').datepicker("option", "dateFormat", "dd/mm/yyyy");
+    </script>
+
 }
 
 

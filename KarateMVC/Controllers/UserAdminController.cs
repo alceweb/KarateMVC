@@ -80,10 +80,14 @@ namespace KarateMVC.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
+            var ruoli = RoleManager.Roles.Where(r => r.Name.Contains("Squadra"));
+            ViewBag.Ruoli = ruoli;
             var user = await UserManager.FindByIdAsync(id);
-
             ViewBag.RoleNames = await UserManager.GetRolesAsync(user.Id);
-
+            foreach (var rol in ViewBag.RoleNames)
+            {
+                @ViewBag.Rol = rol;
+            }
             return View(user);
         }
 
@@ -163,6 +167,8 @@ namespace KarateMVC.Controllers
                 Grado = user.Grado,
                 Frase = user.Frase,
                 Kata = user.Kata,
+                Maestro = user.Maestro,
+                Istruttore = user.Istruttore,
                 RolesList = RoleManager.Roles.ToList().Select(x => new SelectListItem()
                 {
                     Selected = userRoles.Contains(x.Name),
@@ -177,7 +183,7 @@ namespace KarateMVC.Controllers
         [Authorize(Roles = "Admin")]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "Id,Email,Nome,Cognome,DataNascita,AnnoInizio,Grado,Frase,Kata")] EditUserViewModel editUser, params string[] selectedRole)
+        public async Task<ActionResult> Edit([Bind(Include = "Id,Email,Nome,Cognome,DataNascita,AnnoInizio,Grado,Frase,Kata,Maestro,Istruttore")] EditUserViewModel editUser, params string[] selectedRole)
         {
             if (ModelState.IsValid)
             {
@@ -196,6 +202,8 @@ namespace KarateMVC.Controllers
                 user.Grado = editUser.Grado;
                 user.Frase = editUser.Frase;
                 user.Kata = editUser.Kata;
+                user.Maestro = editUser.Maestro;
+                user.Istruttore = editUser.Istruttore;
 
                 var userRoles = await UserManager.GetRolesAsync(user.Id);
 
@@ -235,7 +243,7 @@ namespace KarateMVC.Controllers
 
             var userRoles = await UserManager.GetRolesAsync(user.Id);
 
-            return View(new EditUserViewModel()
+            return View(new EditUsViewModel()
             {
                 Id = user.Id,
                 Email = user.Email,
@@ -246,19 +254,13 @@ namespace KarateMVC.Controllers
                 Grado=user.Grado,
                 Frase=user.Frase,
                 Kata = user.Kata,
-                RolesList = RoleManager.Roles.ToList().Select(x => new SelectListItem()
-                {
-                    Selected = userRoles.Contains(x.Name),
-                    Text = x.Name,
-                    Value = x.Name
-                })
             });
         }
 
         [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> EditUs([Bind(Include = "Id,Email,Nome,Cognome,DataNascita,AnnoInizio,Grado,Frase,Kata")] EditUserViewModel editUser, params string[] selectedRole)
+        public async Task<ActionResult> EditUs([Bind(Include = "Id,Email,Nome,Cognome,DataNascita,AnnoInizio,Grado,Frase,Kata")] EditUsViewModel editUser)
         {
             if (ModelState.IsValid)
             {
@@ -267,7 +269,6 @@ namespace KarateMVC.Controllers
                 {
                     return HttpNotFound();
                 }
-
                 user.UserName = editUser.Email;
                 user.Email = editUser.Email;
                 user.Nome = editUser.Nome;
@@ -278,24 +279,7 @@ namespace KarateMVC.Controllers
                 user.Frase = editUser.Frase;
                 user.Kata = editUser.Kata;
 
-                var userRoles = await UserManager.GetRolesAsync(user.Id);
-
-                selectedRole = selectedRole ?? new string[] { };
-
-                var result = await UserManager.AddToRolesAsync(user.Id, selectedRole.Except(userRoles).ToArray<string>());
-
-                if (!result.Succeeded)
-                {
-                    ModelState.AddModelError("", result.Errors.First());
-                    return View();
-                }
-                result = await UserManager.RemoveFromRolesAsync(user.Id, userRoles.Except(selectedRole).ToArray<string>());
-
-                if (!result.Succeeded)
-                {
-                    ModelState.AddModelError("", result.Errors.First());
-                    return View();
-                }
+                await UserManager.UpdateAsync(user);
                 return RedirectToAction("IndexUs");
             }
             ModelState.AddModelError("", "Something failed.");

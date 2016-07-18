@@ -28,6 +28,6 @@ namespace KarateMVC
                       "~/Content/bootstrap.css",
                       "~/Content/bootstrap-datepicker3.css",
                       "~/Content/site.css"));
-        }
+       }
     }
 }

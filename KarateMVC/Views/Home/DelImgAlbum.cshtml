@@ -1,0 +1,22 @@
+﻿
+@{
+    ViewBag.Title = "Gestione immagini";
+}
+
+<h2>@ViewBag.Title</h2>
+<h3 class="text-danger">Cancello questa immagine dall'album personale?</h3>
+<div class="galla2">
+    <img src="@Url.Content("~/Content/Immagini/FotoPersonali/" + @ViewBag.Uid + "/" + @ViewBag.Message)" />
+</div>
+<div class="row">
+    <div class="col col-md-1">
+        @using (Html.BeginForm())
+        {
+            <input class="btn btn-danger" id="Submit1" type="submit" value="Elimina" />
+        }
+    </div>
+    <div class="col col-md-1">
+        @Html.ActionLink("Annulla", "Album", new { id = ViewBag.Uid }, new { @class = "btn btn-primary" })
+    </div>
+</div>
+

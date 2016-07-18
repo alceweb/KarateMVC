@@ -3,8 +3,21 @@
 @{
     ViewBag.Title = "Home Page";
 }
+@if (ViewBag.AvvisoCount >0)
+{
+    <div class="jumbo img-responsive">
 
-<div class="div1 content" >
+        <img class="img-responsive" src="~/Content/Immagini/ScrittaTrasparenteP.png" />
+        @foreach (var item in ViewBag.Avviso)
+        {
+            <h1 class="text-center">@item.Titolo</h1>
+            <h4 class="ckeditor">@Html.Raw(item.Descrizione)</h4><hr class="hr1" />
+
+        }
+    </div>
+
+}
+<div class="table table- div1 content" >
 @foreach (var item in Model)
 {
     <div class="text-center">

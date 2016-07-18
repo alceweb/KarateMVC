@@ -62,7 +62,7 @@ namespace KarateMVC.Controllers
 
         //
         // GET: /Roles/Details/5
-        public async Task<ActionResult> Details(string id, string usr)
+        public async Task<ActionResult> Details(string id)
         {
             if (id == null)
             {
@@ -71,8 +71,6 @@ namespace KarateMVC.Controllers
             var role = await RoleManager.FindByIdAsync(id);
             // Get the list of Users in this Role
             var users = new List<ApplicationUser>();
-
-            // Get the list of Users in this Role
             foreach (var user in UserManager.Users.ToList())
             {
                 if (await UserManager.IsInRoleAsync(user.Id, role.Name))
@@ -81,7 +79,6 @@ namespace KarateMVC.Controllers
                 }
             }
             ViewBag.Id = id;
-            ViewBag.Usr = usr;
             ViewBag.Users = users;
             ViewBag.UserCount = users.Count();
             return View(role);

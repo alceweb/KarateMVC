@@ -52,7 +52,7 @@ namespace KarateMVC.Controllers
         // Per ulteriori dettagli, vedere http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Evento_Id,Gara_Id,Titolo,Data,Pubblica,Approfondimento,Galleria", Exclude ="Descrizione")] Eventi eventi)
+        public ActionResult Create([Bind(Include = "Evento_Id,Gara_Id,Titolo,Data,DataP,DataF,Pubblica,Approfondimento,Galleria", Exclude ="Descrizione")] Eventi eventi)
         {
             FormCollection collection = new FormCollection(Request.Unvalidated().Form);
             eventi.Descrizione = collection["Descrizione"];
@@ -88,7 +88,7 @@ namespace KarateMVC.Controllers
         // Per ulteriori dettagli, vedere http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Evento_Id,Gara_Id,Titolo,Data,Pubblica,Approfondimento,Galleria", Exclude ="Descrizione")] Eventi eventi)
+        public ActionResult Edit([Bind(Include = "Evento_Id,Gara_Id,Titolo,Data,DataP,DataF,Pubblica,Approfondimento,Galleria", Exclude ="Descrizione")] Eventi eventi)
         {
             FormCollection collection = new FormCollection(Request.Unvalidated().Form);
             eventi.Descrizione = collection["Descrizione"];
@@ -125,9 +125,31 @@ namespace KarateMVC.Controllers
             if (file != null && file.ContentLength > 0)
                 try
                 {
-                    string path = Path.Combine(Server.MapPath("/Content/Immagini/Eventi/" + id + "/" + id + ".jpg").ToLower());
-                    file.SaveAs(path);
-                    ViewBag.Message = "File uploaded successfully";
+                    var fileName = Path.GetFileName(file.FileName);
+                    var path = Path.Combine(Server.MapPath("~/Content/Immagini/Eventi/" + id + "/"), id + ".jpg");
+                    WebImage img = new WebImage(file.InputStream);
+                    var larghezza = img.Width;
+                    var altezza = img.Height;
+                    var rapportoO = larghezza / altezza;
+                    var rapportoV = altezza / larghezza;
+                    if (altezza > 1900 | larghezza > 1900)
+                    {
+                        if (rapportoO >= 1)
+                        {
+                            ViewBag.Message = "Attendi la fine del download...";
+                            img.Resize(1900, 1900 / rapportoO);
+                            img.Save(path);
+                            ViewBag.Message = "Download immagine orizzontale avvenuto con successo. Dimensione immagine originale: larghezza " + larghezza + " Altezza " + altezza;
+                        }
+                        else
+                        {
+                            img.Resize(800 / rapportoV, 800);
+                            img.Save(path);
+                            ViewBag.Message = "Download immagine verticale avvenuto con successo. Dimensione immagine: larghezza " + larghezza + "Altezza" + altezza;
+                        }
+                    }
+
+
                 }
                 catch (Exception ex)
                 {
@@ -172,8 +194,30 @@ namespace KarateMVC.Controllers
                 if (file != null && file.ContentLength > 0)
                     try
                     {
-                        file.SaveAs(Server.MapPath("/Content/Immagini/Eventi/" + id +"/" + file.FileName).ToLower());
-                        ViewBag.Message = "File uploaded successfully";
+                        var fileName = Path.GetFileName(file.FileName);
+                        var path = Path.Combine(Server.MapPath("~/Content/Immagini/Eventi/" + id + "/"), fileName);
+                        WebImage img = new WebImage(file.InputStream);
+                        var larghezza = img.Width;
+                        var altezza = img.Height;
+                        var rapportoO = larghezza / altezza;
+                        var rapportoV = altezza / larghezza;
+                        if (altezza > 1900 | larghezza > 1900)
+                        {
+                            if (rapportoO >= 1)
+                            {
+                                ViewBag.Message = "Attendi la fine del download...";
+                                img.Resize(1900, 1900 / rapportoO);
+                                img.Save(path);
+                                ViewBag.Message = "Download immagine orizzontale avvenuto con successo. Dimensione immagine originale: larghezza " + larghezza + " Altezza " + altezza;
+                            }
+                            else
+                            {
+                                img.Resize(800 / rapportoV, 800);
+                                img.Save(path);
+                                ViewBag.Message = "Download immagine verticale avvenuto con successo. Dimensione immagine: larghezza " + larghezza + "Altezza" + altezza;
+                            }
+                        }
+
                     }
                     catch (Exception ex)
                     {
@@ -235,6 +279,19 @@ namespace KarateMVC.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
+        }
+
+        public ActionResult AvvisiProgrammati()
+        {
+            ViewBag.EventiCount = db.Eventis.Where(e => e.Gara_Id == 20 && e.DataP < DateTime.Now && e.DataF > DateTime.Now).Count();
+            var eventi = db.Eventis.Where(e => e.Gara_Id == 20 && e.DataF > DateTime.Now).OrderByDescending(d => d.Data);
+            return View(eventi);
+        }
+        public ActionResult AvvisiObsoletii()
+        {
+            ViewBag.EventiCount = db.Eventis.Where(e => e.Gara_Id == 20 && e.DataF < DateTime.Now).Count();
+            var eventi = db.Eventis.Where(e => e.Gara_Id == 20 && e.DataF < DateTime.Now).OrderByDescending(d => d.Data);
+            return View(eventi);
         }
 
     }

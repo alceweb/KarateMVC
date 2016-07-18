@@ -5,7 +5,8 @@
 }
         <h2>@ViewBag.Message</h2>
 
-<div><a href="@Url.Content("~/Home/Palmares/")"><img class="" height="60" src="~/Content/Immagini/Oro.png" /> Medagliere</a></div>
+<div><a href="@Url.Content("~/Home/Palmares/")"><img class="" height="60" src="~/Content/Immagini/Oro.png" /> Medagliere</a>
+    <a href="@Url.Content("~/Home/Squadre/")"><img class="" height="60" src="~/Content/Immagini/Argento.png" /> Squadre</a></div>
 
 <div class="div2">
     La società nasce nel 1976 come Club Karate Caravaggio iniziando di
@@ -46,6 +47,45 @@
         }
 
     </div>
+<hr class="hr1" />
+<h1>Maestro - Istruttori</h1>
+<div class="div1 content">
+    @foreach (var item in ViewBag.Maestro)
+    {
+        <div>
+            <h4 class="text-center"> @item.Nome</h4>
+            <h3>
+                @if (System.IO.File.Exists(Server.MapPath("~/Content/Immagini/FotoIscritti/" + @item.Id + ".jpg")))
+                {
+                    <a href="@Url.Action("Scheda", "Home", new {id = @item.Id })"><img src="@Url.Content("~/Content/Immagini/FotoIscritti/" + @item.Id + ".jpg")" /></a>
+                }
+                else
+                {
+                    <a href="@Url.Action("Scheda", "Home", new {id = @item.Id })"><img src="@Url.Content("~/Content/Immagini/FotoIscritti/Anonimous.jpg")" /></a>
+                }
+            </h3>
+        </div>
+    }
+
+    @foreach (var item in ViewBag.Istruttori)
+    {
+        <div>
+            <h4 class="text-center"> @item.Nome</h4>
+            <h3>
+                @if (System.IO.File.Exists(Server.MapPath("~/Content/Immagini/FotoIscritti/" + @item.Id + ".jpg")))
+                {
+                    <a href="@Url.Action("Palmares", "Medaglieres", new {id = @item.Id })"><img src="@Url.Content("~/Content/Immagini/FotoIscritti/" + @item.Id + ".jpg")" /></a>
+                }
+                else
+                {
+                    <a href="@Url.Action("Palmares", "Medaglieres", new {id = @item.Id })"><img src="@Url.Content("~/Content/Immagini/FotoIscritti/Anonimous.jpg")" /></a>
+                }
+            </h3>
+        </div>
+    }
+</div>
+
+<hr class="hr1" />
 <hr class="hr1" />
 <h1>Agonisti</h1>
 <div class="div1 content">

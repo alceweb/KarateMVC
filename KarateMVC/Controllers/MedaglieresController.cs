@@ -8,6 +8,8 @@ using System.Web;
 using System.Web.Mvc;
 using KarateMVC.Models;
 using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.Owin;
+using System.IO;
 
 namespace KarateMVC.Controllers
 {
@@ -158,6 +160,14 @@ namespace KarateMVC.Controllers
 
         public ActionResult Palmares(string id)
         {
+            //galleria immagini personale
+            if (Directory.Exists(Server.MapPath("~/Content/Immagini/FotoPersonali/" + id + "/")))
+            {
+                var immagini = Directory.GetFiles(Server.MapPath("/Content/Immagini/FotoPersonali/" + id + "/"));
+                ViewBag.Immagini = immagini.ToList();
+
+            }
+
             var uid = id;
             ViewBag.Uid = uid;
             var utente = db.Users.Where(u=>u.Id == id );
