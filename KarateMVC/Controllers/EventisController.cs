@@ -191,7 +191,7 @@ namespace KarateMVC.Controllers
         {
             foreach (var file in files)
             {
-                if (file != null && file.ContentLength > 0)
+                if (file != null)
                     try
                     {
                         var fileName = Path.GetFileName(file.FileName);
@@ -212,12 +212,27 @@ namespace KarateMVC.Controllers
                             }
                             else
                             {
+                                ViewBag.Message = "Attendi la fine del download...";
                                 img.Resize(800 / rapportoV, 800);
                                 img.Save(path);
                                 ViewBag.Message = "Download immagine verticale avvenuto con successo. Dimensione immagine: larghezza " + larghezza + "Altezza" + altezza;
                             }
                         }
-
+                        else
+                        {
+                            if (rapportoO >= 1)
+                            {
+                                ViewBag.Message = "Attendi la fine del download...";
+                                img.Save(path);
+                                ViewBag.Message = "Download immagine orizzontale avvenuto con successo. Dimensione immagine originale: larghezza " + larghezza + " Altezza " + altezza;
+                            }
+                            else
+                            {
+                                ViewBag.Message = "Attendi la fine del download...";
+                                img.Save(path);
+                                ViewBag.Message = "Download immagine verticale avvenuto con successo. Dimensione immagine: larghezza " + larghezza + "Altezza" + altezza;
+                            }
+                        }
                     }
                     catch (Exception ex)
                     {

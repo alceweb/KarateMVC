@@ -303,9 +303,12 @@ footer{
 }
 
 .jumbo{
-    background-color:#fff !important;
-    margin-top:-8px;
-    padding:10px;
+    background-color:#c9cbca !important;
+    margin-top: -8px;
+    padding: 10px;
+    border: solid thin white;
+    border-radius: 0px 0px 10px 10px;
+}
 }
 
         /********************

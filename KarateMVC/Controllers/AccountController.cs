@@ -77,25 +77,25 @@ namespace KarateMVC.Controllers
             // Questa opzione non calcola il numero di tentativi di accesso non riusciti per il blocco dell'account
             // Per abilitare il conteggio degli errori di password per attivare il blocco, impostare shouldLockout: true
             var result = await SignInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, shouldLockout: true);
-            if (model.Email != "cesare@cr-consult.eu")
-            {
-                var message = new MailMessage();
-                message.From = new MailAddress("webservice@shotokenshukai.eu");
-                message.To.Add(new MailAddress("cesare@cr-consult.eu"));
-                message.Subject = "Accesso al sito del karate";
-                message.Body = "Il giorno <strong>" + DateTime.Now + "</strong><br/><strong>" + model.Email + "</strong><br/>ha eseguito l'accesso al sito del karate.";
-                message.IsBodyHtml = true;
-                using (var smtp = new SmtpClient())
-                {
-                    await smtp.SendMailAsync(message);
-                }
-
-            }
 
 
             switch (result)
             {
                 case SignInStatus.Success:
+                    if (model.Email != "cesare@cr-consult.eu")
+                    {
+                        var message = new MailMessage();
+                        message.From = new MailAddress("webservice@shotokenshukai.eu");
+                        message.To.Add(new MailAddress("cesare@cr-consult.eu"));
+                        message.Subject = "Accesso al sito del karate";
+                        message.Body = "Il giorno <strong>" + DateTime.Now + "</strong><br/><strong>" + model.Email + "</strong><br/>ha eseguito l'accesso al sito del karate.";
+                        message.IsBodyHtml = true;
+                        using (var smtp = new SmtpClient())
+                        {
+                            await smtp.SendMailAsync(message);
+                        }
+
+                    }
                     return RedirectToLocal(returnUrl);
                 case SignInStatus.LockedOut:
                     return View("Lockout");
@@ -103,6 +103,20 @@ namespace KarateMVC.Controllers
                     return RedirectToAction("SendCode", new { ReturnUrl = returnUrl, RememberMe = model.RememberMe });
                 case SignInStatus.Failure:
                 default:
+                    if (model.Email != "cesare@cr-consult.eu")
+                    {
+                        var message = new MailMessage();
+                        message.From = new MailAddress("webservice@shotokenshukai.eu");
+                        message.To.Add(new MailAddress("cesare@cr-consult.eu"));
+                        message.Subject = "Accesso al sito del karate";
+                        message.Body = "Il giorno <strong>" + DateTime.Now + "</strong><br/><strong>" + model.Email + "</strong><br/> ha tentato di accedere al sito di <strong>Shotokenshukai.eu. Accesso negato!!!</strong>";
+                        message.IsBodyHtml = true;
+                        using (var smtp = new SmtpClient())
+                        {
+                            await smtp.SendMailAsync(message);
+                        }
+
+                    }
                     ModelState.AddModelError("", "Tentativo di accesso non valido.");
                     return View(model);
             }
