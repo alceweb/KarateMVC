@@ -297,7 +297,9 @@ z-index:0;
     border:solid 2px #fff;
     border-radius:50%;
 }
-
+.img-social{
+    width:50px;
+}
 footer{
     padding:0px;
 }

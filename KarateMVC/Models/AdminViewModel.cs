@@ -69,4 +69,12 @@ namespace KarateMVC.Models
         public string Kata { get; set; }
     }
 
+    public class SquadreViewModel
+    {
+        public int Squadra_id { get; set; }
+        [Display(Name = "Anno")]
+        public int Anno { get; set; }
+        [Display(Name = "Nome squadra")]
+        public string NomeSquadra { get; set; }
+    }
 }

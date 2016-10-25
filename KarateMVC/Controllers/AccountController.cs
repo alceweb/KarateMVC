@@ -250,15 +250,37 @@ namespace KarateMVC.Controllers
                 if (user == null || !(await UserManager.IsEmailConfirmedAsync(user.Id)))
                 {
                     // Non rivelare che l'utente non esiste o non è confermato
+                    //Invio mail personalizzato 
+                    string code1 = await UserManager.GeneratePasswordResetTokenAsync(user.Id);
+                    var callbackUrl1 = Url.Action("ResetPassword", "Account", new { userId = user.Id, code = code1 }, protocol: Request.Url.Scheme);
+                    var message1 = new MailMessage();
+                    message1.From = new MailAddress("webservice@shotokenshukai.eu");
+                    message1.To.Add(new MailAddress(model.Email));
+                    message1.Subject = "Reimposta password www.shotokenshukai.eu";
+                    message1.Body = "Per reimpostare la password, fare clic sul collegamento qui sotto <br/><br/>" + callbackUrl1 ;
+                    message1.IsBodyHtml = true;
+                    using (var smtp = new SmtpClient())
+                    {
+                        await smtp.SendMailAsync(message1);
+                    }
+                    //fine invio mail personalizzato
                     return View("ForgotPasswordConfirmation");
                 }
 
                 // Per ulteriori informazioni su come abilitare la conferma dell'account e la reimpostazione della password, visitare http://go.microsoft.com/fwlink/?LinkID=320771
                 // Inviare un messaggio di posta elettronica con questo collegamento
-                // string code = await UserManager.GeneratePasswordResetTokenAsync(user.Id);
-                // var callbackUrl = Url.Action("ResetPassword", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);		
-                // await UserManager.SendEmailAsync(user.Id, "Reimposta password", "Per reimpostare la password, fare clic <a href=\"" + callbackUrl + "\">qui</a>");
-                // return RedirectToAction("ForgotPasswordConfirmation", "Account");
+                string code = await UserManager.GeneratePasswordResetTokenAsync(user.Id);
+                var callbackUrl = Url.Action("ResetPassword", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
+                await UserManager.SendEmailAsync(user.Id, "Reimposta password", "Per reimpostare la password, fare clic <a href=\"" + callbackUrl + "\">qui</a>");
+                //Invio mail personalizzato 
+                var message = new MailMessage();
+                message.From = new MailAddress("webservice@shotokenshukai.eu");
+                message.To.Add(new MailAddress(model.Email));
+                message.Subject = "Reimposta password www.shotokenshukai.eu";
+                message.Body = "Per reimpostare la password, fare clic < a href =\"" + callbackUrl + "\">qui</a>";
+                message.IsBodyHtml = true;
+                //fine invio mail personalizzato
+                return RedirectToAction("ForgotPasswordConfirmation", "Account");
             }
 
             // Se si è arrivati a questo punto, significa che si è verificato un errore, rivisualizzare il form

@@ -18,7 +18,7 @@
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
     <UseIISExpress>true</UseIISExpress>
-    <IISExpressSSLPort />
+    <IISExpressSSLPort>44353</IISExpressSSLPort>
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
@@ -242,7 +242,9 @@
     <Content Include="Content\Immagini\bronzo.png" />
     <Content Include="Content\Immagini\close.png" />
     <Content Include="Content\Immagini\Corsi.jpg" />
+    <Content Include="Content\Immagini\instagram.png" />
     <Content Include="Content\Immagini\LogoVerticale.png" />
+    <Content Include="Content\Immagini\medaglie.jpg" />
     <Content Include="Content\Immagini\Oro.png" />
     <Content Include="Content\Immagini\Palestra\img_0001.jpg" />
     <Content Include="Content\Immagini\Palestra\IMG_0004.jpg" />
@@ -256,6 +258,7 @@
     <Content Include="Content\Immagini\ScrittaTrasparenteG.png" />
     <Content Include="Content\Immagini\ScrittaTrasparenteP.png" />
     <Content Include="Content\Immagini\Sf1.png" />
+    <Content Include="Content\Immagini\Squadra.JPG" />
     <Content Include="Content\Immagini\Striscia.jpg" />
     <Content Include="Content\Immagini\Striscia2.jpg" />
     <Content Include="Content\Immagini\Taiei3.jpg" />
@@ -282,6 +285,8 @@
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.filtertable.js" />
+    <Content Include="Scripts\jquery.filtertable.min.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
@@ -389,8 +394,6 @@
     <Content Include="Views\Home\Squadre.cshtml" />
     <Content Include="Views\Squadres\Create.cshtml" />
     <Content Include="Views\Squadres\Delete.cshtml" />
-    <Content Include="Views\Squadres\Details.cshtml" />
-    <Content Include="Views\Squadres\Edit.cshtml" />
     <Content Include="Views\Squadres\Index.cshtml" />
     <Content Include="Views\SquadraDetts\Create.cshtml" />
     <Content Include="Views\SquadraDetts\Delete.cshtml" />
@@ -399,6 +402,10 @@
     <Content Include="Views\SquadraDetts\Index.cshtml" />
     <Content Include="Views\SquadraDetts\EditS.cshtml" />
     <Content Include="Views\SquadraDetts\Index1.cshtml" />
+    <Content Include="Views\Eventis\DeleteImg.cshtml" />
+    <Content Include="Views\Squadres\IndexUt.cshtml" />
+    <Content Include="Views\Squadres\Details.cshtml" />
+    <Content Include="Views\Squadres\Edit.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -468,7 +475,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>44870</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:44870/</IISUrl>
+          <IISUrl>http://localhost:44355/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

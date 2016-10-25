@@ -7,6 +7,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System;
 using System.Web.Mvc;
+using System.Collections.Generic;
 
 namespace KarateMVC.Models
 {
@@ -98,6 +99,8 @@ namespace KarateMVC.Models
         public int Anno { get; set; }
         [Display(Name ="Nome squadra")]
         public string NomeSquadra { get; set; }
+
+        public virtual ICollection<SquadraDett> Squadres { get; set; }
     }
 
     public class SquadraDett

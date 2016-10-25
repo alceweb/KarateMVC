@@ -103,6 +103,7 @@ namespace KarateMVC.Controllers
             return View(eventi);
         }
 
+        //Gestione immagine evento
         public ActionResult EditImgP(int? id)
         {
             if (id == null)
@@ -122,7 +123,7 @@ namespace KarateMVC.Controllers
         [HttpPost]
         public ActionResult EditImgP(HttpPostedFileBase file, int? id)
         {
-            if (file != null && file.ContentLength > 0)
+            if (file != null)
                 try
                 {
                     var fileName = Path.GetFileName(file.FileName);
@@ -144,6 +145,21 @@ namespace KarateMVC.Controllers
                         else
                         {
                             img.Resize(800 / rapportoV, 800);
+                            img.Save(path);
+                            ViewBag.Message = "Download immagine verticale avvenuto con successo. Dimensione immagine: larghezza " + larghezza + "Altezza" + altezza;
+                        }
+                    }
+                    else
+                    {
+                        if (rapportoO >= 1)
+                        {
+                            ViewBag.Message = "Attendi la fine del download...";
+                            img.Save(path);
+                            ViewBag.Message = "Download immagine orizzontale avvenuto con successo. Dimensione immagine originale: larghezza " + larghezza + " Altezza " + altezza;
+                        }
+                        else
+                        {
+                            ViewBag.Message = "Attendi la fine del download...";
                             img.Save(path);
                             ViewBag.Message = "Download immagine verticale avvenuto con successo. Dimensione immagine: larghezza " + larghezza + "Altezza" + altezza;
                         }
@@ -170,6 +186,7 @@ namespace KarateMVC.Controllers
 
         }
 
+        //Gestione immagini galleria fotografica
         public ActionResult EditImg(int? id)
         {
             if (id == null)
@@ -269,6 +286,30 @@ namespace KarateMVC.Controllers
             return View(eventi);
         }
 
+        public ActionResult DeleteImg(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            ViewBag.File = Request.QueryString["file"];
+            Eventi eventi = db.Eventis.Find(id);
+            if (eventi == null)
+            {
+                return HttpNotFound();
+            }
+            return View(eventi);
+        }
+
+        [HttpPost, ActionName("DeleteImg")]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteImgConfirmed(int id)
+        {
+            var file = "~/Content/Immagini/Eventi/" + id + "/" + Request.QueryString["file"];
+            System.IO.File.Delete(Server.MapPath(file));
+            return RedirectToAction("EditImg", "Eventis", new {id = id });
+
+        }
         // POST: Eventis/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]

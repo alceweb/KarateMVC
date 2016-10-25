@@ -149,6 +149,7 @@ namespace KarateMVC.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             var user = await UserManager.FindByIdAsync(id);
+            ViewBag.Uid = id;
             if (user == null)
             {
                 return HttpNotFound();

@@ -32,8 +32,8 @@
         @Html.AntiForgeryToken()
 
         <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
-            @Html.ActionLink("Back to List", "Index")
+            <input type="submit" value="Delete" class="btn btn-danger" /> 
+            <a href="@Url.Action("Edit", "Squadres", new { id = Request.QueryString["squadra"] })" class="btn btn-primary">Annulla</a> 
         </div>
     }
 </div>

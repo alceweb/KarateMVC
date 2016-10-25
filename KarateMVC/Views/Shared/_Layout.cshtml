@@ -72,7 +72,9 @@
 
             </div>
             <div class="col col-md-4">
-                <a href="https://www.yammer.com/testkarate/#/home"><img src="~/Content/Immagini/Yammer.png" />Yammer Social</a> <br/>
+                <h5><strong>Social</strong></h5>
+                <a href="https://www.yammer.com/testkarate/#/home"><img class="img-social" src="~/Content/Immagini/Yammer.png" /></a> <br/><br/>
+                <a href="https://www.instagram.com/shotokenshukai/"><img class="img-social" src="~/Content/Immagini/instagram.png" /></a> <br />
             </div>
             <div class="col col-md-4 text-right">
                 <a href="http://www.cr-consult.eu"> <span>Almish<span style="color:#FF0000" lang="it">&amp;</span>Cesàre<span style="color:#FF0000">W</span>eb</span></a>
@@ -86,5 +88,12 @@
     @RenderSection("scripts", required: false)
     @Scripts.Render("~/Scripts/lightbox-plus-jquery.min.js")
     @Scripts.Render("~/Scripts/ckeditor/ckeditor.js")
+    <script src="~/Scripts/jquery.filtertable.min.js"></script>
+    <script>
+	$(document).ready(function() {
+		$('table').filterTable();
+	});
+    </script>
+
 </body>
 </html>

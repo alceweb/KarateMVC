@@ -9,14 +9,14 @@
     <hr class="hr1" />
     <div class="row">
         <div class="col col-md-2">
-            <img class="img-responsive" src="@Url.Content("~/Content/Immagini/FotoIscritti/" + @Html.DisplayFor(model => model.Id) + ".jpg")" />
+            <img class="img-responsive" src="@Url.Content("~/Content/Immagini/FotoIscritti/" + Model.Id + ".jpg")" />
 
         </div>
         <div class="col col-md-3">
-            <h3>@Html.DisplayFor(model => model.Nome) @Html.DisplayFor(model => model.Cognome)</h3>
+            <h3>@Model.Nome @Model.Cognome</h3>
             @Html.DisplayFor(model => model.UserName)<br/>
             @String.Format("{0:dddd dd-MM-yyyy}", Model.DataNascita)
-            @Html.DisplayFor(model => model.Frase)<br />
+            @Model.Frase<br />
         </div>
     </div>
 </div>

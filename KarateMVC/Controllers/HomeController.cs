@@ -126,7 +126,7 @@ namespace KarateMVC.Controllers
             return View(await UserManager.Users.ToListAsync());
         }
 
-        public async Task<ActionResult> Squadre()
+        public ActionResult Squadre()
         {
             ViewBag.Roles = RoleManager.Roles.ToList().Where(n=>n.Name.Contains("Squadra")).OrderByDescending(n=>n.Name);
             ViewBag.RolesCount = RoleManager.Roles.Count();

@@ -29,7 +29,7 @@
         var filename = Path.GetFileName(item);
         <div class="col col-md-2 text-center">
                 <span class="galla1">
-                    <a href="">Cancella</a>
+                    <a href="@Url.Action("DeleteImg", "Eventis", new { id = Model.Evento_Id, file = @filename})">Cancella</a>
                     <a href="@Url.Content("~/Content/Immagini/Eventi/" + Html.DisplayFor(model => model.Evento_Id) +"/" + @filename)">Scarica</a>
                     <a href="@Url.Content("~/Content/Immagini/Eventi/" + Html.DisplayFor(model => model.Evento_Id) +"/" + @filename)" data-lightbox="example-set"><img class="example-image" src="@Url.Content("~/Content/Immagini/Eventi/" + Html.DisplayFor(model => model.Evento_Id) +"/" + @filename)" alt="" /></a>
                 </span>

@@ -47,8 +47,12 @@ namespace KarateMVC.Controllers
         public ActionResult Create()
         {
             ViewBag.Id = new SelectList(db.Users, "Id", "Nome");
-            var squadre = db.Squadres.OrderBy(a => a.Anno).Select(s=> new SelectListItem { Value = s.Squadra_id.ToString(), Text = s.Anno + " - " + s.NomeSquadra });
-            ViewBag.Squadra_id = new SelectList(squadre, "Value", "Text" );
+            int sqid = Convert.ToInt32(Request.QueryString["squadra"]);
+            var squadra = db.Squadres.Where(s => s.Squadra_id == sqid);
+            ViewBag.Squadra = squadra;
+            var allievi = db.Users.OrderBy(n => n.Nome).ToList();
+            ViewBag.AllieviCount = allievi.Count();
+            ViewBag.Allievi = allievi;
             return View();
         }
 
@@ -59,14 +63,21 @@ namespace KarateMVC.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "SquadraDett_id,Squadra_id,Id")] SquadraDett squadraDett)
         {
+            ViewBag.Id = new SelectList(db.Users, "Id", "Nome");
+            int sqid = Convert.ToInt32(Request.QueryString["squadra"]);
+            var squadra = db.Squadres.Where(s => s.Squadra_id == sqid);
+            ViewBag.Squadra = squadra;
+            var allievi = db.Users.OrderBy(n => n.Nome).ToList();
+            ViewBag.Allievi = allievi;
+            var squadre = db.Squadres.OrderBy(a => a.Anno).Select(s => new SelectListItem { Value = s.Squadra_id.ToString(), Text = s.Anno + " - " + s.NomeSquadra });
+            ViewBag.Squadra_id = new SelectList(squadre, "Value", "Text");
             if (ModelState.IsValid)
             {
+                squadraDett.Squadra_id = sqid;
                 db.SquadraDetts.Add(squadraDett);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Edit", "Squadres", new {id = sqid });
             }
-            ViewBag.Id = new SelectList(db.Users, "Id", "Nome", squadraDett.Id);
-            ViewBag.Squadra_id = new SelectList(db.Squadres, "Squadra_id", "NomeSquadra");
             return View(squadraDett);
         }
 
@@ -135,10 +146,11 @@ namespace KarateMVC.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
+            int sqid = Convert.ToInt32(Request.QueryString["squadra"]);
             SquadraDett squadraDett = db.SquadraDetts.Find(id);
             db.SquadraDetts.Remove(squadraDett);
             db.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("Edit", "Squadres", new { id = sqid });
         }
 
         protected override void Dispose(bool disposing)

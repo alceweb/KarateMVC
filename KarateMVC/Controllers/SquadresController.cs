@@ -10,23 +10,31 @@ using KarateMVC.Models;
 
 namespace KarateMVC.Controllers
 {
-    [Authorize(Roles = "Admin")]
     public class SquadresController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Squadres
+        [Authorize(Roles = "Admin")]
         public ActionResult Index()
         {
-            var query = db.SquadraDetts.Include(u => u.Nome);
-            ViewBag.SquadreDett = query.ToList();
-            var squadre = db.Squadres.ToList().OrderBy(a=>a.Anno);
-            var allievi = db.SquadraDetts;
-            ViewBag.SquadreCount = db.Squadres.Count();
+            var dettaglio = db.SquadraDetts.OrderBy(n=>n.Nome.Nome).ToList();
+            var squadre = db.Squadres.OrderByDescending(a=>a.Anno).ToList();
+            ViewBag.Dettaglio = dettaglio;
+            return View(squadre);
+        }
+
+        // GET: Squadres
+        public ActionResult IndexUt()
+        {
+            var dettaglio = db.SquadraDetts.OrderBy(n => n.Nome.Nome).ToList();
+            var squadre = db.Squadres.OrderByDescending(a => a.Anno).ToList();
+            ViewBag.Dettaglio = dettaglio;
             return View(squadre);
         }
 
         // GET: Squadres/Details/5
+        [Authorize(Roles = "Admin")]
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -43,6 +51,7 @@ namespace KarateMVC.Controllers
             return View(squadre);
         }
 
+        [Authorize(Roles = "Admin")]
         // GET: Squadres/Create
         public ActionResult Create()
         {
@@ -53,6 +62,7 @@ namespace KarateMVC.Controllers
         // Per proteggere da attacchi di overposting, abilitare le proprietà a cui eseguire il binding. 
         // Per ulteriori dettagli, vedere http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "Squadra_id,Anno,NomeSquadra")] Squadre squadre)
         {
@@ -67,6 +77,7 @@ namespace KarateMVC.Controllers
         }
 
         // GET: Squadres/Edit/5
+        [Authorize(Roles = "Admin")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -86,6 +97,7 @@ namespace KarateMVC.Controllers
         // Per ulteriori dettagli, vedere http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
         public ActionResult Edit([Bind(Include = "Squadra_id,Anno,NomeSquadra")] Squadre squadre)
         {
             if (ModelState.IsValid)
@@ -98,6 +110,7 @@ namespace KarateMVC.Controllers
         }
 
         // GET: Squadres/Delete/5
+        [Authorize(Roles = "Admin")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -115,6 +128,7 @@ namespace KarateMVC.Controllers
         // POST: Squadres/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
         public ActionResult DeleteConfirmed(int id)
         {
             Squadre squadre = db.Squadres.Find(id);

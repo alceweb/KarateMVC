@@ -5,8 +5,14 @@
 }
         <h2>@ViewBag.Message</h2>
 
-<div><a href="@Url.Content("~/Home/Palmares/")"><img class="" height="60" src="~/Content/Immagini/Oro.png" /> Medagliere</a>
-    <a href="@Url.Content("~/Home/Squadre/")"><img class="" height="60" src="~/Content/Immagini/Argento.png" /> Squadre</a></div>
+    <div class="row">
+        <div class="col-xs-6 col-md-3 h3 text-center">
+            <a href="@Url.Content("~/Home/Palmares/")" class="thumbnail"><img src="~/Content/Immagini/medaglie.jpg" /> Medagliere</a>
+        </div>
+        <div class="col-xs-6 col-md-3 h3 text-center">
+            <a href="@Url.Action("IndexUt", "Squadres")" class="thumbnail"><img src="~/Content/Immagini/squadra.jpg" /> Squadre</a>
+        </div>
+    </div>
 
 <div class="div2">
     La società nasce nel 1976 come Club Karate Caravaggio iniziando di

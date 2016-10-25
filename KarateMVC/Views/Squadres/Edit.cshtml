@@ -4,14 +4,13 @@
     ViewBag.Title = "Edit";
 }
 
-<h2>Edit</h2>
+<h2>Modifica squadre</h2>
 
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
-        <h4>Squadre</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         @Html.HiddenFor(model => model.Squadra_id)
@@ -31,15 +30,30 @@
                 @Html.ValidationMessageFor(model => model.NomeSquadra, "", new { @class = "text-danger" })
             </div>
         </div>
+        <div class="row">
+            <div class="col-md-1 pull-left text-center">
+                <a href="@Url.Action("Create", "SquadraDetts", new {squadra = Model.Squadra_id })"><span class="glyphicon glyphicon-plus h2 text-info"></span></a>
+            </div>
 
+                @foreach (var item in Model.Squadres)
+                {
+                    <div class="col-md-1 pull-left text-center">
+                        <a href="@Url.Action("Delete", "SquadraDetts", new { id = item.SquadraDett_id, squadra = Model.Squadra_id })"><span class="glyphicon glyphicon-remove text-danger"></span></a><br />
+                        <img class="img-usr" src="@Url.Content("/Content/Immagini/FotoIscritti/" + @item.Id  + ".jpg")" /><br />
+                        <br />
+                        @item.Nome.Nome
+
+
+                    </div>
+                }
+            </div>
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save" class="btn btn-default" />
             </div>
         </div>
     </div>
-}
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+                <input type="submit" value="Fatto" class="btn btn-primary" />
 </div>
+}

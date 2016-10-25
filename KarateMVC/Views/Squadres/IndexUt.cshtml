@@ -1,0 +1,50 @@
+﻿@model IEnumerable<KarateMVC.Models.Squadre>
+
+@{
+    ViewBag.Title = "Squadre";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<table class="table table-striped">
+    @foreach (var group in Model.GroupBy(item => item.Anno))
+    {
+        <tr>
+            <td>
+                <span class="h2">@Html.Encode(group.Key)</span>
+            </td>
+        </tr>
+        <tr>
+            <td class="text-info">
+                @foreach (var group1 in group.OrderBy(n => n.NomeSquadra).GroupBy(item1 => item1.NomeSquadra))
+                {
+                    <ul>
+                        <li>
+                            <span class="h3">@Html.Encode(group1.Key)</span>
+
+                            @foreach (var group2 in group1)
+                            {
+                                <div class="row">
+
+
+                                    @foreach (var group3 in group2.Squadres)
+                                    {
+                                        <div class="col-md-1 pull-left text-center">
+                                            <a href="@Url.Action("Palmares", "Medaglieres", new {id = @group3.Id })">
+                                                <img class="img-usr" src="@Url.Content("/Content/Immagini/FotoIscritti/" + @group3.Id  + ".jpg")" /><br />
+                                                @group3.Nome.Nome
+                                            </a>
+                                        </div>
+                                    }
+
+                                </div>
+                            }
+
+                        </li>
+                    </ul><hr />
+                }
+            </td>
+        </tr>
+    }
+
+</table>
