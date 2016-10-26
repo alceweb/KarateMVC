@@ -67,7 +67,7 @@ namespace KarateMVC.Controllers
             int sqid = Convert.ToInt32(Request.QueryString["squadra"]);
             var squadra = db.Squadres.Where(s => s.Squadra_id == sqid);
             ViewBag.Squadra = squadra;
-            var allievi = db.Users.OrderBy(n => n.Nome).ToList();
+            var allievi = db.Users.OrderBy(n => n.Nome).Select(u => new SelectListItem { Value = u.Id, Text = u.Nome });
             ViewBag.Allievi = allievi;
             var squadre = db.Squadres.OrderBy(a => a.Anno).Select(s => new SelectListItem { Value = s.Squadra_id.ToString(), Text = s.Anno + " - " + s.NomeSquadra });
             ViewBag.Squadra_id = new SelectList(squadre, "Value", "Text");

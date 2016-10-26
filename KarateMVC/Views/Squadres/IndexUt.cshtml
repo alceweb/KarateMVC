@@ -6,44 +6,48 @@
 
 <h2>@ViewBag.Title</h2>
 
-<table class="table table-striped">
+<table class="table">
     @foreach (var group in Model.GroupBy(item => item.Anno))
     {
         <tr>
             <td>
-                <span class="h2">@Html.Encode(group.Key)</span>
-            </td>
-        </tr>
-        <tr>
-            <td class="text-info">
-                @foreach (var group1 in group.OrderBy(n => n.NomeSquadra).GroupBy(item1 => item1.NomeSquadra))
-                {
-                    <ul>
-                        <li>
-                            <span class="h3">@Html.Encode(group1.Key)</span>
+                <a role="button" data-toggle="collapse" href="#@Html.Encode(group.Key)" aria-expanded="false" aria-controls="collapseExample">
+                    <span class="h2">@Html.Encode(group.Key)</span>
+                </a>
+                <div class="text-info collapse" id="@Html.Encode(group.Key)">
+                    @foreach (var group1 in group.OrderBy(n => n.NomeSquadra).GroupBy(item1 => item1.NomeSquadra))
+                        {
+                                <ul class="well">
+                                    <li>
+                                        <span class="h3">@Html.Encode(group1.Key)</span>
+                                        @foreach (var group2 in group1)
+                                        {
+                                            <div class="row">
+                                                @foreach (var group3 in group2.Squadres)
+                                                {
+                                                    <div class="col-md-1 pull-left text-center">
+                                                        <a href="@Url.Action("Palmares", "Medaglieres", new {id = @group3.Id })">
+                                                        @if (File.Exists(@Server.MapPath("/Content/Immagini/FotoIscritti/" + @group3.Id + ".jpg")))
+                                                        {
+                                                            <img class="img-usr" src="@Url.Content("/Content/Immagini/FotoIscritti/" + @group3.Id  + ".jpg")" />
+                                                        }
+                                                        else
+                                                        {
+                                                            <img class="img-usr" src="@Url.Content("/Content/Immagini/FotoIscritti/anonimous.jpg")" />
 
-                            @foreach (var group2 in group1)
-                            {
-                                <div class="row">
-
-
-                                    @foreach (var group3 in group2.Squadres)
-                                    {
-                                        <div class="col-md-1 pull-left text-center">
-                                            <a href="@Url.Action("Palmares", "Medaglieres", new {id = @group3.Id })">
-                                                <img class="img-usr" src="@Url.Content("/Content/Immagini/FotoIscritti/" + @group3.Id  + ".jpg")" /><br />
-                                                @group3.Nome.Nome
-                                            </a>
-                                        </div>
-                                    }
-
-                                </div>
+                                                        }
+                                                            <br />@group3.Nome.Nome
+                                                        </a>
+                                                    </div>
+                                                }
+                                            </div>
+                                        }
+                                    </li>
+                                </ul>
                             }
+                </div>
 
-                        </li>
-                    </ul><hr />
-                }
-            </td>
+           </td>
         </tr>
     }
 

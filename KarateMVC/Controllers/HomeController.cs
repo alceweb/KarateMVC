@@ -213,7 +213,7 @@ namespace KarateMVC.Controllers
 
         public ActionResult Palmares()
         {
-            var medaglieres = db.Medaglieres.Include(m => m.Titolo).OrderByDescending(d => d.Titolo.Data).Where(g => g.Titolo.Gara_Id > 3 && g.Titolo.Gara_Id != 6 & g.Titolo.Gara_Id != 16 && g.Titolo.Gara_Id != 19);
+            var medaglieres = db.Medaglieres.Include(m => m.Titolo).OrderByDescending(d => d.Titolo.NomeGara.Fikta == true);
             ViewBag.Oro = medaglieres.Where(c => c.classifica == "1").Count();
             ViewBag.Argento = medaglieres.Where(c => c.classifica == "2").Count();
             ViewBag.Bronzo = medaglieres.Where(c => c.classifica == "3").Count();

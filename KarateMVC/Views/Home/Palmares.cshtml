@@ -38,7 +38,14 @@
     {
         <tr>
             <td>
+             @if (File.Exists(@Server.MapPath("/Content/Immagini/FotoIscritti/" + item.Uid + ".jpg")))
+             {
                 <a href="@Url.Content("~/Medaglieres/Palmares/" + item.Uid)"><img class="img-usr" src="@Url.Content("~/Content/Immagini/FotoIscritti/" + item.Uid + ".jpg")" /></a>
+             }
+             else
+             {
+                <a href="@Url.Content("~/Medaglieres/Palmares/" + item.Uid)"><img class="img-usr" src="~/Content/Immagini/FotoIscritti/AnonimousSq.jpg" /></a>
+             }
                 @Html.DisplayFor(modelItem => item.classifica)° @Html.DisplayFor(modelItem => item.Spec)
 
 

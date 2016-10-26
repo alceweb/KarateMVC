@@ -222,6 +222,10 @@
     <Compile Include="Migrations\201607041228371_squadre.Designer.cs">
       <DependentUpon>201607041228371_squadre.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201610251215252_GareFikta.cs" />
+    <Compile Include="Migrations\201610251215252_GareFikta.Designer.cs">
+      <DependentUpon>201610251215252_GareFikta.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\AdminViewModel.cs" />
@@ -242,6 +246,7 @@
     <Content Include="Content\Immagini\bronzo.png" />
     <Content Include="Content\Immagini\close.png" />
     <Content Include="Content\Immagini\Corsi.jpg" />
+    <Content Include="Content\Immagini\FotoIscritti\AnonimousSq.jpg" />
     <Content Include="Content\Immagini\instagram.png" />
     <Content Include="Content\Immagini\LogoVerticale.png" />
     <Content Include="Content\Immagini\medaglie.jpg" />
@@ -406,6 +411,7 @@
     <Content Include="Views\Squadres\IndexUt.cshtml" />
     <Content Include="Views\Squadres\Details.cshtml" />
     <Content Include="Views\Squadres\Edit.cshtml" />
+    <Content Include="Views\Medaglieres\CreateSq.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -417,7 +423,6 @@
     <Folder Include="App_Data\" />
     <Folder Include="Content\Download\" />
     <Folder Include="Content\Immagini\Eventi\" />
-    <Folder Include="Content\Immagini\FotoIscritti\" />
     <Folder Include="Content\Immagini\FotoPersonali\" />
   </ItemGroup>
   <ItemGroup>
@@ -455,6 +460,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201607041228371_squadre.resx">
       <DependentUpon>201607041228371_squadre.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201610251215252_GareFikta.resx">
+      <DependentUpon>201610251215252_GareFikta.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

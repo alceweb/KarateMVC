@@ -46,7 +46,7 @@ namespace KarateMVC.Controllers
         // Per ulteriori dettagli, vedere http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Gara_Id,NomeGara")] Gare gare)
+        public ActionResult Create([Bind(Include = "Gara_Id,NomeGara,Fikta")] Gare gare)
         {
             if (ModelState.IsValid)
             {
@@ -78,7 +78,7 @@ namespace KarateMVC.Controllers
         // Per ulteriori dettagli, vedere http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Gara_Id,NomeGara")] Gare gare)
+        public ActionResult Edit([Bind(Include = "Gara_Id,NomeGara,Fikta")] Gare gare)
         {
             if (ModelState.IsValid)
             {

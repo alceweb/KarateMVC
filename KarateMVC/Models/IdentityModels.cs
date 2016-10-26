@@ -72,6 +72,11 @@ namespace KarateMVC.Models
         [Key]
         public int Gara_Id { get; set; }
         public string NomeGara { get; set; }
+        [Display(Name= "FIKTA")]
+        public bool Fikta { get; set; }
+
+        public virtual ICollection<Eventi> Eventis { get; set; }
+
     }
 
     public class Documenti

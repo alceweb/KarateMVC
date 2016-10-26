@@ -18,9 +18,7 @@ namespace KarateMVC.Controllers
         [Authorize(Roles = "Admin")]
         public ActionResult Index()
         {
-            var dettaglio = db.SquadraDetts.OrderBy(n=>n.Nome.Nome).ToList();
             var squadre = db.Squadres.OrderByDescending(a=>a.Anno).ToList();
-            ViewBag.Dettaglio = dettaglio;
             return View(squadre);
         }
 

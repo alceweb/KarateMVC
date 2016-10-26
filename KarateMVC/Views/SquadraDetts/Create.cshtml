@@ -26,7 +26,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Id, "Id", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.ListBoxFor(model=>model.Id, new SelectList(ViewBag.Allievi, "Id", "Nome"), new {@class="form-control", size = ViewBag.AllieviCount})
+                @Html.ListBoxFor(model=>model.Id, new MultiSelectList(ViewBag.Allievi, "Id", "Nome"), new {@class="form-control", size = ViewBag.AllieviCount})
                 @Html.ValidationMessageFor(model => model.Id, "", new { @class = "text-danger" })
             </div>
         </div>
