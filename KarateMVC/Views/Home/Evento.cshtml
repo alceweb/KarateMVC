@@ -1,22 +1,55 @@
 ﻿@model KarateMVC.Models.Eventi
 
 <div class="div1" >
-    
+
     <h1>@Html.DisplayFor(model => model.Titolo)</h1>
     @if (Model.Data != Convert.ToDateTime("01/01/2050"))
     {
-        <h4>@Model.Data.ToString("ddd dd MMM yyyy")</h4>
+        <h4>
+            @if (User.IsInRole("Admin"))
+            {
+            <a href="@Url.Action("Edit", "Eventis", new{id = Model.Evento_Id})" class="text-danger"><span class="glyphicon glyphicon-pencil"></span></a>
+
+            }
+            @Model.Data.ToString("ddd dd MMM yyyy")
+        </h4>
 
     }
     <p>
         @Html.Raw(Model.Descrizione)
     </p>
 </div>
-<div class="galla">
-    @foreach (var item in ViewBag.Immagini)
-    {
-        var filename = Path.GetFileName(item);
-        <span><a href="@Url.Content("~/Content/Immagini/Eventi/" + Html.DisplayFor(model => model.Evento_Id) +"/" + @filename)" data-lightbox="example-set"><img class="example-image" src="@Url.Content("~/Content/Immagini/Eventi/" + Html.DisplayFor(model => model.Evento_Id) +"/" + @filename)" alt="" /></a></span>
-    }
+@if (User.IsInRole("Download"))
+{
+    <div class="galla">
 
-</div>
+        @foreach (var item in ViewBag.Immagini)
+        {
+        var filename = Path.GetFileName(item);
+            <div class="galla1">
+                <span>
+                    <a href="@Url.Content("~/Content/Immagini/Eventi/" + Html.DisplayFor(model => model.Evento_Id) +"/" + @filename)" targhet="_blank"><span class="glyphicon glyphicon-download-alt">Scarica</span></a><br />
+                    <a href="@Url.Content("~/Content/Immagini/Eventi/" + Html.DisplayFor(model => model.Evento_Id) +"/" + @filename)" data-lightbox="example-set" targhet="_blank"><img class="example-image" src="@Url.Content("~/Content/Immagini/Eventi/" + Html.DisplayFor(model => model.Evento_Id) +"/" + @filename)" alt="" /></a>
+                </span>
+
+            </div>
+        }
+    </div>
+}
+else
+{
+    <div class="galla">
+        @foreach (var item in ViewBag.Immagini)
+                {
+                    var filename = Path.GetFileName(item);
+            <div>
+                <span>
+                    <a href="@Url.Content("~/Content/Immagini/Eventi/" + Html.DisplayFor(model => model.Evento_Id) +"/" + @filename)" data-lightbox="example-set"><img class="example-image" src="@Url.Content("~/Content/Immagini/Eventi/" + Html.DisplayFor(model => model.Evento_Id) +"/" + @filename)" alt="" /></a>
+                </span>
+
+            </div>
+        }
+
+    </div>
+
+}

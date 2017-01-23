@@ -17,7 +17,14 @@
                     </button>
                 </div>
                 <div class="col col-md8">
-                    <h2>@Html.DisplayFor(modelItem => item.Titolo)</h2>
+                    <h2>
+                        @if (User.IsInRole("Admin"))
+                        {
+                            <a href="@Url.Action("Edit", "Eventis", new{id = @item.Evento_Id})" class="text-danger"><span class="glyphicon glyphicon-pencil"></span></a>
+
+                        }
+                        @Html.DisplayFor(modelItem => item.Titolo)
+                    </h2>
                 </div>
             <!-- Modal -->
             <div class="modal fade" id="@item.Evento_Id" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
@@ -27,6 +34,11 @@
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                             <h2 class="modal-title" id="myModalLabel">@Html.DisplayFor(modelItem => item.Titolo)</h2>
                             <p class="badge">@item.Data.ToString("dddd dd-MMM-yyyy")</p>
+                            @if (User.IsInRole("Admin"))
+                            {
+                                <a href="@Url.Action("Edit", "Eventis", new{id = @item.Evento_Id})" class="pull-right text-danger"><span class="glyphicon glyphicon-pencil"></span></a>
+
+                            }
                         </div>
                         <div class="modal-body">
                             <p>@Html.Raw(item.Descrizione)</p>

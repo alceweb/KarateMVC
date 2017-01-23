@@ -11,9 +11,11 @@
     {
         <tr>
             <td>
+                @*Modal trigger*@
                 <a role="button" data-toggle="collapse" href="#@Html.Encode(group.Key)" aria-expanded="false" aria-controls="collapseExample">
                     <span class="h2">@Html.Encode(group.Key)</span>
                 </a>
+                @*Modal box*@
                 <div class="text-info collapse" id="@Html.Encode(group.Key)">
                     @foreach (var group1 in group.OrderBy(n => n.NomeSquadra).GroupBy(item1 => item1.NomeSquadra))
                         {
@@ -23,9 +25,13 @@
                                         @foreach (var group2 in group1)
                                         {
                                             <div class="row">
+                                                <span>Squadra Id: @group2.Squadra_id</span>
+                                                <span>Nome squadra: @group2.NomeSquadra</span>
+                                                <span>Anno: @group2.Anno</span>
+                                                <span>Boh @group2.Squadres</span> 
                                                 @foreach (var group3 in group2.Squadres)
                                                 {
-                                                    <div class="col-md-1 pull-left text-center">
+                                                    <div class="col-md-1 text-center">
                                                         <a href="@Url.Action("Palmares", "Medaglieres", new {id = @group3.Id })">
                                                         @if (File.Exists(@Server.MapPath("/Content/Immagini/FotoIscritti/" + @group3.Id + ".jpg")))
                                                         {
@@ -36,7 +42,7 @@
                                                             <img class="img-usr" src="@Url.Content("/Content/Immagini/FotoIscritti/anonimous.jpg")" />
 
                                                         }
-                                                            <br />@group3.Nome.Nome
+                                                            <br />@group3.Nome.Nome 
                                                         </a>
                                                     </div>
                                                 }

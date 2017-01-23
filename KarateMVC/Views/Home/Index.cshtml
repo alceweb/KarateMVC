@@ -10,6 +10,11 @@
         <img class="img-responsive" src="~/Content/Immagini/ScrittaTrasparenteP.png" />
         @foreach (var item in ViewBag.Avviso)
         {
+            if (User.IsInRole("Admin"))
+            {
+                <a href="@Url.Action("Edit", "Eventis", new{id = @item.Evento_Id})" class="text-danger h2 pull-left"><span class="glyphicon glyphicon-pencil"></span></a>
+
+            }
             <h1 class="text-center">@item.Titolo</h1>
             <h4 class="ckeditor">@Html.Raw(item.Descrizione)</h4><hr class="hr1" />
 
@@ -35,6 +40,12 @@
         <span>
             <a href="@Url.Action("Evento", "Home", new { id = item.Evento_Id })"><img src="@Url.Content("~/Content/Immagini/Eventi/" + item.Evento_Id + "/" + item.Evento_Id + ".jpg")" alt="" /></a>
         </span>
+        @if (User.IsInRole("Admin"))
+        {
+        <br/><a href="@Url.Action("Edit", "Eventis", new{id = @item.Evento_Id})" class="text-danger h3 "><span class="glyphicon glyphicon-pencil"></span></a>
+
+        }
+
     </div>
 }
 </div>

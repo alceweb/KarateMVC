@@ -47,7 +47,7 @@ namespace KarateMVC.Controllers
 
         public ActionResult Index()
         {
-            var avviso = db.Eventis.Where(e => e.Gara_Id == 20 && e.DataP < DateTime.Now && e.DataF > DateTime.Now);
+            var avviso = db.Eventis.Where(e => e.Gara_Id == 20 && e.DataP <= DateTime.Today && e.DataF >= DateTime.Today);
             var eventi = db.Eventis.Where(p => p.Pubblica == true).OrderByDescending(d=>d.Data);
             ViewBag.AvvisoCount = avviso.Count();
             ViewBag.Avviso = avviso;
@@ -144,7 +144,8 @@ namespace KarateMVC.Controllers
         public ActionResult Appuntamenti()
         {
             ViewBag.Message = "Appuntamenti";
-            var eventi = db.Eventis.Where(d=>d.Data > DateTime.Now && d.Gara_Id != 19).OrderBy(d=>d.Data);
+            var oggi = DateTime.Today;
+            var eventi = db.Eventis.Where(d=>d.Data >= oggi && d.Gara_Id != 19).OrderBy(d=>d.Data);
             if (eventi == null)
             {
                 return HttpNotFound();

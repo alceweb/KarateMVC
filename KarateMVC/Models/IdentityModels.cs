@@ -33,6 +33,7 @@ namespace KarateMVC.Models
             // Aggiungere qui i reclami utente personalizzati
             return userIdentity;
         }
+
     }
 
     public class Eventi
@@ -49,7 +50,7 @@ namespace KarateMVC.Models
         public string Descrizione { get; set; }
         [Display(Name = "Data evento")]
         [DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString = "{0:dd/mmyyyy}", ApplyFormatInEditMode = true)]
+        [DisplayFormat(DataFormatString = "{0:dd/mm/yyyy}", ApplyFormatInEditMode = true)]
         public DateTime Data { get; set; }
         [Display(Name = "Inizio splashpage")]
         [DataType(DataType.Date)]
@@ -106,6 +107,7 @@ namespace KarateMVC.Models
         public string NomeSquadra { get; set; }
 
         public virtual ICollection<SquadraDett> Squadres { get; set; }
+
     }
 
     public class SquadraDett
@@ -118,6 +120,7 @@ namespace KarateMVC.Models
         public virtual ApplicationUser Nome { get; set; }
 
     }
+
     public class Medagliere
     {
         [Key]
@@ -127,7 +130,10 @@ namespace KarateMVC.Models
         public string Spec { get; set; }
         public string classifica { get; set; }
         public string Uid { get; set; }
+        
+
     }
+
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         public ApplicationDbContext()

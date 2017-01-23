@@ -60,13 +60,32 @@
         </dd>
 
     </dl>
+    <div class="row">
+        @if (ViewBag.FilesCount > 0)
+        {
+            <h4 class="text-danger">
+                ATTENZIONE!!!<br />
+                Ci sono @ViewBag.FilesCount files agganciati all'evento... se cancelli l'evento anche i files verranno cancellati
+            </h4>
+            <div class="galla">
+                @foreach (var fullpath in ViewBag.Files)
+                {
+                    var filename = Path.GetFileName(fullpath);
+                    <img src="@Url.Content("~/Content/Immagini/Eventi/" + Model.Evento_Id + "/" + @filename)" class="img-thumbnail" />
+                }
+            </div>
+
+        }
+
+    </div>
+    <hr />
 
     @using (Html.BeginForm()) {
         @Html.AntiForgeryToken()
 
         <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
-            @Html.ActionLink("Back to List", "Index")
+            <input type="submit" value="Cancella" class="btn btn-danger" />
+            @Html.ActionLink("Annulla", "Index", null, new { @class = "btn btn-success" })
         </div>
     }
 </div>

@@ -278,12 +278,33 @@ namespace KarateMVC.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
+            var files = Directory.EnumerateFiles(Server.MapPath("/Content/Immagini/Eventi/" + id));
+            ViewBag.Files = files;
+            ViewBag.FilesCount = files.Count();
             Eventi eventi = db.Eventis.Find(id);
             if (eventi == null)
             {
                 return HttpNotFound();
             }
             return View(eventi);
+        }
+        //
+        // POST: /Roles/Delete/5
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteConfirmed(int id)
+        {
+            string[] files = Directory.GetFiles(Server.MapPath("~/Content/Immagini/Eventi/" + id));
+            foreach (var file in files)
+            {
+                System.IO.File.Delete(Server.MapPath(file));
+            }
+            
+            Directory.Delete(Server.MapPath("~/Content/Immagini/Eventi/" + id));
+            Eventi eventi = db.Eventis.Find(id);
+            db.Eventis.Remove(eventi);
+            db.SaveChanges();
+            return RedirectToAction("Index");
         }
 
         public ActionResult DeleteImg(int? id)
@@ -313,20 +334,6 @@ namespace KarateMVC.Controllers
         // POST: Eventis/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
-        {
-            string[] files = Directory.GetFiles(Server.MapPath("~/Content/Immagini/Eventi/" + id));
-            foreach (var file in files)
-            {
-                System.IO.File.Delete(Server.MapPath(file));
-            }
-            
-            Directory.Delete(Server.MapPath("~/Content/Immagini/Eventi/" + id));
-            Eventi eventi = db.Eventis.Find(id);
-            db.Eventis.Remove(eventi);
-            db.SaveChanges();
-            return RedirectToAction("Index");
-        }
 
         protected override void Dispose(bool disposing)
         {
@@ -339,14 +346,14 @@ namespace KarateMVC.Controllers
 
         public ActionResult AvvisiProgrammati()
         {
-            ViewBag.EventiCount = db.Eventis.Where(e => e.Gara_Id == 20 && e.DataP < DateTime.Now && e.DataF > DateTime.Now).Count();
-            var eventi = db.Eventis.Where(e => e.Gara_Id == 20 && e.DataF > DateTime.Now).OrderByDescending(d => d.Data);
+            ViewBag.EventiCount = db.Eventis.Where(e => e.Data >= DateTime.Today).Count();
+            var eventi = db.Eventis.Where(e => e.Data >= DateTime.Today).OrderByDescending(d => d.Data);
             return View(eventi);
         }
         public ActionResult AvvisiObsoletii()
         {
-            ViewBag.EventiCount = db.Eventis.Where(e => e.Gara_Id == 20 && e.DataF < DateTime.Now).Count();
-            var eventi = db.Eventis.Where(e => e.Gara_Id == 20 && e.DataF < DateTime.Now).OrderByDescending(d => d.Data);
+            ViewBag.EventiCount = db.Eventis.Where(e => e.Data <= DateTime.Today).Count();
+            var eventi = db.Eventis.Where(e => e.Data <= DateTime.Today).OrderByDescending(d => d.Data);
             return View(eventi);
         }
 

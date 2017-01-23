@@ -223,54 +223,53 @@ h2 {
     -moz-box-shadow: 0px 0px 200px #fff;
         }
 .galla {
-    color:yellow;
+    display:table;
+}
+.galla div{
     overflow:hidden;
+    border-radius:6px;
+    float:left;
+    margin:5px;
+    -webkit-box-shadow: 4px 4px 5px rgba(50, 50, 50, 0.75);
+    -moz-box-shadow:    4px 4px 5px rgba(50, 50, 50, 0.75);
+    box-shadow:         4px 4px 5px rgba(50, 50, 50, 0.75);
 }
 .galla span:hover img{
--webkit-transform:scale(1.1); /*Webkit: Scale up image to 1.2x original size*/
--moz-transform:scale(1.1); /*Mozilla scale version*/
--o-transform:scale(1.1); /*Opera scale version*/
+-webkit-transform:scale(1.8); /*Webkit: Scale up image to 1.2x original size*/
+-moz-transform:scale(1.8); /*Mozilla scale version*/
+-o-transform:scale(1.8); /*Opera scale version*/
 z-index:0;
- -ms-transform: scale(1.1); /* IE 9 */
- transition:all 1s ease;
+ -ms-transform: scale(1.8); /* IE 9 */
+ transition:all 0.7s ease-out;
 }
 .galla img {
     height:120px;
-    margin:5px;
     text-align: center;
     vertical-align: bottom;
     border-radius:4px;
-    -webkit-box-shadow: 4px 4px 5px rgba(50, 50, 50, 0.75);
-    -moz-box-shadow:    4px 4px 5px rgba(50, 50, 50, 0.75);
-    box-shadow:         4px 4px 5px rgba(50, 50, 50, 0.75);
-    float:left;
  transition:all 1s ease;
 }
 .galla1 {
+    background-color:#fff;
+    border-radius:5px;
+    margin:2px;
+    padding:2px;
+    border:solid 1px #b1b1b1;
+    float:left;
+    text-align:center;
+    overflow:hidden;
  }
-.galla1:hover img{
--webkit-transform:scale(0.8); /*Webkit: Scale up image to 1.2x original size*/
--moz-transform:scale(0.8); /*Mozilla scale version*/
--o-transform:scale(0.8); /*Opera scale version*/
- -ms-transform: scale(0.8); /* IE 9 */
--moz-box-shadow:1px 1px 30px gray; /*Mozilla shadow version*/
-z-index:0;
-            opacity: 0.2; 
-            box-shadow: 0px 0px 10px 5px #716556;
-            -webkit-box-shadow: 0px 0px 10px 5px #716556;
-            -moz-box-shadow: 0px 0px 10px 5px #716556;
- transition:all 1s ease;
-}
 .galla1 img {
-    height:120px;
-    margin:5px;
-    text-align: center;
-    vertical-align: bottom;
-    border-radius:4px;
-    -webkit-box-shadow: 4px 4px 5px rgba(50, 50, 50, 0.75);
-    -moz-box-shadow:    4px 4px 5px rgba(50, 50, 50, 0.75);
-    box-shadow:         4px 4px 5px rgba(50, 50, 50, 0.75);
- transition:all 1s ease;
+    z-index:1;
+}
+.galla1 span{
+    z-index:2;
+}
+.galla1 span span{
+    text-shadow:0px 0px 33px #fff;
+    background-color:rgba(255, 255, 255, 0.7);
+    padding:3px;
+    border-radius:2px;
 }
 .galla2{
 
@@ -310,6 +309,7 @@ footer{
     padding: 10px;
     border: solid thin white;
     border-radius: 0px 0px 10px 10px;
+    box-shadow: 0px 0px 24px #000;
 }
 }
 

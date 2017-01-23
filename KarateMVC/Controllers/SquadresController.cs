@@ -27,6 +27,9 @@ namespace KarateMVC.Controllers
         {
             var dettaglio = db.SquadraDetts.OrderBy(n => n.Nome.Nome).ToList();
             var squadre = db.Squadres.OrderByDescending(a => a.Anno).ToList();
+            var palmares = db.Medaglieres.ToList();
+            ViewData["Palmares"] = palmares;
+            ViewBag.Palmares = palmares;
             ViewBag.Dettaglio = dettaglio;
             return View(squadre);
         }
