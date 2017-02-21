@@ -412,6 +412,7 @@
     <Content Include="Views\Squadres\Details.cshtml" />
     <Content Include="Views\Squadres\Edit.cshtml" />
     <Content Include="Views\Medaglieres\CreateSq.cshtml" />
+    <Content Include="Views\UsersAdmin\EditImgUt.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

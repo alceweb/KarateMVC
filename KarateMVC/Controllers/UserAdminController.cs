@@ -230,6 +230,46 @@ namespace KarateMVC.Controllers
             return View();
         }
 
+        [Authorize(Roles ="Admin")]
+        public async Task<ActionResult> EditImgUt(string id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            var user = await UserManager.FindByIdAsync(id);
+            return View(user);
+        }
+
+        [Authorize(Roles = "Admin")]
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> EditImgUt(string id, HttpPostedFileBase file)
+        {
+            if (ModelState.IsValid)
+            {
+                var utente = id;
+                if (file != null && file.ContentLength > 0)
+                    try
+                    {
+                        string estensione = Path.GetExtension(file.FileName).ToLower();
+                        file.SaveAs(Server.MapPath("/Content/Immagini/FotoIscritti/" + utente + estensione));
+                        ViewBag.Message = "Foto caricata correttamente";
+                        return View();
+                    }
+                    catch (Exception ex)
+                    {
+                        ViewBag.Message = "ERROR:" + ex.Message.ToString();
+                    }
+                else
+                {
+                    ViewBag.Message = "Non hai selezionato nessun file. Puoi usare solo file JPG";
+                }
+            }
+            var user = await UserManager.FindByIdAsync(id);
+            return View(user);
+        }
+
         public async Task<ActionResult> EditUs(string id)
         {
             if (id == null)

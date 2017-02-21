@@ -299,6 +299,12 @@ z-index:0;
 .img-social{
     width:50px;
 }
+.img-jumbo{
+    border-radius:50%;
+    max-width:25%;
+    max-height:100px;
+    float:right;
+}
 footer{
     padding:0px;
 }
@@ -392,4 +398,26 @@ footer{
     visibility:collapse;
 }
 
+}
+
+/*bottoni a destra*/
+.docu{
+    position:fixed;
+    bottom:50%;
+    right:-20px;
+    transition: all ease 1s;
+}
+.docu ul{
+    list-style: none;
+}
+.docu img{
+    opacity:0.5;
+    right:-10px;
+    transition: all ease 1s;
+    height:30px
+}
+.docu img:hover {
+    opacity:1;
+    transform: translate(-2em,0);
+    right:-30px;
 }

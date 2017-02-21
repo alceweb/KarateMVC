@@ -12,12 +12,24 @@
         {
             if (User.IsInRole("Admin"))
             {
-                <a href="@Url.Action("Edit", "Eventis", new{id = @item.Evento_Id})" class="text-danger h2 pull-left"><span class="glyphicon glyphicon-pencil"></span></a>
+                <div class="text-center">
+                    <a href="@Url.Action("EditImg", "Eventis", new{id = @item.Evento_Id})" class="text-primary h3" title="Galleria"><span class="glyphicon glyphicon-camera"></span></a>
+                    <a href="@Url.Action("Edit", "Eventis", new{id = @item.Evento_Id})" class="text-danger h3" title="Testo"><span class="glyphicon glyphicon-pencil"></span></a>
+                    <a href="@Url.Action("EditImgP", "Eventis", new{id = @item.Evento_Id})" class="text-primary h3" title="Bacheca"><span class="glyphicon glyphicon-picture"></span></a>
 
+                </div>
+            }
+            foreach (var itemEv in Model.Where(g => g.Gara_Id == @item.Gara_Id && g.Evento_Id != @item.Evento_Id).OrderBy(d => d.Data))
+            {
+               <a href="@Url.Action("Evento", "Home", new {id = @itemEv.Evento_Id })" class="label label-default">@itemEv.Titolo</a>
+            }
+            if (File.Exists(Server.MapPath("~/Content/Immagini/Eventi/" + @item.Evento_Id + "/" + @item.Evento_Id + ".jpg")))
+            {
+                <img src="@Url.Content("~/Content/Immagini/Eventi/" + @item.Evento_Id + "/" + @item.Evento_Id + ".jpg")" class="img-jumbo" />
             }
             <h1 class="text-center">@item.Titolo</h1>
-            <h4 class="ckeditor">@Html.Raw(item.Descrizione)</h4><hr class="hr1" />
-
+            <h4>@Html.Raw(item.Descrizione)</h4>
+            <hr class="hr1" />
         }
     </div>
 
@@ -37,13 +49,14 @@
         {
             <h5> </h5>
         }
-        <span>
+        <p>
             <a href="@Url.Action("Evento", "Home", new { id = item.Evento_Id })"><img src="@Url.Content("~/Content/Immagini/Eventi/" + item.Evento_Id + "/" + item.Evento_Id + ".jpg")" alt="" /></a>
-        </span>
+        </p>
         @if (User.IsInRole("Admin"))
         {
-        <br/><a href="@Url.Action("Edit", "Eventis", new{id = @item.Evento_Id})" class="text-danger h3 "><span class="glyphicon glyphicon-pencil"></span></a>
-
+        <a href="@Url.Action("EditImg", "Eventis", new{id = @item.Evento_Id})" class="text-primary h4" title="Galleria fotografica"><span class="glyphicon glyphicon-camera"></span></a>
+        <a href="@Url.Action("Edit", "Eventis", new{id = @item.Evento_Id})" class="text-danger h4" title="Testo"><span class="glyphicon glyphicon-pencil"></span></a>
+        <a href="@Url.Action("EditImgP", "Eventis", new{id = @item.Evento_Id})" class="text-primary h4" title="Bacheca"><span class="glyphicon glyphicon-picture"></span></a>
         }
 
     </div>
