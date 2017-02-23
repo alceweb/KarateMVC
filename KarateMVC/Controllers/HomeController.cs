@@ -48,7 +48,7 @@ namespace KarateMVC.Controllers
         public ActionResult Index()
         {
             var avviso = db.Eventis.Where(e => e.DataP <= DateTime.Today && e.DataF >= DateTime.Today).ToList();
-            var eventi = db.Eventis.OrderByDescending(d=>d.Data).ToList();
+            var eventi = db.Eventis.Where(p=>p.Pubblica == true).OrderByDescending(d=>d.Data).ToList();
             ViewBag.AvvisoCount = avviso.Count();
             ViewBag.Avviso = avviso;
             return View(eventi);
