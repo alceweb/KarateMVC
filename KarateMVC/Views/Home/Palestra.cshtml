@@ -10,7 +10,7 @@
             <a href="@Url.Content("~/Home/Palmares/")" class="thumbnail"><img src="~/Content/Immagini/medaglie.jpg" /> Medagliere</a>
         </div>
         <div class="col-xs-6 col-md-3 h3 text-center">
-            <a href="@Url.Action("IndexUt", "Squadres")" class="thumbnail"><img src="~/Content/Immagini/squadra.jpg" /> Squadre</a>
+            <a href="@Url.Action("Index", "Squadres")" class="thumbnail"><img src="~/Content/Immagini/squadra.jpg" /> Squadre</a>
         </div>
     </div>
 
@@ -47,10 +47,14 @@
     <div class="galla">
         @foreach (var item in ViewBag.Immagini)
         {
+
             var filename = Path.GetFileName(item);
-            <span >
-                <a class="example-image-link" href="@Url.Content("~/Content/Immagini/Palestra/" + @filename)" data-lightbox="example-set"><img class="example-image" src="@Url.Content("~/Content/Immagini/Palestra/" + @filename)" alt="" /></a>
-            </span>
+            <div>
+
+                <span>
+                    <a class="example-image-link" href="@Url.Content("~/Content/Immagini/Palestra/" + @filename)" data-lightbox="example-set"><img class="example-image" src="@Url.Content("~/Content/Immagini/Palestra/" + @filename)" alt="" /></a>
+                </span>
+            </div>
         }
 
     </div>
@@ -92,7 +96,6 @@
     }
 </div>
 
-<hr class="hr1" />
 <hr class="hr1" />
 <h1>Agonisti</h1>
 <div class="div1 content">

@@ -15,7 +15,6 @@ namespace KarateMVC.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Squadres
-        [Authorize(Roles = "Admin")]
         public ActionResult Index()
         {
             var squadre = db.Squadres.OrderByDescending(a=>a.Anno).ToList();

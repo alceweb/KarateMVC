@@ -63,6 +63,9 @@ namespace KarateMVC.Controllers
             var immagini = Directory.GetFiles(Server.MapPath("/Content/Immagini/Eventi/" + id + "/"));
             ViewBag.Immagini = immagini.ToList();
             Eventi eventi = db.Eventis.Find(id);
+            var gara = eventi.Gara_Id;
+            ViewBag.Eventi1 = db.Eventis.Where(g => g.Gara_Id == gara && g.Evento_Id != id).OrderBy(g=>g.Data);
+            ViewBag.Eventi1Count = db.Eventis.Where(g => g.Gara_Id == gara && g.Evento_Id != id).Count();
             if (eventi == null)
             {
                 return HttpNotFound();

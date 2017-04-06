@@ -8,7 +8,6 @@ using System.Web;
 using System.Web.Mvc;
 using KarateMVC.Models;
 using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.Owin;
 using System.IO;
 
 namespace KarateMVC.Controllers
@@ -98,34 +97,6 @@ namespace KarateMVC.Controllers
             ViewBag.Evento_Id = new SelectList(db.Eventis.Where(g => g.NomeGara.Gara_Id != 19 && g.NomeGara.Gara_Id > 2).OrderByDescending(d => d.Data), "Evento_Id", "Titolo");
             return View(medagliere);
         }
-
-        public ActionResult CreateSq(string id)
-        {
-
-            ViewBag.Evento_Id = new SelectList(db.Eventis.Where(g => g.NomeGara.Gara_Id != 19 && g.NomeGara.Gara_Id > 2).OrderByDescending(d => d.Data), "Evento_Id", "Titolo");
-            var utente = User.Identity.GetUserId();
-            ViewBag.Utente = id;
-            var medaglieres = db.Medaglieres.Include(m => m.Titolo).Where(m => m.Uid == id).OrderByDescending(d => d.Titolo.Data);
-            return View();
-        }
-
-        [Authorize]
-        [HttpPost]
-        public ActionResult CreateSq(string id, [Bind(Include = "Medagliere_Id,Evento_Id,Spec,Classifica,Uid")] Medagliere medagliere)
-        {
-            if (ModelState.IsValid)
-            {
-                medagliere.Uid = id;
-                medagliere.Spec = Request.QueryString["spec"];
-                db.Medaglieres.Add(medagliere);
-                db.SaveChanges();
-                return RedirectToAction("Index", "Squadres");
-            }
-            ViewBag.Evento_Id = new SelectList(db.Eventis.Where(g => g.NomeGara.Gara_Id != 19 && g.NomeGara.Gara_Id > 2).OrderByDescending(d => d.Data), "Evento_Id", "Titolo");
-            return View(medagliere);
-        }
-
-
         // GET: Medaglieres/Edit/5
         [Authorize]
         public ActionResult Edit(int? id)
@@ -195,7 +166,6 @@ namespace KarateMVC.Controllers
                 ViewBag.Immagini = immagini.ToList();
 
             }
-
             var uid = id;
             ViewBag.Uid = uid;
             var utente = db.Users.Where(u=>u.Id == id );

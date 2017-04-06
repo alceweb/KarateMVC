@@ -38,11 +38,11 @@ hr {
     font-weight:600;
     text-shadow:0px 0px 6px #000;
 }
-.scittaLogoVerticale{
-    position:fixed;
-    top:125px;
-    left:0px;
-    z-index:-9000;
+.scittaLogoVerticale {
+    position: fixed;
+    top: 125px;
+    left: 0px;
+    z-index: -9000;
 }
 
 .navbar-header{
@@ -74,9 +74,13 @@ h2 {
     color: #628A81;
 }
 .hr1 {
-    border:inset 1px;
-    color:#fff;
-    }
+    border: 0;
+    height: 1px;
+    background: -webkit-linear-gradient(to right, rgba(0, 0, 0, 0.00), rgba(0,0,0), rgba(0, 0, 0, 0.00));
+    background: -o-linear-gradient(to right, rgba(0, 0, 0, 0.00), rgba(0,0,0), rgba(0, 0, 0, 0.00));
+    background: -moz-linear-gradient(to right, rgba(0, 0, 0, 0.00), rgba(0,0,0), rgba(0, 0, 0, 0.00));
+    background: linear-gradient(to right, rgba(0, 0, 0, 0.00), rgba(0,0,0), rgba(0, 0, 0, 0.00));
+}
 .hrv{
     border:inset 1px;
     color:#106d40;
@@ -234,6 +238,8 @@ h2 {
     -moz-box-shadow:    4px 4px 5px rgba(50, 50, 50, 0.75);
     box-shadow:         4px 4px 5px rgba(50, 50, 50, 0.75);
 }
+.galla div span a{
+}
 .galla span:hover img{
 -webkit-transform:scale(1.8); /*Webkit: Scale up image to 1.2x original size*/
 -moz-transform:scale(1.8); /*Mozilla scale version*/
@@ -247,7 +253,7 @@ z-index:0;
     text-align: center;
     vertical-align: bottom;
     border-radius:4px;
- transition:all 1s ease;
+    transition:all 1s ease;
 }
 .galla1 {
     background-color:#fff;
@@ -284,6 +290,37 @@ z-index:0;
     -moz-box-shadow:    4px 4px 5px rgba(50, 50, 50, 0.75);
     box-shadow:         4px 4px 5px rgba(50, 50, 50, 0.75);
 }
+.galla3 {
+    display:table;
+    text-align:center;
+}
+.galla3 div{
+    overflow:hidden;
+    border-radius:6px;
+    float:left;
+    margin:5px;
+    -webkit-box-shadow: 4px 4px 5px rgba(50, 50, 50, 0.75);
+    -moz-box-shadow:    4px 4px 5px rgba(50, 50, 50, 0.75);
+    box-shadow:         4px 4px 5px rgba(50, 50, 50, 0.75);
+}
+.galla3 div span a{
+}
+.galla3 span:hover img{
+-webkit-transform:scale(1.8); /*Webkit: Scale up image to 1.2x original size*/
+-moz-transform:scale(1.8); /*Mozilla scale version*/
+-o-transform:scale(1.8); /*Opera scale version*/
+z-index:0;
+ -ms-transform: scale(1.8); /* IE 9 */
+ transition:all 0.7s ease-out;
+}
+.galla3 img {
+    height:70px;
+    text-align: center;
+    vertical-align: bottom;
+    border-radius:4px;
+    transition:all 1s ease;
+}
+
 .img-login{
     height:50px;
     border:solid 2px #fff;
@@ -305,6 +342,10 @@ z-index:0;
     max-height:100px;
     float:right;
 }
+.img-label{
+    height:70px;
+    box-shadow:0px 0px 5px #000;
+}
 footer{
     padding:0px;
 }
@@ -317,6 +358,11 @@ footer{
     border-radius: 0px 0px 10px 10px;
     box-shadow: 0px 0px 24px #000;
 }
+.btn-trasp{
+  color: #000;
+  background-color: none;
+  border-color: none;
+
 }
 
         /********************
@@ -345,9 +391,6 @@ footer{
     .scrittaLogo{
         visibility:collapse;
         font-size:1em;
-    }
-    .scittaLogoVerticale {
-        width:80px;
     }
     h2 {
         font-size:1.7em;

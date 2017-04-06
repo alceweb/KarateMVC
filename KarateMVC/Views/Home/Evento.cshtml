@@ -1,20 +1,43 @@
 ﻿@model KarateMVC.Models.Eventi
 
-<div class="div1" >
+<div >
 
-    <h1>@Html.DisplayFor(model => model.Titolo)</h1>
+    <h1>
+        @Html.DisplayFor(model => model.Titolo)<br/>
     @if (Model.Data != Convert.ToDateTime("01/01/2050"))
     {
-        <h4>
+        <span class="h4">
             @if (User.IsInRole("Admin"))
             {
-            <a href="@Url.Action("Edit", "Eventis", new{id = Model.Evento_Id})" class="text-danger"><span class="glyphicon glyphicon-pencil"></span></a>
+                <a href="@Url.Action("Edit", "Eventis", new{id = Model.Evento_Id})" class="text-danger"><span class="glyphicon glyphicon-pencil"></span></a>
 
             }
             @Model.Data.ToString("ddd dd MMM yyyy")
-        </h4>
-
+        </span>
     }
+</h1><hr />
+    @*Inizio storico*@
+    @if (ViewBag.Eventi1Count > 0)
+    {
+        <span class="badge">Archivio: <em>@Model.NomeGara.NomeGara</em></span>
+        <div class="galla3">
+
+            @foreach (var itemEv in ViewBag.Eventi1)
+            {
+                <div>
+                    <span>
+                        <a href="@Url.Action("Evento", "Home", new {id = @itemEv.Evento_Id })" class="btn btn-xs btn-trasp">
+                            <img src="@Url.Content("~/Content/Immagini/Eventi/" + @itemEv.Evento_Id + "/" + @itemEv.Evento_Id + ".jpg")" /><br />
+                            @itemEv.Data.ToString("yyyy")
+                        </a>
+                    </span>
+                </div>
+            }
+        </div>
+        <hr class="hr1"/>
+    }
+    @*Fine storico*@
+
     <p>
         @Html.Raw(Model.Descrizione)
     </p>

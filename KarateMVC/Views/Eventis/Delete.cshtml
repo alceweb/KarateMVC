@@ -24,7 +24,7 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Data)
+            @Model.Data.ToString("dddd dd/MMM/yyyy")
         </dd>
 
         <dt>
@@ -32,7 +32,14 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.DataP)
+            @Model.DataP.ToString("dddd dd/MMM/yyyy")
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.DataF)
+        </dt>
+
+        <dd>
+            @Model.DataF.ToString("dddd dd/MMM/yyyy")
         </dd>
 
         <dt>

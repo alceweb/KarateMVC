@@ -32,16 +32,14 @@
             @foreach (var item in ViewBag.Immagini)
             {
                 var filename = Path.GetFileName(item);
-                <div class="img-thumbnail">
-                       <div >
-                               @Html.ActionLink(" ", "DelImgAlbum", new { id = Model.Id, filename = @filename }, new { @class = "btn btn-danger btn-sm glyphicon glyphicon-remove", title = "elimina immagine" })
-                           <span class="text-primary">@filename</span>
-                        </div> 
+                    <div>
+                        @Html.ActionLink(" ", "DelImgAlbum", new { id = Model.Id, filename = @filename }, new { @class = "btn btn-danger btn-xs glyphicon glyphicon-remove", title = "elimina immagine" })
+                        <span class="text-primary">@filename</span><br />
                         <a href="@Url.Content("~/Content/Immagini/FotoPersonali/" + Model.Id +"/" + @filename)" data-lightbox="example-set">
                             <img class="example-image" src="@Url.Content("~/Content/Immagini/FotoPersonali/" + Model.Id +"/" + @filename)" alt="" />
                         </a>
+                    </div>
 
-                </div>
             }
 
         </div>

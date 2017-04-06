@@ -5,48 +5,60 @@
 }
 
 <h2>@ViewBag.Title</h2>
-
+@if (User.IsInRole("Admin"))
+{
 <p>
     <a href="@Url.Action("Create", "Squadres")" class="btn btn-primary"><span class="badge">@ViewBag.SquadreCount</span> Nuovo</a>
 </p>
+}
 <table class="table table-striped">
-    @foreach (var group in Model.GroupBy(item=>item.Anno))
+    @foreach (var group in Model.GroupBy(item => item.Anno))
     {
         <tr>
             <td>
                 <a role="button" data-toggle="collapse" href="#@Html.Encode(group.Key)" aria-expanded="false" aria-controls="collapseExample">
                     <span class="h2">@Html.Encode(group.Key)</span>
                 </a>
-                    <div class="text-info collapse" id="@Html.Encode(group.Key)">
-                        @foreach (var group1 in group.OrderBy(n => n.NomeSquadra).GroupBy(item1 => item1.NomeSquadra))
-                        {
-                            <ul class="well">
-                                <li>
-                                    <span class="h3">@Html.Encode(group1.Key)</span>
-                                    @foreach (var group2 in group1)
-                                    {
-                                        <div class="row">
+                <div class="text-info collapse" id="@Html.Encode(group.Key)">
+                    @foreach (var group1 in group.OrderBy(n => n.NomeSquadra).GroupBy(item1 => item1.NomeSquadra))
+                    {
+                        <ul class="well list-unstyled">
+                            <li>
+                                <span class="badge">@Html.Encode(group1.Key)</span>
+                                @foreach (var group2 in group1)
+                                {
+                                    <div class="row">
+                                        <a href="@Url.Action("Palmares", "Medaglieres", new { id= group2})"><span class="glyphicon glyphicon-cd"></span></a>
+                                        @if (User.IsInRole("Admin"))
+                                        {
                                             <a href="@Url.Action("Edit", "Squadres", new{id = group2.Squadra_id })" class="pull-right">    <span class="glyphicon glyphicon-pencil"></span></a>
-                                            <a href="@Url.Action("CreateSq", "Medaglieres", new{id = group2.Squadra_id, spec = group2.NomeSquadra })" title="Inserisci risultato" class="pull-right"><span class="glyphicon glyphicon-cd pull-right"></span></a>
-                                            @foreach (var group3 in group2.Squadres)
-                                            {
-                                                <div class="col-md-1 pull-left text-center">
-                                                    <a href="#">
+                                                <a href="@Url.Action("CreateSq", "Medaglieres", new{id = group2.Squadra_id, spec = group2.NomeSquadra })" title="Inserisci risultato" class="pull-right"><span class="glyphicon glyphicon-cd pull-right"></span></a>
+                                        }
+                                        @foreach (var group3 in group2.Squadres)
+                                        {
+                                            <div class="col-md-1 pull-left text-center">
+                                                <a href="@Url.Action("Palmares", "Medaglieres", new { id = @group3.Nome.Id})">
+                                                    @if (File.Exists(Server.MapPath("/Content/Immagini/FotoIscritti/" + @group3.Id + ".jpg")))
+                                                    {
                                                         <img class="img-usr" src="@Url.Content("/Content/Immagini/FotoIscritti/" + @group3.Id  + ".jpg")" /><br />
-                                                        @group3.Nome.Nome
-                                                    </a>
-                                                </div>
-                                            }
+                                                    }
+                                                    else
+                                                    {
+                                                       <img class="img-usr" src="@Url.Content("/Content/Immagini/FotoIscritti/anonimous.jpg")" /><br />
+                                                    }
+                                                    @group3.Nome.Nome
+                                                </a>
+                                            </div>
+                                        }
+                                    </div>
+                                }
 
-                                        </div>
-                                    }
+                            </li>
+                        </ul>
+                    }
 
-                                </li>
-                            </ul><hr />
-                        }
-
-                    </div>
-</td>
+                </div>
+            </td>
         </tr>
     }
 

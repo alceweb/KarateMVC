@@ -27,9 +27,6 @@
             @Html.DisplayNameFor(model => model.Data)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.DataP)
-        </th>
-        <th>
             @Html.DisplayNameFor(model => model.Pubblica)
         </th>
         <th>
@@ -44,10 +41,7 @@
             @Html.DisplayFor(modelItem => item.Titolo)
         </td>
         <td>
-            @item.Data.ToString("dd/MMM/yyyy")
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.DataP)
+            @item.Data.ToString("dddd dd/MMM/yyyy")
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Pubblica)

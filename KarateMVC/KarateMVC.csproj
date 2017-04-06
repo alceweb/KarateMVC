@@ -246,7 +246,9 @@
     <Content Include="Content\Immagini\bronzo.png" />
     <Content Include="Content\Immagini\close.png" />
     <Content Include="Content\Immagini\Corsi.jpg" />
+    <Content Include="Content\Immagini\facebook.png" />
     <Content Include="Content\Immagini\FotoIscritti\AnonimousSq.jpg" />
+    <Content Include="Content\Immagini\FotoIscritti\group.png" />
     <Content Include="Content\Immagini\instagram.png" />
     <Content Include="Content\Immagini\LogoVerticale.png" />
     <Content Include="Content\Immagini\medaglie.jpg" />
@@ -269,6 +271,7 @@
     <Content Include="Content\Immagini\Taiei3.jpg" />
     <Content Include="Content\Immagini\Yammer.png" />
     <Content Include="Content\lightbox.css" />
+    <Content Include="Content\Video\mannequin challenge.MP4" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
