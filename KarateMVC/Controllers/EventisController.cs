@@ -271,6 +271,17 @@ namespace KarateMVC.Controllers
 
         }
 
+        public ActionResult ImgRotateD(string file, int id)
+        {
+            string path = Server.MapPath("~/Content/Immagini/Eventi/" + file);
+            System.Drawing.Image img = System.Drawing.Image.FromFile(path);
+            img.RotateFlip(System.Drawing.RotateFlipType.Rotate90FlipXY);
+            img.Save(path);
+            img.Dispose();
+            return RedirectToAction("EditImg", "Eventis", new {id = id });
+        }
+
+
         // GET: Eventis/Delete/5
         public ActionResult Delete(int? id)
         {

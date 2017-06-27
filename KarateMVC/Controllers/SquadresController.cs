@@ -18,6 +18,8 @@ namespace KarateMVC.Controllers
         public ActionResult Index()
         {
             var squadre = db.Squadres.OrderByDescending(a=>a.Anno).ToList();
+            var medaglie = db.Medaglieres.OrderByDescending(a => a.classifica).ToList();
+            ViewBag.Medaglie = medaglie;
             return View(squadre);
         }
 

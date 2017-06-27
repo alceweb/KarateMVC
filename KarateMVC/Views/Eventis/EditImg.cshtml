@@ -30,13 +30,22 @@
         var filename = Path.GetFileName(item);
         <div class="col col-md-2 text-center galla">
                 <div>
-                    <a href="@Url.Action("DeleteImg", "Eventis", new { id = Model.Evento_Id, file = @filename})"><span class="glyphicon glyphicon-remove pull-left text-danger">Cancella</span></a>
-                    <a href="@Url.Content("~/Content/Immagini/Eventi/" + Html.DisplayFor(model => model.Evento_Id) +"/" + @filename)" target="_blank"><span class="glyphicon glyphicon-download-alt">Scarica</span></a>
-                    <a href="@Url.Content("~/Content/Immagini/Eventi/" + Html.DisplayFor(model => model.Evento_Id) +"/" + @filename)" data-lightbox="example-set"><img src="@Url.Content("~/Content/Immagini/Eventi/" + Html.DisplayFor(model => model.Evento_Id) +"/" + @filename)" alt="" /></a>
+                    <c><a href="@Url.Action("ImgRotateD", "Eventis", new {id = Model.Evento_Id, file = Model.Evento_Id + "/" + @filename })" title="ruota immagine"><span class="fa fa-undo"></span> </a></c>
+                    <a href="@Url.Action("DeleteImg", "Eventis", new { id = Model.Evento_Id, file = @filename})" title="Cancella immagine"><span class="glyphicon glyphicon-remove pull-left text-danger"></span></a>
+                    <a href="@Url.Content("~/Content/Immagini/Eventi/" + Html.DisplayFor(model => model.Evento_Id) +"/" + @filename)" title="Download" target="_blank"><span class="glyphicon glyphicon-download-alt"></span></a>
+                    <br/><a href="@Url.Content("~/Content/Immagini/Eventi/" + Html.DisplayFor(model => model.Evento_Id) +"/" + @filename)" data-lightbox="example-set"><img src="@Url.Content("~/Content/Immagini/Eventi/" + Html.DisplayFor(model => model.Evento_Id) +"/" + @filename)" alt="" /></a>
                 </div>
         </div>
     }
 
+</div>
+<div class="row">
+    <div class="col col-md-6">
+
+    </div>
+    <div class="col col-md-6">
+
+    </div>
 </div>
 <h3>
     @Html.ActionLink(" ", "Index", null, new { @class = "glyphicon glyphicon-arrow-left" })

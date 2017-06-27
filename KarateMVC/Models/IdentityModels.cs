@@ -130,7 +130,6 @@ namespace KarateMVC.Models
         public string Spec { get; set; }
         public string classifica { get; set; }
         public string Uid { get; set; }
-        
 
     }
 
@@ -153,5 +152,6 @@ namespace KarateMVC.Models
         public DbSet<KarateMVC.Models.Medagliere> Medaglieres { get; set; }
         public DbSet<KarateMVC.Models.Squadre> Squadres { get; set; }
         public DbSet<KarateMVC.Models.SquadraDett> SquadraDetts { get; set; }
+        public DbSet<KarateMVC.Models.WSKA2017> WSKA2017s { get; set; }
     }
 }

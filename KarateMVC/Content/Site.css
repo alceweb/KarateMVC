@@ -358,11 +358,20 @@ footer{
     border-radius: 0px 0px 10px 10px;
     box-shadow: 0px 0px 24px #000;
 }
+.jumbo a{
+    color:#fff;
+    text-decoration:none;
+}
 .btn-trasp{
   color: #000;
-  background-color: none;
+  background-color: #106d40;
   border-color: none;
 
+}
+.btn-verde {
+    background-color: #106d40;
+    color: #fff !important;
+    border-color: none;
 }
 
         /********************

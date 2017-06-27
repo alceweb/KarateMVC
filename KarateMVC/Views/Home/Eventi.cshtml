@@ -12,11 +12,11 @@
     {
         <hr class="hr1" />
         <div class="row">
-            <div class="col ">
+            <div class="col col-md-2">
                 <a href="@Url.Action("Evento", "Home", new { id = item.Evento_Id })"><img src="@Url.Content("~/Content/Immagini/Eventi/" + item.Evento_Id + "/" + item.Evento_Id + ".jpg")" class="img-circle" alt="" /></a>
 
             </div>
-            <div class="col ">
+            <div class="col col-md-10">
                 <h4 >@Html.ValueFor(modelItem => item.Data, "{0:dddd dd MMM yyyy}")</h4>
                 <a href="@Url.Action("Evento", "Home", new { id = item.Evento_Id })">
                     <h2>@Html.DisplayFor(modelItem => item.Titolo)</h2>

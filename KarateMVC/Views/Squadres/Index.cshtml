@@ -28,7 +28,8 @@
                                 @foreach (var group2 in group1)
                                 {
                                     <div class="row">
-                                        <a href="@Url.Action("Palmares", "Medaglieres", new { id= group2})"><span class="glyphicon glyphicon-cd"></span></a>
+                                        <span>@group2.Squadra_id</span>
+                                        <a href="@Url.Action("Palmares", "Medaglieres", new { id= group2.Squadra_id})"><span class="glyphicon glyphicon-cd"></span></a>
                                         @if (User.IsInRole("Admin"))
                                         {
                                             <a href="@Url.Action("Edit", "Squadres", new{id = group2.Squadra_id })" class="pull-right">    <span class="glyphicon glyphicon-pencil"></span></a>

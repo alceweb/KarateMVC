@@ -232,6 +232,7 @@
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\NewsLetterFormModel.cs" />
+    <Compile Include="Models\WSKA2017.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -242,6 +243,8 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\font-awesome.css" />
+    <Content Include="Content\font-awesome.min.css" />
     <Content Include="Content\Immagini\Argento.png" />
     <Content Include="Content\Immagini\bronzo.png" />
     <Content Include="Content\Immagini\close.png" />
@@ -273,6 +276,7 @@
     <Content Include="Content\lightbox.css" />
     <Content Include="Content\Video\mannequin challenge.MP4" />
     <Content Include="favicon.ico" />
+    <Content Include="fonts\fontawesome-webfont.svg" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
@@ -285,6 +289,11 @@
     <Content Include="Content\bootstrap-theme.min.css.map" />
     <Content Include="Content\bootstrap-theme.css.map" />
     <Content Include="Content\bootstrap-datepicker3.css.map" />
+    <Content Include="fonts\FontAwesome.otf" />
+    <Content Include="fonts\fontawesome-webfont.woff2" />
+    <Content Include="fonts\fontawesome-webfont.woff" />
+    <Content Include="fonts\fontawesome-webfont.ttf" />
+    <Content Include="fonts\fontawesome-webfont.eot" />
     <None Include="Properties\PublishProfiles\ArubaBusiness.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\bootstrap-datepicker.js" />
@@ -414,8 +423,8 @@
     <Content Include="Views\Squadres\IndexUt.cshtml" />
     <Content Include="Views\Squadres\Details.cshtml" />
     <Content Include="Views\Squadres\Edit.cshtml" />
-    <Content Include="Views\Medaglieres\CreateSq.cshtml" />
     <Content Include="Views\UsersAdmin\EditImgUt.cshtml" />
+    <Content Include="Views\Medaglieres\CreateSq.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

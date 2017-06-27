@@ -10,16 +10,19 @@
     <a href="@Url.Action("Create", "Documentis")" class="btn btn-primary">
         <span class="badge">@ViewBag.PDFCount</span> Nuovo</a>
 </p>
-<table class="table table-hover">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Titolo)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.descrizione)
-        </th>
-        <th></th>
-    </tr>
+<table class="table table-hover tablef">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Titolo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.descrizione)
+            </th>
+            <th></th>
+        </tr>
+
+    </thead>
 
 @foreach (var item in Model) {
     <tr>

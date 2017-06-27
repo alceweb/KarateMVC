@@ -73,9 +73,13 @@ namespace KarateMVC.Controllers
             ViewBag.Squadra_id = new SelectList(squadre, "Value", "Text");
             if (ModelState.IsValid)
             {
+                foreach (var item in allievi)
+                {
                 squadraDett.Squadra_id = sqid;
                 db.SquadraDetts.Add(squadraDett);
                 db.SaveChanges();
+
+                }
                 return RedirectToAction("Edit", "Squadres", new {id = sqid });
             }
             return View(squadraDett);

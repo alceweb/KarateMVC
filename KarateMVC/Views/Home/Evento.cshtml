@@ -3,19 +3,21 @@
 <div >
 
     <h1>
-        @Html.DisplayFor(model => model.Titolo)<br/>
+        @Html.DisplayFor(model => model.Titolo)
+   </h1>
+    <h4 class="text-center">@Model.Data.ToString("ddd dd MMM yyyy")</h4>
     @if (Model.Data != Convert.ToDateTime("01/01/2050"))
     {
         <span class="h4">
             @if (User.IsInRole("Admin"))
             {
-                <a href="@Url.Action("Edit", "Eventis", new{id = Model.Evento_Id})" class="text-danger"><span class="glyphicon glyphicon-pencil"></span></a>
-
+                    <a href="@Url.Action("EditImg", "Eventis", new{id = @Model.Evento_Id})" class="h3" title="Galleria"><span class="glyphicon glyphicon-camera"></span></a>
+                    <a href="@Url.Action("Edit", "Eventis", new{id = @Model.Evento_Id})" class="text-danger h3" title="Testo"><span class="glyphicon glyphicon-pencil"></span></a>
+                    <a href="@Url.Action("EditImgP", "Eventis", new{id = @Model.Evento_Id})" class="text-primary h3" title="Bacheca"><span class="glyphicon glyphicon-picture"></span></a>
             }
-            @Model.Data.ToString("ddd dd MMM yyyy")
         </span>
     }
-</h1><hr />
+<hr />
     @*Inizio storico*@
     @if (ViewBag.Eventi1Count > 0)
     {

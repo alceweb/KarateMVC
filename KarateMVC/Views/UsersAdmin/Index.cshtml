@@ -15,24 +15,27 @@
 </div>
 <p>
 </p>
-<table class="table table-hover">
-    <tr>
-        <th>
+<table class="table table-hover tablef">
+    <thead>
+        <tr>
+            <th>
 
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.UserName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Nome)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.UserName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Nome)
 
 
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Cognome)
-        </th>
-        <th></th>
-    </tr>
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Cognome)
+            </th>
+            <th></th>
+        </tr>
+
+    </thead>
 
     @foreach (var item in Model)
     {

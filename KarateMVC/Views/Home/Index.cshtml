@@ -3,9 +3,6 @@
 @{
     ViewBag.Title = "Home Page";
 }
-<video controls="controls">
-        <source src="~/Content/Video/mannequin%20challenge.MP4" type="video/mp4" />
-</video>
 @*Inizio jumbo avviso*@
 @if (ViewBag.AvvisoCount >0)
 {
@@ -24,20 +21,34 @@
 
                 </div>
             }
-            if (File.Exists(Server.MapPath("~/Content/Immagini/Eventi/" + @item.Evento_Id + "/" + @item.Evento_Id + ".jpg")))
-            {
-                <img src="@Url.Content("~/Content/Immagini/Eventi/" + @item.Evento_Id + "/" + @item.Evento_Id + ".jpg")" class="img-jumbo" />
-            }
-            <h1 class="text-center">@item.Titolo</h1>
+            <h1 class="text-center">
+                @if (File.Exists(Server.MapPath("~/Content/Immagini/Eventi/" + @item.Evento_Id + "/" + @item.Evento_Id + ".jpg")))
+                {
+                <a href="@Url.Action("Evento", "Home", new {id = @item.Evento_Id })">@item.Titolo<img src="@Url.Content("~/Content/Immagini/Eventi/" + @item.Evento_Id + "/" + @item.Evento_Id + ".jpg")" class="img-jumbo" /></a>
+                }
+                
+            </h1>
             <h4>@Html.Raw(item.Descrizione)</h4>
         }
     </div>
-
+    <hr class="hr1" />
 }
 @*Fine jumbo avviso*@
-
+    <div class="row">
+        <a class="btn btn-primary btn-verde" role="button" data-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+            <span class="glyphicon glyphicon-film"> Mannequin challenge</span>
+        </a>
+        <div class="collapse" id="collapseExample">
+            <div>
+                    <div class="embed-responsive embed-responsive-4by3">
+                        <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/YSgDD-SuJxo"></iframe>
+                    </div>
+            </div>
+        </div>
+    </div>
 @*Inizio galleria prima pagina*@
 <div class="table table-responsive div1 content" >
+
 @foreach (var item in Model)
 {
     <div class="text-center">
