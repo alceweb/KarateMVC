@@ -1,0 +1,80 @@
+﻿@model KarateMVC.Models.WSKA2017
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>WSKA2017</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Numero)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Numero)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DataP)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DataP)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Giorni)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Giorni)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Costo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Costo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Totale)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Totale)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Pagato)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Pagato)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UId)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

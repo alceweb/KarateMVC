@@ -1,0 +1,74 @@
+﻿@model KarateMVC.Models.WSKA2017
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>WSKA2017</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Numero)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Numero)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DataP)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DataP)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Giorni)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Giorni)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Costo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Costo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Totale)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Totale)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Pagato)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Pagato)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UId)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Wska2017_id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

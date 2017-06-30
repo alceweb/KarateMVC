@@ -243,19 +243,19 @@ namespace KarateMVC.Controllers
 
         [Authorize(Roles = "Admin")]
         [HttpPost]
-        [ValidateAntiForgeryToken]
         public async Task<ActionResult> EditImgUt(string id, HttpPostedFileBase file)
         {
             if (ModelState.IsValid)
             {
                 var utente = id;
-                if (file != null && file.ContentLength > 0)
+             var user = await UserManager.FindByIdAsync(id);
+               if (file != null && file.ContentLength > 0)
                     try
                     {
                         string estensione = Path.GetExtension(file.FileName).ToLower();
                         file.SaveAs(Server.MapPath("/Content/Immagini/FotoIscritti/" + utente + estensione));
                         ViewBag.Message = "Foto caricata correttamente";
-                        return View();
+                        return View(user);
                     }
                     catch (Exception ex)
                     {
@@ -266,8 +266,7 @@ namespace KarateMVC.Controllers
                     ViewBag.Message = "Non hai selezionato nessun file. Puoi usare solo file JPG";
                 }
             }
-            var user = await UserManager.FindByIdAsync(id);
-            return View(user);
+            return View();
         }
 
         public async Task<ActionResult> EditUs(string id)
@@ -284,18 +283,7 @@ namespace KarateMVC.Controllers
 
             var userRoles = await UserManager.GetRolesAsync(user.Id);
 
-            return View(new EditUsViewModel()
-            {
-                Id = user.Id,
-                Email = user.Email,
-                Nome = user.Nome,
-                Cognome = user.Cognome,
-                DataNascita = user.DataNascita,
-                AnnoInizio=user.AnnoInizio,
-                Grado=user.Grado,
-                Frase=user.Frase,
-                Kata = user.Kata,
-            });
+            return View(user);
         }
 
         [Authorize]

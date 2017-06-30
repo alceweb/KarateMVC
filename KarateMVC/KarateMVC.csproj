@@ -179,6 +179,7 @@
     <Compile Include="Controllers\SquadraDettsController.cs" />
     <Compile Include="Controllers\SquadresController.cs" />
     <Compile Include="Controllers\UserAdminController.cs" />
+    <Compile Include="Controllers\WSKA2017Controller.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -226,6 +227,74 @@
     <Compile Include="Migrations\201610251215252_GareFikta.Designer.cs">
       <DependentUpon>201610251215252_GareFikta.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201706271716046_wska2017.cs" />
+    <Compile Include="Migrations\201706271716046_wska2017.Designer.cs">
+      <DependentUpon>201706271716046_wska2017.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201706271718574_wska2017Uid.cs" />
+    <Compile Include="Migrations\201706271718574_wska2017Uid.Designer.cs">
+      <DependentUpon>201706271718574_wska2017Uid.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201706271745190_wska2017Uid1.cs" />
+    <Compile Include="Migrations\201706271745190_wska2017Uid1.Designer.cs">
+      <DependentUpon>201706271745190_wska2017Uid1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201706280732404_uidId.cs" />
+    <Compile Include="Migrations\201706280732404_uidId.Designer.cs">
+      <DependentUpon>201706280732404_uidId.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201706280749147_totale.cs" />
+    <Compile Include="Migrations\201706280749147_totale.Designer.cs">
+      <DependentUpon>201706280749147_totale.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201706280822320_CostoInt.cs" />
+    <Compile Include="Migrations\201706280822320_CostoInt.Designer.cs">
+      <DependentUpon>201706280822320_CostoInt.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201706280857069_userid.cs" />
+    <Compile Include="Migrations\201706280857069_userid.Designer.cs">
+      <DependentUpon>201706280857069_userid.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201706280948202_cazzooooo.cs" />
+    <Compile Include="Migrations\201706280948202_cazzooooo.Designer.cs">
+      <DependentUpon>201706280948202_cazzooooo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201706280953346_ancorauid.cs" />
+    <Compile Include="Migrations\201706280953346_ancorauid.Designer.cs">
+      <DependentUpon>201706280953346_ancorauid.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201706281022270_userid1.cs" />
+    <Compile Include="Migrations\201706281022270_userid1.Designer.cs">
+      <DependentUpon>201706281022270_userid1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201706281040179_useridoff.cs" />
+    <Compile Include="Migrations\201706281040179_useridoff.Designer.cs">
+      <DependentUpon>201706281040179_useridoff.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201706281044201_userid11.cs" />
+    <Compile Include="Migrations\201706281044201_userid11.Designer.cs">
+      <DependentUpon>201706281044201_userid11.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201706281048291_userid2.cs" />
+    <Compile Include="Migrations\201706281048291_userid2.Designer.cs">
+      <DependentUpon>201706281048291_userid2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201706281111365_userid3.cs" />
+    <Compile Include="Migrations\201706281111365_userid3.Designer.cs">
+      <DependentUpon>201706281111365_userid3.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201706281752030_nomecognome.cs" />
+    <Compile Include="Migrations\201706281752030_nomecognome.Designer.cs">
+      <DependentUpon>201706281752030_nomecognome.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201706291058366_nomecognome1.cs" />
+    <Compile Include="Migrations\201706291058366_nomecognome1.Designer.cs">
+      <DependentUpon>201706291058366_nomecognome1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201706301506145_nomecognome2.cs" />
+    <Compile Include="Migrations\201706301506145_nomecognome2.Designer.cs">
+      <DependentUpon>201706301506145_nomecognome2.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\AdminViewModel.cs" />
@@ -254,6 +323,7 @@
     <Content Include="Content\Immagini\FotoIscritti\group.png" />
     <Content Include="Content\Immagini\instagram.png" />
     <Content Include="Content\Immagini\LogoVerticale.png" />
+    <Content Include="Content\Immagini\logowska2017-350x114.png" />
     <Content Include="Content\Immagini\medaglie.jpg" />
     <Content Include="Content\Immagini\Oro.png" />
     <Content Include="Content\Immagini\Palestra\img_0001.jpg" />
@@ -425,6 +495,11 @@
     <Content Include="Views\Squadres\Edit.cshtml" />
     <Content Include="Views\UsersAdmin\EditImgUt.cshtml" />
     <Content Include="Views\Medaglieres\CreateSq.cshtml" />
+    <Content Include="Views\WSKA2017\Create.cshtml" />
+    <Content Include="Views\WSKA2017\Delete.cshtml" />
+    <Content Include="Views\WSKA2017\Details.cshtml" />
+    <Content Include="Views\WSKA2017\Edit.cshtml" />
+    <Content Include="Views\WSKA2017\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -476,6 +551,57 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201610251215252_GareFikta.resx">
       <DependentUpon>201610251215252_GareFikta.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201706271716046_wska2017.resx">
+      <DependentUpon>201706271716046_wska2017.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201706271718574_wska2017Uid.resx">
+      <DependentUpon>201706271718574_wska2017Uid.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201706271745190_wska2017Uid1.resx">
+      <DependentUpon>201706271745190_wska2017Uid1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201706280732404_uidId.resx">
+      <DependentUpon>201706280732404_uidId.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201706280749147_totale.resx">
+      <DependentUpon>201706280749147_totale.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201706280822320_CostoInt.resx">
+      <DependentUpon>201706280822320_CostoInt.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201706280857069_userid.resx">
+      <DependentUpon>201706280857069_userid.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201706280948202_cazzooooo.resx">
+      <DependentUpon>201706280948202_cazzooooo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201706280953346_ancorauid.resx">
+      <DependentUpon>201706280953346_ancorauid.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201706281022270_userid1.resx">
+      <DependentUpon>201706281022270_userid1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201706281040179_useridoff.resx">
+      <DependentUpon>201706281040179_useridoff.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201706281044201_userid11.resx">
+      <DependentUpon>201706281044201_userid11.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201706281048291_userid2.resx">
+      <DependentUpon>201706281048291_userid2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201706281111365_userid3.resx">
+      <DependentUpon>201706281111365_userid3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201706281752030_nomecognome.resx">
+      <DependentUpon>201706281752030_nomecognome.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201706291058366_nomecognome1.resx">
+      <DependentUpon>201706291058366_nomecognome1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201706301506145_nomecognome2.resx">
+      <DependentUpon>201706301506145_nomecognome2.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

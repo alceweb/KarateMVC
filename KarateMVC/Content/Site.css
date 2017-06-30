@@ -473,3 +473,113 @@ footer{
     transform: translate(-2em,0);
     right:-30px;
 }
+
+.crcradio div {
+    clear: both;
+    overflow: hidden;
+}
+
+.crcradio label {
+    width: 100%;
+    border-radius: 3px;
+    border: 1px solid #D1D3D4;
+    font-weight: normal;
+}
+
+.crcradio input[type="radio"]:empty,
+.crcradio input[type="checkbox"]:empty {
+    display: none;
+}
+
+    .crcradio input[type="radio"]:empty ~ label,
+    .crcradio input[type="checkbox"]:empty ~ label {
+        position: relative;
+        line-height: 2.5em;
+        text-indent: 3.25em;
+        /*margin-top: 2em;*/
+        cursor: pointer;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+    }
+
+        .crcradio input[type="radio"]:empty ~ label:before,
+        .crcradio input[type="checkbox"]:empty ~ label:before {
+            position: absolute;
+            display: block;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            content: '';
+            width: 2.5em;
+            background: #D1D3D4;
+            border-radius: 3px 0 0 3px;
+        }
+
+
+.crcradio input[type="radio"]:hover:not(:checked) ~ label,
+.crcradio input[type="checkbox"]:hover:not(:checked) ~ label {
+    color: #888;
+}
+
+    .crcradio input[type="radio"]:hover:not(:checked) ~ label:before,
+    .crcradio input[type="checkbox"]:hover:not(:checked) ~ label:before {
+        content: '\2714';
+        text-indent: .9em;
+        color: #C2C2C2;
+    }
+
+.crcradio input[type="radio"]:checked ~ label,
+.crcradio input[type="checkbox"]:checked ~ label {
+    color: #777;
+}
+
+    .crcradio input[type="radio"]:checked ~ label:before,
+    .crcradio input[type="checkbox"]:checked ~ label:before {
+        content: '\2714';
+        text-indent: .9em;
+        color: #333;
+        background-color: #ccc;
+    }
+
+.crcradio input[type="radio"]:focus ~ label:before,
+.crcradio input[type="checkbox"]:focus ~ label:before {
+    box-shadow: 0 0 0 3px #999;
+}
+
+.crcradio-default input[type="radio"]:checked ~ label:before,
+.crcradio-default input[type="checkbox"]:checked ~ label:before {
+    color: #333;
+    background-color: #ccc;
+}
+
+.crcradio-primary input[type="radio"]:checked ~ label:before,
+.crcradio-primary input[type="checkbox"]:checked ~ label:before {
+    color: #fff;
+    background-color: #337ab7;
+}
+
+.crcradio-success input[type="radio"]:checked ~ label:before,
+.crcradio-success input[type="checkbox"]:checked ~ label:before {
+    color: #fff;
+    background-color: #5cb85c;
+}
+
+.crcradio-danger input[type="radio"]:checked ~ label:before,
+.crcradio-danger input[type="checkbox"]:checked ~ label:before {
+    color: #fff;
+    background-color: #d9534f;
+}
+
+.crcradio-warning input[type="radio"]:checked ~ label:before,
+.crcradio-warning input[type="checkbox"]:checked ~ label:before {
+    color: #fff;
+    background-color: #f0ad4e;
+}
+
+.crcradio-info input[type="radio"]:checked ~ label:before,
+.crcradio-info input[type="checkbox"]:checked ~ label:before {
+    color: #fff;
+    background-color: #5bc0de;
+}

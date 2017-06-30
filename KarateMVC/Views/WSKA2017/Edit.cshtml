@@ -1,0 +1,90 @@
+﻿@model KarateMVC.Models.WSKA2017
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Modifica prenotazione biglietti WSKA 2017 Treviso</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.Wska2017_id)
+        @Html.HiddenFor(model => model.UId)
+        @Html.HiddenFor(model => model.Pagato)
+
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Numero, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Numero, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Numero, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col col-md-2"></div>
+            <div class="col-md-10">
+                <div class="col-md-10 crcradio">
+                    <div class="crcradio-primary">
+                        @Html.RadioButtonFor(model=>model.Giorni, "Venerdì", new {id = "radio1" })
+                        <label for="radio1" class="h4">Venerdì 22 settembre<span class="text-danger h2"> - 10€</span>  <span class="label label-primary pull-right" >ore 13:00 - Cadetti e Speranze</span></label>
+
+                    </div>
+                    <div class="crcradio-danger">
+                        @Html.RadioButtonFor(model => model.Giorni, "Sabato", new { id = "radio2" })
+                        <label for="radio2" class="h4">Sabato 23 settembre<span class="text-danger h2"> - 15€</span><span class="label label-danger pull-right">ore 09:00 - Juniores</span></label>
+
+                    </div>
+
+                    <div class="crcradio-warning">
+                        @Html.RadioButtonFor(model => model.Giorni, "Domenica", new { id = "radio3" })
+                        <label for="radio3" class="h4">Domenica 24 settembre<span class="text-danger h2"> - 15€</span><span class="label label-warning pull-right">ore 09:00 - Seniores</span></label>
+                    </div>
+                    <div class="crcradio-success">
+                        @Html.RadioButtonFor(model => model.Giorni, "Pass", new { id = "radio4" })
+                        <label for="radio4" class="h2">PASS 3 giorni<span class="text-danger h2"> - 30€</span></label>
+                    </div>
+                    @Html.ValidationMessageFor(model => model.Giorni, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-2"></div>
+            <div class="col-md-10">
+
+                @Html.HiddenFor(model => model.Costo, new {@id="txtCosto"})
+                @Html.ValidationMessageFor(model => model.Costo, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10"><hr />
+                <input type="submit" value="Salva" class="btn btn-success" />
+                @Html.ActionLink("Annulla", "Index",null, new { @class = "btn btn-primary" })
+            </div>
+        </div>
+    </div>
+}
+@section Scripts {
+    <script type="text/javascript">
+        $('#radio1').click(function () {
+            $('#txtCosto').val("10")
+        });
+        $('#radio2').click(function () {
+            $('#txtCosto').val("15")
+        });
+        $('#radio3').click(function () {
+            $('#txtCosto').val("15")
+        });
+        $('#radio4').click(function () {
+            $('#txtCosto').val("30")
+        });
+
+    </script>
+}
