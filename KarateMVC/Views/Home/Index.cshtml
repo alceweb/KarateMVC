@@ -34,46 +34,62 @@
     <hr class="hr1" />
 }
 @*Fine jumbo avviso*@
-    <div class="row">
+    <div class="row text-center">
         <a class="btn btn-primary btn-verde" role="button" data-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-            <span class="glyphicon glyphicon-film"> Mannequin challenge</span>
-        </a>
-        <div class="collapse" id="collapseExample">
-            <div>
-                    <div class="embed-responsive embed-responsive-4by3">
-                        <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/YSgDD-SuJxo"></iframe>
-                    </div>
+            <div class="col col-md-3">
+                <img class="img-usr" src="~/Content/Immagini/mannequin1.jpg" />
+
             </div>
+            <div class="col col-md-6 text-center h3">
+                    Mannequin challenge<br/>
+                    Agonisti 2017
+            </div>
+            <div class="col col-md-3">
+                <img class="img-usr" src="~/Content/Immagini/mannequin3.jpg" />
+
+            </div>
+        </a>
+    </div>
+    <div class="collapse" id="collapseExample">
+        <div>
+                <div class="embed-responsive embed-responsive-4by3">
+                    <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/YSgDD-SuJxo"></iframe>
+                </div>
         </div>
     </div>
 @*Inizio galleria prima pagina*@
-<div class="table table-responsive div1 content" >
 
-@foreach (var item in Model)
+@foreach (var item in Model.GroupBy(a => a.Data.Year).Select(a => new { anno = a.Key, evento = a.OrderByDescending(e => e.Data) }))
 {
-    <div class="text-center">
-
-        <h4 class="text-center">@Html.DisplayFor(modelItem => item.Titolo)</h4>
-        @if (item.Gara_Id != 19)
+    <hr class="hr1" />
+    <div class="table table-responsive div1 content">
+        <h1>@item.anno</h1>
+        @foreach (var item1 in item.evento)
         {
-            <h5 class="text-center">@item.Data.ToString("dddd dd MMM yyyy")</h5>
+        <div class="text-center">
 
-        }
-        else
-        {
-            <h5> </h5>
-        }
-        <p>
-            <a href="@Url.Action("Evento", "Home", new { id = item.Evento_Id })"><img src="@Url.Content("~/Content/Immagini/Eventi/" + item.Evento_Id + "/" + item.Evento_Id + ".jpg")" alt="" /></a>
-        </p>
-        @if (User.IsInRole("Admin"))
-        {
-        <a href="@Url.Action("EditImg", "Eventis", new{id = @item.Evento_Id})" class="text-primary h4" title="Galleria fotografica"><span class="glyphicon glyphicon-camera"></span></a>
-        <a href="@Url.Action("Edit", "Eventis", new{id = @item.Evento_Id})" class="text-danger h4" title="Testo"><span class="glyphicon glyphicon-pencil"></span></a>
-        <a href="@Url.Action("EditImgP", "Eventis", new{id = @item.Evento_Id})" class="text-primary h4" title="Bacheca"><span class="glyphicon glyphicon-picture"></span></a>
-        }
+            <h4 class="text-center">@Html.DisplayFor(modelItem => item1.Titolo)</h4>
+            @if (item1.Gara_Id != 19)
+            {
+                <h5 class="text-center">@item1.Data.ToString("dddd dd MMM yyyy")</h5>
 
+            }
+            else
+            {
+                <h5> </h5>
+            }
+            <p>
+                <a href="@Url.Action("Evento", "Home", new { id = item1.Evento_Id })"><img src="@Url.Content("~/Content/Immagini/Eventi/" + item1.Evento_Id + "/" + item1.Evento_Id + ".jpg")" alt="" /></a>
+            </p>
+            @if (User.IsInRole("Admin"))
+            {
+                <a href="@Url.Action("EditImg", "Eventis", new{id = @item1.Evento_Id})" class="text-primary h4" title="Galleria fotografica"><span class="glyphicon glyphicon-camera"></span></a>
+                <a href="@Url.Action("Edit", "Eventis", new{id = @item1.Evento_Id})" class="text-danger h4" title="Testo"><span class="glyphicon glyphicon-pencil"></span></a>
+                <a href="@Url.Action("EditImgP", "Eventis", new{id = @item1.Evento_Id})" class="text-primary h4" title="Bacheca"><span class="glyphicon glyphicon-picture"></span></a>
+            }
+
+        </div>
+        }
     </div>
 }
-</div>
 @*Fine galleria prima pagina*@

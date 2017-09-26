@@ -21,22 +21,24 @@
     @*Inizio storico*@
     @if (ViewBag.Eventi1Count > 0)
     {
-        <span class="badge">Archivio: <em>@Model.NomeGara.NomeGara</em></span>
-        <div class="galla3">
+        <div class="well well-sm">
 
-            @foreach (var itemEv in ViewBag.Eventi1)
+            <span class="fa fa-archive fa-2x verde">Archivio: <strong><em>@Model.NomeGara.NomeGara</em></strong></span><hr class="hr2" />
+            <div class="galla3">
+
+                @foreach (var itemEv in ViewBag.Eventi1)
             {
-                <div>
-                    <span>
-                        <a href="@Url.Action("Evento", "Home", new {id = @itemEv.Evento_Id })" class="btn btn-xs btn-trasp">
-                            <img src="@Url.Content("~/Content/Immagini/Eventi/" + @itemEv.Evento_Id + "/" + @itemEv.Evento_Id + ".jpg")" /><br />
-                            @itemEv.Data.ToString("yyyy")
-                        </a>
-                    </span>
-                </div>
+            <div>
+                <span>
+                    <a href="@Url.Action("Evento", "Home", new {id = @itemEv.Evento_Id })" class="btn btn-xs verdeBack">
+                        <img src="@Url.Content("~/Content/Immagini/Eventi/" + @itemEv.Evento_Id + "/" + @itemEv.Evento_Id + ".jpg")" /><br />
+                        @itemEv.Data.ToString("yyyy")
+                    </a>
+                </span>
+            </div>
             }
+            </div>
         </div>
-        <hr class="hr1"/>
     }
     @*Fine storico*@
 

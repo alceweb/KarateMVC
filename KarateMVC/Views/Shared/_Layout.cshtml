@@ -28,22 +28,22 @@
                     <ul class="nav navbar-nav navi">
                         <li><div><a href="@Url.Action("Appuntamenti", "Home")" class="glyphicon glyphicon-calendar"><span>Appuntamenti</span></a></div></li>
                         <li><div><a href="@Url.Action("Corsi", "Home")" class="glyphicon glyphicon-education"><span>Orari</span></a></div></li>
-                        <li><div><a href="@Url.Action("Palestra", "Home")" class="glyphicon glyphicon-tower"><span>La palestra</span></a></div></li>
-                        <li><div><a href="@Url.Action("Eventi", "Home")" class="glyphicon glyphicon-film"><span>Attività multimedia</span></a></div></li>
+                        <li><div><a href="@Url.Action("Palestra", "Home")" class="glyphicon glyphicon-tower"><span>Palestra</span></a></div></li>
+                        <li><div><a href="@Url.Action("Eventi", "Home")" class="glyphicon glyphicon-film"><span>Eventi</span></a></div></li>
                         @if (Request.IsAuthenticated)
                         {
                             <li><div><a href="@Url.Action("Download", "Home")" class="glyphicon glyphicon-download-alt"><span>Download</span></a></div></li>
                         }
                         @if (Request.IsAuthenticated && User.IsInRole("Agonista") | User.IsInRole("Ex agonista") | User.IsInRole("Maestro"))
                         {
-                            <li><div><a href="@Url.Action("Agonisti", "Home")" class="glyphicon glyphicon-text-color"><span>Area agonisti</span></a></div></li>
+                            <li><div><a href="@Url.Action("Agonisti", "Home")" class="glyphicon glyphicon-text-color"><span>Agonisti</span></a></div></li>
                         }
                         @if (Request.IsAuthenticated && User.IsInRole("Admin"))
                         {
-                            <li><div><a href="@Url.Action("Index", "RolesAdmin")" class="glyphicon glyphicon-tag"><span>Gestione ruoli</span></a></div></li>
-                            <li><div><a href="@Url.Action("Index", "UsersAdmin")" class="glyphicon glyphicon-user"><span>Gestione utenti</span></a></div></li>
-                            <li><div><a href="@Url.Action("Index", "Eventis")" class="glyphicon glyphicon-list-alt"><span>Gestione eventi</span></a></div></li>
-                            <li><div><a href="@Url.Action("Index", "Documentis")" class="glyphicon glyphicon-folder-open"><span>Gestione documenti</span></a></div></li>
+                            <li><div><a href="@Url.Action("Index", "RolesAdmin")" class="glyphicon glyphicon-tag"><span>Ruoli</span></a></div></li>
+                            <li><div><a href="@Url.Action("Index", "UsersAdmin")" class="glyphicon glyphicon-user"><span>Utenti</span></a></div></li>
+                            <li><div><a href="@Url.Action("Index", "Eventis")" class="glyphicon glyphicon-list-alt"><span>Eventi</span></a></div></li>
+                            <li><div><a href="@Url.Action("Index", "Documentis")" class="glyphicon glyphicon-folder-open"><span>Documenti</span></a></div></li>
                         }
                     </ul>
                     @Html.Partial("_LoginPartial")

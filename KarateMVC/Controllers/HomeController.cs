@@ -138,7 +138,7 @@ namespace KarateMVC.Controllers
         }
         public ActionResult Eventi()
         {
-            ViewBag.CountEventi = db.Eventis.Count();
+            ViewBag.CountEventi = db.Eventis.OrderBy(e=>e.Data).Count();
             ViewBag.Message = "Vita della palestra";
             var eventi = db.Eventis.Where(g => g.Galleria == true).OrderByDescending(d=>d.Data);
             return View(eventi);

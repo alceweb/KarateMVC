@@ -81,12 +81,28 @@ h2 {
     background: -moz-linear-gradient(to right, rgba(0, 0, 0, 0.00), rgba(0,0,0), rgba(0, 0, 0, 0.00));
     background: linear-gradient(to right, rgba(0, 0, 0, 0.00), rgba(0,0,0), rgba(0, 0, 0, 0.00));
 }
+.hr2 {
+    border: 0;
+    height: 1px;
+    background: -webkit-linear-gradient(to right, rgba(0,0,0), rgba(0, 0, 0, 0.00));
+    background: -o-linear-gradient(to right, rgba(0,0,0), rgba(0, 0, 0, 0.00));
+    background: -moz-linear-gradient(to right, rgba(0,0,0), rgba(0, 0, 0, 0.00));
+    background: linear-gradient(to right, rgba(0,0,0), rgba(0, 0, 0, 0.00));
+}
 .hrv{
     border:inset 1px;
     color:#106d40;
 }
+.hrv1 {
+    border: inset 1px;
+    color: #127042;
+}
 .verde{
     color:#106d40;
+}
+.verdeBack {
+    background-color: #628A81;
+    color:#fff;
 }
 .navi {
     margin:0;
@@ -306,13 +322,14 @@ z-index:0;
 .galla3 div span a{
 }
 .galla3 span:hover img{
--webkit-transform:scale(1.8); /*Webkit: Scale up image to 1.2x original size*/
--moz-transform:scale(1.8); /*Mozilla scale version*/
--o-transform:scale(1.8); /*Opera scale version*/
+-webkit-transform:scale(1.8); 
+-moz-transform:scale(1.8); 
+-o-transform:scale(1.8); 
 z-index:0;
- -ms-transform: scale(1.8); /* IE 9 */
+ -ms-transform: scale(1.8); 
  transition:all 0.7s ease-out;
 }
+
 .galla3 img {
     height:70px;
     text-align: center;
