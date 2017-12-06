@@ -271,6 +271,55 @@ namespace KarateMVC.Controllers
 
         }
 
+        public ActionResult EditVideo(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            if (!Directory.Exists(Server.MapPath("/Content/Video/Eventi/" + id + "/"))){
+                Directory.CreateDirectory(Server.MapPath("~/Content/Video/Eventi/" + id));
+            }
+            var video = Directory.GetFiles(Server.MapPath("/Content/Video/Eventi/" + id + "/"));
+            ViewBag.Video = video.ToList();
+            Eventi eventi = db.Eventis.Find(id);
+            if (eventi == null)
+            {
+                return HttpNotFound();
+            }
+            return View(eventi);
+        }
+
+        [HttpPost]
+        public ActionResult EditVideo(IEnumerable<HttpPostedFileBase> files, int? id)
+        {
+            foreach (var file in files)
+            {
+                if (file != null)
+                    try
+                    {
+                        var fileName = Path.GetFileName(file.FileName);
+                        var path = Path.Combine(Server.MapPath("~/Content/Video/Eventi/" + id + "/"), fileName);
+                        file.SaveAs(path);
+                    }
+                    catch (Exception ex)
+                    {
+                        ViewBag.Message = "ERROR:" + ex.Message.ToString();
+                    }
+                else
+                {
+                    ViewBag.Message = "Devi scegliere un file";
+                }
+            }
+            var video = Directory.GetFiles(Server.MapPath("/Content/Video/Eventi/" + id + "/"));
+            ViewBag.Video = video.ToList();
+            Eventi eventi = db.Eventis.Find(id);
+            if (eventi == null)
+            {
+                return HttpNotFound();
+            }
+            return View(eventi);
+        }
         public ActionResult ImgRotateD(string file, int id)
         {
             string path = Server.MapPath("~/Content/Immagini/Eventi/" + file);

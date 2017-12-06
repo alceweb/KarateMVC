@@ -283,7 +283,18 @@ namespace KarateMVC.Controllers
 
             var userRoles = await UserManager.GetRolesAsync(user.Id);
 
-            return View(user);
+            return View(new EditUsViewModel()
+            {
+                Id = user.Id,
+                Email = user.Email,
+                Nome = user.Nome,
+                Cognome = user.Cognome,
+                DataNascita = user.DataNascita,
+                AnnoInizio = user.AnnoInizio,
+                Grado = user.Grado,
+                Frase = user.Frase,
+                Kata = user.Kata,
+            });
         }
 
         [Authorize]

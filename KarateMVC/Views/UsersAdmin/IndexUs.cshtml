@@ -13,7 +13,7 @@
         <h3><span class="glyphicon glyphicon-duplicate"> @Html.ActionLink("Dati anagrafici", "EditUs", new { id = @ViewBag.Uid })</span></h3>
     </li>
     <li>
-        <h3><span class="glyphicon glyphicon-camera"> @Html.ActionLink("Foto profilo", "FotoProfilo", new { id = @ViewBag.Uid })</span></h3>
+        <h3><span class="glyphicon glyphicon-camera"> @Html.ActionLink("Foto profilo", "Upload", "Avatar", new { id = @ViewBag.Uid }, null)</span></h3>
     </li>
     <li>
         <h3><span class="glyphicon glyphicon-cd"> @Html.ActionLink("Medagliere", "Index", "Medaglieres", new { id = @ViewBag.Uid }, null)</span></h3>

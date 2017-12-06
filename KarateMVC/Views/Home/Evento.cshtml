@@ -1,6 +1,5 @@
 ﻿@model KarateMVC.Models.Eventi
 
-<div >
 
     <h1>
         @Html.DisplayFor(model => model.Titolo)
@@ -17,26 +16,29 @@
             }
         </span>
     }
-<hr />
     @*Inizio storico*@
     @if (ViewBag.Eventi1Count > 0)
     {
-        <div class="well well-sm">
+        <a role="button" data-toggle="collapse" href="#collapse1" aria-expanded="false" aria-controls="collapse1">
+            <span class="fa fa-archive verde">Archivio: <strong><em>@Model.NomeGara.NomeGara</em></strong></span>
+            <span class="fa fa-chevron-down fa-2x"></span>
+        </a>
+        <div class="collapse" id="collapse1">
+            <div class="well">
+                <div class="galla3">
 
-            <span class="fa fa-archive fa-2x verde">Archivio: <strong><em>@Model.NomeGara.NomeGara</em></strong></span><hr class="hr2" />
-            <div class="galla3">
-
-                @foreach (var itemEv in ViewBag.Eventi1)
-            {
-            <div>
-                <span>
-                    <a href="@Url.Action("Evento", "Home", new {id = @itemEv.Evento_Id })" class="btn btn-xs verdeBack">
-                        <img src="@Url.Content("~/Content/Immagini/Eventi/" + @itemEv.Evento_Id + "/" + @itemEv.Evento_Id + ".jpg")" /><br />
-                        @itemEv.Data.ToString("yyyy")
-                    </a>
-                </span>
-            </div>
-            }
+                    @foreach (var itemEv in ViewBag.Eventi1)
+                    {
+                        <div>
+                            <span>
+                                <a href="@Url.Action("Evento", "Home", new {id = @itemEv.Evento_Id })" class="btn btn-xs verdeBack">
+                                    <img src="@Url.Content("~/Content/Immagini/Eventi/" + @itemEv.Evento_Id + "/" + @itemEv.Evento_Id + ".jpg")" /><br />
+                                    @itemEv.Data.ToString("yyyy")
+                                </a>
+                            </span>
+                        </div>
+                    }
+                </div>
             </div>
         </div>
     }
@@ -45,7 +47,8 @@
     <p>
         @Html.Raw(Model.Descrizione)
     </p>
-</div>
+<hr />
+
 @if (User.IsInRole("Download"))
 {
     <div class="galla">
@@ -77,6 +80,25 @@ else
             </div>
         }
 
+    </div>
+
+}
+
+@if (Directory.Exists(Server.MapPath("~/Content/Video/Eventi/" + Model.Evento_Id + "/")))
+{
+    <div class="row">
+        @foreach (var item in ViewBag.Video)
+        {
+            var filename = Path.GetFileName(item);
+            <div class="col col-sm-6 col-md-4 text-center">
+                <div class="embed-responsive embed-responsive-4by3">
+                    <video controls="controls">
+                        <source src="@Url.Content("~/Content/Video/Eventi/" + Model.Evento_Id + "/" + filename)" type="video/mp4" />
+                    </video>
+                </div>
+
+            </div>
+        }
     </div>
 
 }

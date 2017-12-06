@@ -62,6 +62,10 @@ namespace KarateMVC.Controllers
             }
             var immagini = Directory.GetFiles(Server.MapPath("/Content/Immagini/Eventi/" + id + "/"));
             ViewBag.Immagini = immagini.ToList();
+            if(Directory.Exists(Server.MapPath("/Content/Video/Eventi/" + id + "/"))){
+                var video = Directory.GetFiles(Server.MapPath("/Content/Video/Eventi/" + id + "/"));
+                ViewBag.Video = video.ToList();
+            }
             Eventi eventi = db.Eventis.Find(id);
             var gara = eventi.Gara_Id;
             ViewBag.Eventi1 = db.Eventis.Where(g => g.Gara_Id == gara && g.Evento_Id != id).OrderBy(g=>g.Data);

@@ -34,6 +34,7 @@
     <hr class="hr1" />
 }
 @*Fine jumbo avviso*@
+    <!---Inizio intestazione mannequin chellenge-->
     <div class="row text-center">
         <a class="btn btn-primary btn-verde" role="button" data-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
             <div class="col col-md-3">
@@ -57,38 +58,41 @@
                 </div>
         </div>
     </div>
+<!---Fine intestazione mannequin chellenge-->
 @*Inizio galleria prima pagina*@
 
 @foreach (var item in Model.GroupBy(a => a.Data.Year).Select(a => new { anno = a.Key, evento = a.OrderByDescending(e => e.Data) }))
 {
     <hr class="hr1" />
-    <div class="table table-responsive div1 content">
+    <div class="div1 content">
         <h1>@item.anno</h1>
         @foreach (var item1 in item.evento)
         {
+
         <div class="text-center">
 
-            <h4 class="text-center">@Html.DisplayFor(modelItem => item1.Titolo)</h4>
-            @if (item1.Gara_Id != 19)
-            {
-                <h5 class="text-center">@item1.Data.ToString("dddd dd MMM yyyy")</h5>
+                <h4 class="text-center">@Html.DisplayFor(modelItem => item1.Titolo)</h4>
+                @if (item1.Gara_Id != 19)
+                {
+                    <h5 class="text-center">@item1.Data.ToString("dddd dd MMM yyyy")</h5>
 
-            }
-            else
-            {
-                <h5> </h5>
-            }
-            <p>
-                <a href="@Url.Action("Evento", "Home", new { id = item1.Evento_Id })"><img src="@Url.Content("~/Content/Immagini/Eventi/" + item1.Evento_Id + "/" + item1.Evento_Id + ".jpg")" alt="" /></a>
-            </p>
-            @if (User.IsInRole("Admin"))
-            {
-                <a href="@Url.Action("EditImg", "Eventis", new{id = @item1.Evento_Id})" class="text-primary h4" title="Galleria fotografica"><span class="glyphicon glyphicon-camera"></span></a>
-                <a href="@Url.Action("Edit", "Eventis", new{id = @item1.Evento_Id})" class="text-danger h4" title="Testo"><span class="glyphicon glyphicon-pencil"></span></a>
-                <a href="@Url.Action("EditImgP", "Eventis", new{id = @item1.Evento_Id})" class="text-primary h4" title="Bacheca"><span class="glyphicon glyphicon-picture"></span></a>
-            }
-
+                }
+                else
+                {
+                    <h5> </h5>
+                }
+                <p>
+                    <a href="@Url.Action("Evento", "Home", new { id = item1.Evento_Id })"><img src="@Url.Content("~/Content/Immagini/Eventi/" + item1.Evento_Id + "/" + item1.Evento_Id + ".jpg")" alt="" /></a>
+                </p>
+                @if (User.IsInRole("Admin"))
+                {
+                    <a href="@Url.Action("EditImg", "Eventis", new{id = @item1.Evento_Id})" class="text-primary h4" title="Galleria fotografica"><span class="glyphicon glyphicon-camera"></span></a>
+                    <a href="@Url.Action("Edit", "Eventis", new{id = @item1.Evento_Id})" class="text-danger h4" title="Testo"><span class="glyphicon glyphicon-pencil"></span></a>
+                    <a href="@Url.Action("EditImgP", "Eventis", new{id = @item1.Evento_Id})" class="text-primary h4" title="Bacheca"><span class="glyphicon glyphicon-picture"></span></a>
+                    <a href="@Url.Action("EditVideo", "Eventis", new{id = @item1.Evento_Id})" class="text-primary h4" title="Video"><span class="fa fa-film"></span></a>
+                }
         </div>
+
         }
     </div>
 }

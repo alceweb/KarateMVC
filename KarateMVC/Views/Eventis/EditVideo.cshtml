@@ -1,0 +1,53 @@
+﻿@model KarateMVC.Models.Eventi
+
+@{
+    ViewBag.Title = "Aggiungi Video";
+}
+
+<h2>@ViewBag.Title</h2>
+<h4>Video dell'evento</h4><hr />
+<div>
+    <h3>
+        @Html.ActionLink(" ", "Index", null, new { @class = "glyphicon glyphicon-arrow-left" })
+        <span class="badge">Id: @Html.DisplayFor(model => model.Evento_Id, null)</span>
+        @Html.DisplayFor(model => model.Titolo)
+    </h3>
+</div>
+@using (Html.BeginForm("EditVideo", "Eventis", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <input type="file" name="files" id="file" multiple />
+    <h3 class="badge">Dimensione massima file o gruppo di file 40M</h3><br />
+    <input type="submit" value="Upload Image" class="btn btn-primary" />
+    <br>
+    <h4>@ViewBag.Message</h4>
+}
+<div class="row">
+</div>
+<hr />
+<div class="row">
+    @foreach (var item in ViewBag.Video)
+    {
+        var filename = Path.GetFileName(item);
+        <div class="col col-md-4 text-center">
+            <div class="embed-responsive embed-responsive-4by3">
+                <video controls="controls" >
+                    <source src="@Url.Content("~/Content/Video/Eventi/" + Model.Evento_Id + "/" + filename)" type="video/mp4" />
+                </video>
+            </div>
+
+        </div>
+    }
+
+</div>
+<div class="row">
+    <div class="col col-md-6">
+
+    </div>
+    <div class="col col-md-6">
+
+    </div>
+</div>
+<h3>
+    @Html.ActionLink(" ", "Index", null, new { @class = "glyphicon glyphicon-arrow-left" })
+</h3>
+

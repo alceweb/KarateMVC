@@ -29,6 +29,23 @@ namespace KarateMVC
                       "~/Content/font-awesome.min.css",
                       "~/Content/bootstrap-datepicker3.css",
                       "~/Content/site.css"));
-       }
+
+            bundles.Add(new ScriptBundle("~/bundles/avatar").Include(
+          "~/Scripts/site.avatar.js"));
+
+            bundles.Add(new ScriptBundle("~/bundles/jcrop").Include(
+          "~/Scripts/jquery.Jcrop.js"));
+
+            bundles.Add(new ScriptBundle("~/bundles/jqueryform").Include(
+                      "~/Scripts/jquery.form.js"));
+
+            bundles.Add(new StyleBundle("~/Content/jcrop").Include(
+                      "~/Content/jquery.Jcrop.css"));
+
+            bundles.Add(new StyleBundle("~/Content/avatar").Include(
+                      "~/Content/site.avatar.css"));
+
+
+        }
     }
 }

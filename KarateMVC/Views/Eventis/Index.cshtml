@@ -53,11 +53,12 @@
             @Html.DisplayFor(modelItem => item.Galleria)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Evento_Id }, new { @class = "text-success" }) |
-            @Html.ActionLink("Delete", "Delete", new { id = item.Evento_Id }, new { @class = "text-danger" }) |
-            @Html.ActionLink(" ", "EditImg", new { id = item.Evento_Id }, new { @class = "glyphicon glyphicon-camera", title="Galleria" }) |
+            @Html.ActionLink(" ", "Edit", new { id=item.Evento_Id }, new { @class = "fa fa-pencil text-success" })
+            @Html.ActionLink(" ", "Delete", new { id = item.Evento_Id }, new { @class = "fa fa-trash-o text-danger" })
+            @Html.ActionLink(" ", "EditImg", new { id = item.Evento_Id }, new { @class = "glyphicon glyphicon-camera", title="Galleria" })
             @Html.ActionLink(" ", "EditImgP", new { id = item.Evento_Id }, new { @class = "glyphicon glyphicon-picture", title = "Foto bacheca" })
-        </td>
+            @Html.ActionLink(" ", "EditVideo", new { id = item.Evento_Id }, new { @class = "fa fa-film", title = "Video" })
+      </td>
     </tr>
 }
 
